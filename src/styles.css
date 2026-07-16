@@ -2,11 +2,6 @@
 
 @import 'tailwindcss';
 
-input,
-textarea {
-  cursor: text;
-}
-
 button {
   cursor: pointer;
 }

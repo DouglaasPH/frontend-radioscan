@@ -1,16 +1,44 @@
 <main class="flex h-screen w-screen">
   <div
-    class="hidden xl:flex xl:w-1/2 bg-[#055cb9] z-10 text-center px-12 justify-center items-center flex-col"
+    class="hidden xl:flex xl:w-1/2 bg-gradient-to-br from-[#005bb7] to-[#00448c] z-10 text-center px-12 justify-center items-center flex-col gap-3 relative group"
   >
-    <img
-      src="assets/images/logo.jpg"
-      alt="Logo da Empresa"
-      class="w-48 h-48 object-contain mx-auto mb-8 rounded-2xl bg-white/10 backdrop-blur-md p-4 border border-white/20 shadow-2xl"
-    />
-    <h2 class="font-medium text-4xl text-white mb-4">Precisão em Diagnóstico</h2>
-    <p class="text-md text-white/80 max-w-md mx-auto">
-      Imagem avançada e gestão de fluxo de trabalho integrada para profissionais de saúde modernos
-    </p>
+    <!-- Abstract Medical Background -->
+    <div class="absolute inset-0 opacity-10 pointer-events-none">
+      <svg class="w-full h-full object-cover" viewbox="0 0 1000 1000">
+        <defs>
+          <pattern height="40" id="grid" patternunits="userSpaceOnUse" width="40">
+            <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="0.5"></path>
+          </pattern>
+        </defs>
+        <rect fill="url(#grid)" height="1000" width="1000"></rect>
+        <circle cx="200" cy="800" fill="none" r="300" stroke="white" stroke-width="1"></circle>
+        <circle
+          cx="800"
+          cy="200"
+          fill="none"
+          r="400"
+          stroke="white"
+          stroke-dasharray="10 20"
+          stroke-width="1"
+        ></circle>
+        <path d="M 0 500 Q 500 200 1000 500" fill="none" stroke="white" stroke-width="2"></path>
+      </svg>
+    </div>
+    <div class="p-2 flex justify-center items-center gap-sm mb-xl bg-white/7 shadow-lg rounded-3xl">
+      <span class="material-symbols-outlined text-white !text-[80px]">radiology</span>
+      <div class="flex flex-col justify-start gap-0.5">
+        <span class="font-semibold text-4xl text-white leading-none">Radioscan</span>
+        <span class="font-medium text-[16.6px] text-white/60 uppercase leading-none tracking-widest"
+          >Sistema clínico</span
+        >
+      </div>
+    </div>
+    <div class="flex flex-col gap-1">
+      <h2 class="font-medium text-4xl text-white">Precisão em Diagnóstico</h2>
+      <p class="text-md text-white/80 max-w-md mx-auto">
+        Imagem avançada e gestão de fluxo de trabalho integrada para profissionais de saúde modernos
+      </p>
+    </div>
   </div>
   <div class="w-full xl:w-1/2 h-screen bg-gray-50 flex justify-center items-center px-12">
     <div

@@ -8,6 +8,7 @@ import { ScheduleAnAppointment } from './pages/schedule-an-appointment/schedule-
 import { AppointmentHistory } from './pages/appointment-history/appointment-history';
 import { Profile } from './pages/profile/profile';
 import { ChangePassword } from './pages/change-password/change-password';
+import { CreateAccountEmployee } from './pages/create-account-employee/create-account-employee';
 
 export const routes: Routes = [
   {
@@ -50,5 +51,9 @@ export const routes: Routes = [
   {
     path: 'dashboard/patient/profile/change-password',
     component: ChangePassword,
+  },
+  {
+    path: 'dashboard/admin/create-account-employee',
+    component: CreateAccountEmployee,
   },
 ];

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Login } from './pages/login/login';
-import { CreateAccount } from './pages/create-account/create-account';
+import { CreateAccount } from './pages/create-account-patient/create-account-patient';
 import { TermsAndConditions } from './pages/terms-and-conditions/terms-and-conditions';
 import { Error } from './pages/error/error';
 import { Dashboard } from './pages/dashboard/dashboard';

@@ -1,0 +1,134 @@
+<div class="flex w-full h-full">
+  <component-sidebar></component-sidebar>
+  <div class="flex-1 flex flex-col">
+    <component-navbar></component-navbar>
+    <main class="flex flex-col gap-8 p-lg p-10">
+      <h1 class="text-4xl font-bold text-[#055cb9]">Meu perfil</h1>
+      <section
+        class="bg-white border-1 border-gray-200 shadow-sm rounded-lg p-5 flex flex-col gap-5"
+      >
+        <div class="flex justify-between items-center">
+          <h4 class="flex items-center gap-2">
+            <span class="material-symbols-outlined !text-2xl text-[#055cb9]">contact_page</span>
+            <span class="text-base font-medium">Informações Pessoais</span>
+          </h4>
+          <button
+            type="submit"
+            class="w-25 py-2.5 rounded-xl text-md bg-[#055cb9] text-white font-medium hover:bg-[#055cb9]/90 transition-all shadow-sm"
+          >
+            Editar
+          </button>
+        </div>
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <!-- Name Input -->
+          <div class="flex flex-col gap-1 w-full">
+            <label for="name" class="text-gray-600 font-medium text-sm">Nome</label>
+            <div class="relative group">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[22px] text-gray-400 [font-variation-settings:'wght'_300]"
+                >person</span
+              >
+              <input
+                id="name"
+                placeholder="Douglas Phelipe"
+                type="name"
+                disabled
+                class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
+              />
+            </div>
+          </div>
+          <!-- Email Input -->
+          <div class="flex flex-col gap-1 w-full">
+            <label for="email" class="text-gray-600 font-medium text-sm">Email</label>
+            <div class="relative group">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[22px] text-gray-400 [font-variation-settings:'wght'_300]"
+                >mail</span
+              >
+              <input
+                id="email"
+                placeholder="seu.email@exemplo.com"
+                type="email"
+                disabled
+                class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
+              />
+            </div>
+          </div>
+          <!-- CPF Input only patient -->
+          <div class="flex flex-col gap-1 w-full">
+            <label for="cpf" class="text-gray-600 font-medium text-sm">CPF</label>
+            <div class="relative group">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[22px] text-gray-400 [font-variation-settings:'wght'_300]"
+                >badge</span
+              >
+              <input
+                id="cpf"
+                placeholder="000.000.000-00"
+                type="cpf"
+                disabled
+                class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
+              />
+            </div>
+          </div>
+          <!-- Phone Input only patient -->
+          <div class="flex flex-col gap-1 w-full">
+            <label for="telefone" class="text-gray-600 font-medium text-sm">Telefone</label>
+            <div class="relative group">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[22px] text-gray-400 [font-variation-settings:'wght'_300]"
+                >phone</span
+              >
+              <input
+                id="telefone"
+                placeholder="+55 81 90000-0000"
+                type="telefone"
+                disabled
+                class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
+              />
+            </div>
+          </div>
+          <!-- License number Input only employee -->
+          <div class="flex flex-col gap-1 w-full">
+            <label for="licenseNumber" class="text-gray-600 font-medium text-sm"
+              >Número da Licença</label
+            >
+            <div class="relative group">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[22px] text-gray-400 [font-variation-settings:'wght'_300]"
+                >id_card</span
+              >
+              <input
+                id="licenseNumber"
+                placeholder="344549586896"
+                type="licenseNumber"
+                disabled
+                class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
+              />
+            </div>
+          </div>
+        </section>
+      </section>
+      <section
+        class="bg-white border-1 border-gray-200 shadow-sm rounded-lg p-5 flex flex-col gap-5"
+      >
+        <h4 class="flex items-center gap-2">
+          <span class="material-symbols-outlined !text-2xl text-[#055cb9]">shield</span>
+          <span class="text-base font-medium">Segurança</span>
+        </h4>
+        <button
+          class="border border-gray-300 rounded-xl shadow-sm flex justify-between p-3.5 items-center hover:bg-gray-50 transition-all"
+        >
+          <div class="flex items-center gap-4">
+            <span
+              class="material-symbols-outlined !text-2xl text-[#055cb9] bg-[#055cb9]/15 p-1 px-2 rounded-full"
+              >lock_reset</span
+            >
+            <span class="text-base text-medium">Alterar senha</span>
+          </div>
+          <span class="material-symbols-outlined !text-3xl text-gray-500">chevron_right</span>
+        </button>
+      </section>
+    </main>
+  </div>
+</div>

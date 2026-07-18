@@ -3,8 +3,9 @@ import { NavbarComponent } from '../dashboard/components/navbar/navbar.component
 import { SidebarComponent } from '../dashboard/components/sidebar/sidebar.component';
 
 @Component({
-  selector: 'app-my-exams',
+  selector: 'app-profile',
+  standalone: true,
   imports: [SidebarComponent, NavbarComponent],
-  templateUrl: './my-exams.html',
+  templateUrl: './profile.html',
 })
-export class MyExams {}
+export class Profile {}

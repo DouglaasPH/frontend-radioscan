@@ -5,8 +5,9 @@ import { TermsAndConditions } from './pages/terms-and-conditions/terms-and-condi
 import { Error } from './pages/error/error';
 import { Dashboard } from './pages/dashboard/dashboard';
 import { ScheduleAnAppointment } from './pages/schedule-an-appointment/schedule-an-appointment';
-import { MyExams } from './pages/my-exams/my-exams';
 import { AppointmentHistory } from './pages/appointment-history/appointment-history';
+import { Profile } from './pages/profile/profile';
+import { ChangePassword } from './pages/change-password/change-password';
 
 export const routes: Routes = [
   {
@@ -39,11 +40,15 @@ export const routes: Routes = [
     component: ScheduleAnAppointment,
   },
   {
-    path: 'dashboard/patient/my-exams',
-    component: MyExams,
-  },
-  {
     path: 'dashboard/patient/appointment-history',
     component: AppointmentHistory,
+  },
+  {
+    path: 'dashboard/patient/profile',
+    component: Profile,
+  },
+  {
+    path: 'dashboard/patient/profile/change-password',
+    component: ChangePassword,
   },
 ];

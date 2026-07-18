@@ -1,0 +1,29 @@
+@keyframes clinical-rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes clinical-dash {
+  0% {
+    stroke-dashoffset: 157;
+  }
+  50% {
+    stroke-dashoffset: 40;
+  }
+  100% {
+    stroke-dashoffset: 157;
+  }
+}
+
+.spinner-svg-animated {
+  transform-origin: center;
+  animation: clinical-rotate 2s linear infinite;
+}
+
+.spinner-path {
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  transform-origin: center;
+  animation: clinical-dash 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}

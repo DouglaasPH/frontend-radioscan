@@ -9,6 +9,7 @@ import { AppointmentHistory } from './pages/appointment-history/appointment-hist
 import { Profile } from './pages/profile/profile';
 import { ChangePassword } from './pages/change-password/change-password';
 import { CreateAccountEmployee } from './pages/create-account-employee/create-account-employee';
+import { EmployeeManagement } from './pages/employee-management/employee-management';
 
 export const routes: Routes = [
   {
@@ -55,5 +56,9 @@ export const routes: Routes = [
   {
     path: 'dashboard/admin/create-account-employee',
     component: CreateAccountEmployee,
+  },
+  {
+    path: 'dashboard/admin/employee-management',
+    component: EmployeeManagement,
   },
 ];

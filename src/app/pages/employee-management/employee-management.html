@@ -1,0 +1,189 @@
+<div class="flex w-full">
+  <component-sidebar></component-sidebar>
+  <div class="flex-1 flex flex-col">
+    <component-navbar></component-navbar>
+    <main class="flex flex-col gap-8 p-lg p-10">
+      <!-- Title and add employee button component -->
+      <section class="flex justify-between flex-wrap items-center gap-4">
+        <h1 class="text-4xl font-bold text-[#055cb9]">Gerenciamento de Funcionários</h1>
+      </section>
+      <section class="flex items-center md:gap-10 justify-between md:justify-start flex-wrap">
+        <!-- Total de funcionários component -->
+        <div
+          class="w-full md:w-70 flex items-center gap-4 bg-white border-1 border-gray-100 rounded-xl shadow-sm p-6"
+        >
+          <span
+            class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[35px] bg-[#055cb9]/15 text-[#055cb9] p-2 rounded-2xl"
+            >groups</span
+          >
+          <div class="flex flex-col items-start">
+            <span class="text-gray-600 font-medium text-[13px]">Total de Funcionários</span>
+            <span class="text-2xl font-bold">42</span>
+          </div>
+        </div>
+        <!-- Médicos component -->
+        <div
+          class="w-full md:w-70 flex items-center gap-4 bg-white border-1 border-gray-100 rounded-xl shadow-sm p-6"
+        >
+          <span
+            class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[35px] bg-gray-200 text-gray-600 p-2 rounded-2xl"
+            >medical_services</span
+          >
+          <div class="flex flex-col items-start">
+            <span class="text-gray-600 font-medium text-[13px]">Médicos</span>
+            <span class="text-2xl font-bold">18</span>
+          </div>
+        </div>
+        <!-- Técnicos component -->
+        <div
+          class="w-full md:w-70 flex items-center gap-4 bg-white border-1 border-gray-100 rounded-xl shadow-sm p-6"
+        >
+          <span
+            class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[35px] bg-gray-200 text-gray-600 p-2 rounded-2xl"
+            >biotech</span
+          >
+          <div class="flex flex-col items-start">
+            <span class="text-gray-600 font-medium text-[13px]">Técnicos</span>
+            <span class="text-2xl font-bold">24</span>
+          </div>
+        </div>
+      </section>
+      <!-- employee table component -->
+      <section class="flex flex-col justify-start bg-white rounded-2xl shadow-sm">
+        <!-- Filtros component -->
+        <div
+          class="flex flex-row items-center justify-between bg-[#055cb9]/10 px-6 py-5 rounded-t-2xl shadow-sm"
+        >
+          <!-- Filtros component-->
+          <div class="flex flex-row items-center gap-6">
+            <span>Filtrar por cargo: </span>
+            <div
+              class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-3 rounded-xl font-medium text-[14px]"
+            >
+              <button class="text-[#055cb9] bg-white py-2 px-4 rounded-lg">Todos</button>
+              <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">Técnicos</button>
+              <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">Doutores</button>
+            </div>
+          </div>
+          <button
+            class="p-3 rounded-xl text-md bg-[#055cb9] text-white font-medium hover:bg-[#055cb9]/90 transition-all shadow-sm flex items-center"
+          >
+            <span
+              class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[25px]"
+              >add</span
+            >
+            <span> Adicionar Funcionário </span>
+          </button>
+        </div>
+        <table class="w-full text-left">
+          <thead>
+            <tr class="text-gray-500">
+              <th class="px-6 py-4 text-outline uppercase tracking-wider">Nome</th>
+              <th class="px-6 py-4 text-outline uppercase tracking-wider">E-mail</th>
+              <th class="px-6 py-4 text-outline uppercase tracking-wider">Cargo</th>
+              <th class="px-6 py-4 text-outline uppercase tracking-wider">Nº de Licença</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Row 1 -->
+            <tr class="border-b border-gray-100">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div>
+                    <p class="font-medium text-on-surface">Dr. Ricardo Silva</p>
+                    <p class="text-gray-400 text-[12px]">ID: #4502</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-gray-500">ricardo.silva@radprecision.com</td>
+              <td class="px-6 py-4">
+                <span class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm">
+                  Médico
+                </span>
+              </td>
+              <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
+                CRM/SP 123456
+              </td>
+            </tr>
+            <!-- Row 2 -->
+            <tr class="border-b border-gray-100">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div>
+                    <p class="font-medium text-on-surface">Ricardo Silva</p>
+                    <p class="text-gray-400 text-[12px]">ID: #4502</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-gray-500">ricardo.silva@radprecision.com</td>
+              <td class="px-6 py-4">
+                <span
+                  class="items-center px-3 py-1 rounded-full bg-[#055cb9]/30 text-gray-500 shadow-sm"
+                >
+                  Técnico
+                </span>
+              </td>
+              <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
+                CRM/SP 123456
+              </td>
+            </tr>
+            <!-- Row 1 -->
+            <tr class="border-b border-gray-100">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div>
+                    <p class="font-medium text-on-surface">Dr. Ricardo Silva</p>
+                    <p class="text-gray-400 text-[12px]">ID: #4502</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-gray-500">ricardo.silva@radprecision.com</td>
+              <td class="px-6 py-4">
+                <span class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm">
+                  Médico
+                </span>
+              </td>
+              <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
+                CRM/SP 123456
+              </td>
+            </tr>
+            <!-- Row 2 -->
+            <tr class="border-b border-gray-100">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div>
+                    <p class="font-medium text-on-surface">Ricardo Silva</p>
+                    <p class="text-gray-400 text-[12px]">ID: #4502</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-gray-500">ricardo.silva@radprecision.com</td>
+              <td class="px-6 py-4">
+                <span
+                  class="items-center px-3 py-1 rounded-full bg-[#055cb9]/30 text-gray-500 shadow-sm"
+                >
+                  Técnico
+                </span>
+              </td>
+              <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
+                CRM/SP 123456
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <!-- Pagination filter component -->
+        <div
+          class="flex flex-row justify-between items-center gap-6 bg-[#055cb9]/5 px-6 py-3 rounded-b-2xl shadow-sm"
+        >
+          <!-- Pagination filter component-->
+          <span class="text-[13px] text-gray-500">Mostrando 1-4 de 42 funcionários</span>
+          <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-2 rounded-xl font-medium text-[14px]">
+            <button class="text-[#055cb9] bg-white py-2 px-4 rounded-lg">1</button>
+            <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">2</button>
+            <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">3</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>

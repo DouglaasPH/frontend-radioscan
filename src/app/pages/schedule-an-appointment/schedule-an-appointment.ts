@@ -2,8 +2,8 @@ import { Component, model } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { SidebarComponent } from '../dashboard/components/sidebar/sidebar.component';
-import { NavbarComponent } from '../dashboard/components/navbar/navbar.component';
+import { SidebarComponent } from '../../components/sidebar/sidebar.component';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 @Component({
   selector: 'app-schedule-an-appointment',

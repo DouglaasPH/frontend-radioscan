@@ -3,7 +3,6 @@ import { Login } from './pages/login/login';
 import { CreateAccount } from './pages/create-account-patient/create-account-patient';
 import { TermsAndConditions } from './pages/terms-and-conditions/terms-and-conditions';
 import { Error } from './pages/error/error';
-import { Dashboard } from './pages/dashboard/dashboard';
 import { ScheduleAnAppointment } from './pages/schedule-an-appointment/schedule-an-appointment';
 import { AppointmentHistory } from './pages/appointment-history/appointment-history';
 import { Profile } from './pages/profile/profile';
@@ -11,6 +10,7 @@ import { ChangePassword } from './pages/change-password/change-password';
 import { CreateAccountEmployee } from './pages/create-account-employee/create-account-employee';
 import { EmployeeManagement } from './pages/employee-management/employee-management';
 import { NewConsultationAppointmentSlot } from './pages/new-consultation-appointment-slot/new-consultation-appointment-slot';
+import { DashboardPatient } from './pages/dashboard-patient/dashboard';
 
 export const routes: Routes = [
   {
@@ -36,7 +36,7 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard/patient',
-    component: Dashboard,
+    component: DashboardPatient,
   },
   {
     path: 'dashboard/patient/schedule-an-appointment',

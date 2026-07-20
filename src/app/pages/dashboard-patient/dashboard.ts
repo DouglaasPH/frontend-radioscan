@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { NavbarComponent } from '../../components/navbar/navbar.component';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
+import { NavbarComponent } from '../../components/navbar/navbar.component';
 
 @Component({
-  selector: 'app-profile',
-  standalone: true,
+  selector: 'app-dashboard',
   imports: [SidebarComponent, NavbarComponent],
-  templateUrl: './profile.html',
+  templateUrl: './dashboard.html',
 })
-export class Profile {}
+export class DashboardPatient {}

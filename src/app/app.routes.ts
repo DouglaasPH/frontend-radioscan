@@ -10,6 +10,7 @@ import { Profile } from './pages/profile/profile';
 import { ChangePassword } from './pages/change-password/change-password';
 import { CreateAccountEmployee } from './pages/create-account-employee/create-account-employee';
 import { EmployeeManagement } from './pages/employee-management/employee-management';
+import { NewConsultationAppointmentSlot } from './pages/new-consultation-appointment-slot/new-consultation-appointment-slot';
 
 export const routes: Routes = [
   {
@@ -60,5 +61,9 @@ export const routes: Routes = [
   {
     path: 'dashboard/admin/employee-management',
     component: EmployeeManagement,
+  },
+  {
+    path: 'dashboard/admin/new-consultation-appointment-slot',
+    component: NewConsultationAppointmentSlot,
   },
 ];

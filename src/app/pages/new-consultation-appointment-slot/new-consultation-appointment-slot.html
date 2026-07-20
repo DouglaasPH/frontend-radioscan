@@ -1,0 +1,87 @@
+<div class="flex w-full h-full">
+  <component-sidebar></component-sidebar>
+  <div class="flex- flex flex-col w-full h-full">
+    <component-navbar></component-navbar>
+    <main class="flex flex-col gap-8 p-10 bg-red-40">
+      <!-- Title component -->
+      <h1 class="text-4xl font-bold text-[#055cb9]">Nova vaga de Consulta</h1>
+      <!-- Content for the new consultation appointment slot -->
+      <section class="bg-white/100 p-10 rounded-xl shadow-sm flex flex-col gap-10">
+        <div class="flex flex-col gap-3">
+          <h4 class="font-bold text-[14px] text-gray-500 uppercase">Tipo de consulta</h4>
+          <div class="flex justify-between flex-wrap w-full gap-5 md:gap-0">
+            <button
+              class="flex gap-5 items-center border-2 border-[#055cb9] p-3 rounded-2xl hover:bg-[#055cb9]/10 transition-all w-full md:w-[49%]"
+            >
+              <span
+                class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[35px] bg-[#055cb9]/15 text-[#055cb9] p-2 rounded-xl"
+                >biotech</span
+              >
+              <div class="flex flex-col items-start">
+                <span class="font-medium text-[18px] text-gray-700">Captura de Exame</span>
+                <span class="text-[12px] text-gray-400">Capturar imagens da radiografia</span>
+              </div>
+            </button>
+            <button
+              class="flex gap-5 items-center border-2 border-gray-400 p-3 rounded-2xl hover:bg-gray-200 transition-all w-full md:w-[49%]"
+            >
+              <span
+                class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[35px] bg-[#055cb9]/7 text-gray-500 p-2 rounded-xl"
+                >medical_services</span
+              >
+              <div class="flex flex-col items-start">
+                <span class="font-medium text-[18px] text-gray-700">Revisão de exame</span>
+                <span class="text-[12px] text-gray-400">Análise de resultados e laudos</span>
+              </div>
+            </button>
+          </div>
+        </div>
+        <!-- Data da consulta and horário component-->
+        <div class="w-full flex justify-between flex-wrap gap-5 md:gap-0">
+          <div class="w-full md:w-[49%] flex flex-col gap-1">
+            <h4 class="font-bold text-[14px] text-gray-500 uppercase">Data da consulta</h4>
+            <input
+              type="date"
+              required
+              class="border-1 border-gray-300 p-3 rounded-xl w-full cursor-pointer"
+            />
+          </div>
+          <div class="w-full md:w-[49%] flex flex-col gap-1">
+            <h4 class="font-bold text-[14px] text-gray-500 uppercase">Horário da consulta</h4>
+            <input
+              type="time"
+              required
+              class="border-1 border-gray-300 p-3 rounded-xl w-full cursor-pointer"
+            />
+          </div>
+        </div>
+        <!-- Funcionário responsável componente -->
+        <div class="w-full flex flex-col leading-none gap-1 relative">
+          <h4 class="font-bold text-[14px] text-gray-500 uppercase">Funcionário responsável</h4>
+          <select
+            name="status"
+            id="status"
+            required
+            class="p-4 pr-10 border-1 border-gray-200 text-gray-600 rounded-xl shadow-sm appearance-none focus:outline-none cursor-pointer"
+          >
+            <option value="Marcos">Marcos</option>
+            <option value="Zé antonio">Zé antonio</option>
+            <option value="Ambitrio">Ambitrio</option>
+          </select>
+          <div class="pointer-events-none absolute inset-y-0 right-0 top-0 flex items-center pr-3">
+            <span class="material-symbols-outlined text-2xl text-gray-500">
+              keyboard_arrow_down
+            </span>
+          </div>
+          <span class="text-[#055cb9] text-[12px] mt-1"
+            >Somente técnicos disponíveis para este tipo de consulta</span
+          >
+        </div>
+        <!-- Criar vaga buton component-->
+        <div>
+          <button class="bg-[#055cb9] p-4 rounded-xl text-white shadow-sm">Criar Vaga</button>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>

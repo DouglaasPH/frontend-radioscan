@@ -12,6 +12,7 @@ import { EmployeeManagement } from './pages/employee-management/employee-managem
 import { NewConsultationAppointmentSlot } from './pages/new-consultation-appointment-slot/new-consultation-appointment-slot';
 import { DashboardPatient } from './pages/dashboard-patient/dashboard';
 import { DashboardAdmin } from './pages/dashboard-admin/dashboard-admin';
+import { AppointmentManagement } from './pages/appointment-management/appointment-management';
 
 export const routes: Routes = [
   {
@@ -70,5 +71,9 @@ export const routes: Routes = [
   {
     path: 'dashboard/admin',
     component: DashboardAdmin,
+  },
+  {
+    path: 'dashboard/admin/appointment-management',
+    component: AppointmentManagement,
   },
 ];

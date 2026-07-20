@@ -15,6 +15,7 @@ import { DashboardAdmin } from './pages/dashboard-admin/dashboard-admin';
 import { AppointmentManagement } from './pages/appointment-management/appointment-management';
 import { MyConsultations } from './pages/my-consultations/my-consultations';
 import { ViewConsultationDetails } from './pages/view-consultation-details/view-consultation-details';
+import { ExamUpload } from './pages/exam-upload/exam-upload';
 
 export const routes: Routes = [
   {
@@ -85,5 +86,9 @@ export const routes: Routes = [
   {
     path: 'dashboard/doctor/consultation',
     component: ViewConsultationDetails,
+  },
+  {
+    path: 'dashboard/technical/exam-upload',
+    component: ExamUpload,
   },
 ];

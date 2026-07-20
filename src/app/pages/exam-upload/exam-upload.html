@@ -1,0 +1,25 @@
+<div class="flex w-full h-full">
+  <component-sidebar></component-sidebar>
+  <div class="flex-1 flex flex-col h-screen">
+    <component-navbar></component-navbar>
+    <main class="flex flex-col gap-10 p-10 pb-0 h-full items-center">
+      <section class="w-full flex justify-center items-center gap-4">
+        <div class="flex items-center gap-2">
+          <span class="bg-[#055cb9] p-1 px-2.5 rounded-full text-white font-semibold">1</span>
+          <span class="text-[#055cb9] font-semibold text-base">Preparação</span>
+        </div>
+        <div class="w-8 md:w-16 h-[2px] bg-[#055cb9]"></div>
+        <div class="flex items-center gap-2">
+          <span class="bg-[#055cb9] p-1 px-2.5 rounded-full text-white font-semibold">2</span>
+          <span class="text-[#055cb9] font-semibold text-base">Upload</span>
+        </div>
+      </section>
+      <section
+        class="bg-white p-6 sm:p-8 md:p-10 rounded-xl border border-gray-200 shadow-sm w-full md:w-2/3"
+      >
+        <component-exam-upload-main class="hidden"></component-exam-upload-main>
+        <component-exam-succesfully-submitted></component-exam-succesfully-submitted>
+      </section>
+    </main>
+  </div>
+</div>

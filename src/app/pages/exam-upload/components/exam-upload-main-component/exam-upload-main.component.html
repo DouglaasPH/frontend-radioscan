@@ -1,0 +1,48 @@
+<section class="flex flex-col items-center gap-10 w-full">
+  <div class="flex flex-col gap-2 items-center">
+    <h1 class="text-center text-2xl font-bold text-gray-700">Enviar Imagem de Exame</h1>
+    <span class="text-gray-500 text-medium text-[13px]">Formato aceito: PNG</span>
+  </div>
+  <!-- Drag & Drop Zone -->
+  <div
+    class="w-full relative border-2 border-dashed border-gray-200 rounded-xl p-12 flex flex-col items-center justify-center transition-all duration-300 hover:border-[#055cb9] group cursor-pointer"
+    id="drop-zone"
+  >
+    <input
+      class="absolute inset-0 opacity-0 cursor-pointer"
+      id="file-input"
+      multiple=""
+      type="file"
+    />
+    <div
+      class="w-20 h-20 bg-[#055cb9]/10 rounded-full flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300"
+    >
+      <span class="material-symbols-outlined text-[#055cb9] !text-4xl">cloud_upload</span>
+    </div>
+    <h4 class="font-semibold text-lg text-gray-600 mb-2 text-center">
+      Arraste e solte o arquivo aqui
+    </h4>
+    <p class="text-center text-gray-500 font-medium text-[13px] mb-6">
+      ou clique para selecionar do seu dispositivo
+    </p>
+    <div class="flex flex-col md:flex-row gap-4">
+      <div
+        class="flex items-center gap-2 text-gray-500 text-light font-medium bg-gray-100 px-3 py-1.5 rounded-full"
+      >
+        <span class="material-symbols-outlined text-sm">check_circle</span>
+        <span>Máx. 500MB</span>
+      </div>
+      <div
+        class="flex items-center gap-2 text-gray-500 font-label-md bg-gray-100 px-3 py-1.5 rounded-full"
+      >
+        <span class="material-symbols-outlined text-sm">check_circle</span>
+        <span>Criptografia AES-256</span>
+      </div>
+    </div>
+  </div>
+  <button
+    class="bg-[#055cb9] hover:bg-[#055cb9]/80 text-white font-semibold py-2 px-4 rounded-full flex items-center justify-center gap-2 transition-colors duration-300 w-full"
+  >
+    <span>Enviar Exame</span>
+  </button>
+</section>

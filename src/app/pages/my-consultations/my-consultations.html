@@ -1,0 +1,199 @@
+<div class="flex w-full">
+  <component-sidebar></component-sidebar>
+  <div class="flex-1 flex flex-col">
+    <component-navbar></component-navbar>
+    <main class="flex flex-col gap-8 p-lg p-10">
+      <!-- Title and add employee button component -->
+      <section class="flex justify-between flex-wrap items-center gap-4">
+        <h1 class="text-4xl font-bold text-[#055cb9]">Minhas Consultas</h1>
+      </section>
+      <section class="flex items-center md:gap-10 justify-between md:justify-start flex-wrap">
+        <!-- Total de funcionários component -->
+        <div
+          class="w-full md:w-70 flex items-center gap-4 bg-white border-1 border-gray-100 rounded-xl shadow-sm p-6"
+        >
+          <span
+            class="material-symbols-outlined [font-variation-settings:'wght'_400] !text-[35px] bg-[#055cb9]/15 text-[#055cb9] p-2 rounded-2xl"
+            >calendar_month</span
+          >
+          <div class="flex flex-col items-start">
+            <span class="text-gray-600 font-semibold text-[12px] uppercase">Hoje</span>
+            <span class="text-2xl font-bold">12</span>
+          </div>
+        </div>
+        <!-- Médicos component -->
+        <div
+          class="w-full md:w-70 flex items-center gap-4 bg-white border-1 border-gray-100 rounded-xl shadow-sm p-6"
+        >
+          <span
+            class="material-symbols-outlined [font-variation-settings:'wght'_400] !text-[35px] bg-green-100 text-green-600 p-2 rounded-2xl"
+            >check_circle</span
+          >
+          <div class="flex flex-col items-start">
+            <span class="text-gray-600 font-semibold text-[12px] uppercase">Concluídas</span>
+            <span class="text-2xl font-bold">3</span>
+          </div>
+        </div>
+        <!-- Técnicos component -->
+        <div
+          class="w-full md:w-70 flex items-center gap-4 bg-white border-1 border-gray-100 rounded-xl shadow-sm p-6"
+        >
+          <span
+            class="material-symbols-outlined [font-variation-settings:'wght'_400] !text-[35px] bg-red-100 text-red-600 p-2 rounded-2xl"
+            >pending</span
+          >
+          <div class="flex flex-col items-start">
+            <span class="text-gray-600 font-semibold text-[12px] uppercase">Pendentes</span>
+            <span class="text-2xl font-bold">9</span>
+          </div>
+        </div>
+      </section>
+      <!-- employee table component -->
+      <section
+        class="flex flex-col justify-start bg-white rounded-2xl shadow-sm w-full overflow-hidden"
+      >
+        <table class="w-full text-left border-collapse">
+          <thead class="bg-gray-200 text-gray-500">
+            <tr>
+              <th
+                class="rounded-tl-2xl px-6 py-4 text-outline uppercase tracking-wider font-semibold"
+              >
+                Data/Hora
+              </th>
+              <th class="px-6 py-4 text-outline uppercase tracking-wider font-semibold">
+                Paciente
+              </th>
+              <th class="px-6 py-4 text-outline uppercase tracking-wider font-semibold">Status</th>
+              <th
+                class="rounded-tr-2xl px-6 py-4 text-outline uppercase tracking-wider font-semibold"
+              >
+                Ação
+              </th>
+            </tr>
+          </thead>
+
+          <tbody class="divide-y divide-gray-100">
+            <!-- Row 1 -->
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div>
+                    <p class="font-medium text-on-surface">14 Nov, 2026</p>
+                    <p class="text-gray-400 text-[12px]">09:30 AM</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-gray-500">Ricardo Silva</td>
+              <td class="px-6 py-4">
+                <span
+                  class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
+                >
+                  Agendada
+                </span>
+              </td>
+              <td
+                class="px-6 py-4 text-[#055cb9] flex gap-2 items-center cursor-pointer hover:text-[#055cb9]/90 transition-all"
+              >
+                <span>Ver detalhes</span>
+                <span class="material-symbols-outlined !text-[12px]">arrow_forward_ios</span>
+              </td>
+              <!-- Row 1 -->
+            </tr>
+
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div>
+                    <p class="font-medium text-on-surface">14 Nov, 2026</p>
+                    <p class="text-gray-400 text-[12px]">09:30 AM</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-gray-500">Ricardo Silva</td>
+              <td class="px-6 py-4">
+                <span
+                  class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
+                >
+                  Concluída
+                </span>
+              </td>
+              <td
+                class="px-6 py-4 text-[#055cb9] flex gap-2 items-center cursor-pointer hover:text-[#055cb9]/90 transition-all"
+              >
+                <span>Ver detalhes</span>
+                <span class="material-symbols-outlined !text-[12px]">arrow_forward_ios</span>
+              </td>
+              <!-- Row 1 -->
+            </tr>
+
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div>
+                    <p class="font-medium text-on-surface">14 Nov, 2026</p>
+                    <p class="text-gray-400 text-[12px]">09:30 AM</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-gray-500">Ricardo Silva</td>
+              <td class="px-6 py-4">
+                <span
+                  class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
+                >
+                  Cancelada
+                </span>
+              </td>
+              <td
+                class="px-6 py-4 text-[#055cb9] flex gap-2 items-center cursor-pointer hover:text-[#055cb9]/90 transition-all"
+              >
+                <span>Ver detalhes</span>
+                <span class="material-symbols-outlined !text-[12px]">arrow_forward_ios</span>
+              </td>
+            </tr>
+            <!-- Row 1 -->
+            <tr class="hover:bg-gray-50/50 transition-colors">
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div>
+                    <p class="font-medium text-on-surface">14 Nov, 2026</p>
+                    <p class="text-gray-400 text-[12px]">09:30 AM</p>
+                  </div>
+                </div>
+              </td>
+              <td class="px-6 py-4 text-gray-500">Ricardo Silva</td>
+              <td class="px-6 py-4">
+                <span
+                  class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
+                >
+                  Agendada
+                </span>
+              </td>
+              <td
+                class="px-6 py-4 text-[#055cb9] flex gap-2 items-center cursor-pointer hover:text-[#055cb9]/90 transition-all"
+              >
+                <span>Ver detalhes</span>
+                <span class="material-symbols-outlined !text-[12px]">arrow_forward_ios</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- Pagination filter component -->
+        <div
+          class="flex flex-row justify-between items-center gap-6 bg-[#055cb9]/5 px-6 py-3 shadow-sm"
+        >
+          <span class="text-[13px] text-gray-500">Mostrando 1-4 de 42 funcionários</span>
+          <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-2 rounded-xl font-medium text-[14px]">
+            <button class="text-[#055cb9] bg-white py-2 px-4 rounded-lg shadow-sm">1</button>
+            <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50 transition-colors">
+              2
+            </button>
+            <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50 transition-colors">
+              3
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>

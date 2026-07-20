@@ -11,6 +11,7 @@ import { CreateAccountEmployee } from './pages/create-account-employee/create-ac
 import { EmployeeManagement } from './pages/employee-management/employee-management';
 import { NewConsultationAppointmentSlot } from './pages/new-consultation-appointment-slot/new-consultation-appointment-slot';
 import { DashboardPatient } from './pages/dashboard-patient/dashboard';
+import { DashboardAdmin } from './pages/dashboard-admin/dashboard-admin';
 
 export const routes: Routes = [
   {
@@ -65,5 +66,9 @@ export const routes: Routes = [
   {
     path: 'dashboard/admin/new-consultation-appointment-slot',
     component: NewConsultationAppointmentSlot,
+  },
+  {
+    path: 'dashboard/admin',
+    component: DashboardAdmin,
   },
 ];

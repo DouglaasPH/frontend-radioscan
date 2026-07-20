@@ -14,6 +14,7 @@ import { DashboardPatient } from './pages/dashboard-patient/dashboard';
 import { DashboardAdmin } from './pages/dashboard-admin/dashboard-admin';
 import { AppointmentManagement } from './pages/appointment-management/appointment-management';
 import { MyConsultations } from './pages/my-consultations/my-consultations';
+import { ViewConsultationDetails } from './pages/view-consultation-details/view-consultation-details';
 
 export const routes: Routes = [
   {
@@ -80,5 +81,9 @@ export const routes: Routes = [
   {
     path: 'dashboard/doctor',
     component: MyConsultations,
+  },
+  {
+    path: 'dashboard/doctor/consultation',
+    component: ViewConsultationDetails,
   },
 ];

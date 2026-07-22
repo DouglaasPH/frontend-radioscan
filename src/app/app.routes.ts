@@ -55,17 +55,17 @@ export const routes: Routes = [
             component: DashboardPatient,
           },
           {
-            path: 'dashboard/patient/schedule-an-appointment',
+            path: 'schedule-an-appointment',
             component: ScheduleAnAppointment,
           },
           {
-            path: 'dashboard/patient/appointment-history',
+            path: 'appointment-history',
             component: AppointmentHistory,
           },
         ],
       },
       {
-        path: '',
+        path: 'dashboard/admin',
         canActivate: [roleGuard],
         data: { roles: ['ADMIN'] },
         children: [
@@ -74,49 +74,49 @@ export const routes: Routes = [
             component: DashboardAdmin,
           },
           {
-            path: 'dashboard/admin/create-account-employee',
+            path: 'create-account-employee',
             component: CreateAccountEmployee,
           },
           {
-            path: 'dashboard/admin/employee-management',
+            path: 'employee-management',
             component: EmployeeManagement,
           },
           {
-            path: 'dashboard/admin/new-consultation-appointment-slot',
+            path: 'new-consultation-appointment-slot',
             component: NewConsultationAppointmentSlot,
           },
           {
-            path: 'dashboard/admin/appointment-management',
+            path: 'appointment-management',
             component: AppointmentManagement,
           },
         ],
       },
       {
-        path: '',
+        path: 'dashboard/doctor',
         canActivate: [roleGuard],
         data: { roles: ['DOCTOR'] },
         children: [
           {
-            path: 'dashboard/doctor',
+            path: '',
             component: MyConsultations,
           },
           {
-            path: 'dashboard/doctor/consultation',
+            path: 'consultation',
             component: ViewConsultationDetails,
           },
         ],
       },
       {
-        path: '',
+        path: 'dashboard/technical',
         canActivate: [roleGuard],
         data: { roles: ['TECHNICAL'] },
         children: [
           {
-            path: 'dashboard/technical',
+            path: '',
             component: MyConsultations,
           },
           {
-            path: 'dashboard/technical/exam-upload',
+            path: 'exam-upload',
             component: ExamUpload,
           },
         ],
@@ -126,7 +126,7 @@ export const routes: Routes = [
         component: Profile,
       },
       {
-        path: 'profile/change-password',
+        path: 'change-password',
         component: ChangePassword,
       },
     ],

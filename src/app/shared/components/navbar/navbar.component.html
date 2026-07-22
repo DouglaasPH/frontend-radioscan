@@ -3,28 +3,31 @@
 >
   <!-- menu open is menu_open and menu closed is menu-->
   <span
+    (click)="toggleMenu()"
     class="material-symbols-outlined !text-[30px] [font-variation-settings:'wght'_300] text-gray-600 cursor-pointer"
-    >menu_open</span
+    >{{ this.visibilitySidebarService.isVisible() ? 'menu_open' : 'menu' }}</span
   >
   <div class="flex gap-6 items-center">
     <div
       class="flex gap-2 justify-center items-center px-4 transition-all border-r-1 border-gray-100 hover:cursor-default"
     >
       <div class="hidden md:flex flex-col items-end">
-        <p class="font-medium text-[14px]">Douglas Phelipe</p>
-        <p class="text-[13px] text-gray-600">Paciente</p>
+        <p class="font-medium text-[14px]">{{ name }}</p>
+        <p class="text-[13px] text-gray-600">{{ role }}</p>
       </div>
       <span
         class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
         >person</span
       >
     </div>
-    <span
+    <a
+      routerLink="/profile"
       class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] text-gray-600 hover:cursor-pointer"
-      >settings</span
+      >settings</a
     >
 
     <span
+      (click)="logout()"
       class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] text-gray-600 hover:cursor-pointer"
       >logout</span
     >

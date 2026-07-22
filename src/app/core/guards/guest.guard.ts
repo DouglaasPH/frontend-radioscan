@@ -14,14 +14,14 @@ export const guestGuard: CanActivateFn = () => {
     return true;
   }
 
-  if (userState.get()?.role === 'ADMIN') {
-    return router.createUrlTree([ROUTES.DASHBOARD_ADMIN]);
-  } else if (userState.get()?.role === 'PATIENT') {
-    return router.createUrlTree([ROUTES.DASHBOARD_PATIENT]);
-  } else if (userState.get()?.role === 'DOCTOR') {
-    return router.createUrlTree([ROUTES.DASHBOARD_DOCTOR]);
-  } else if (userState.get()?.role === 'TECHNICAL') {
-    return router.createUrlTree([ROUTES.DASHBOARD_TECHNICAL]);
+  if (userState.getRoleOrEmployeePosition() === 'ADMIN') {
+    return router.navigate([ROUTES.DASHBOARD_ADMIN]);
+  } else if (userState.getRoleOrEmployeePosition() === 'PATIENT') {
+    return router.navigate([ROUTES.DASHBOARD_PATIENT]);
+  } else if (userState.getRoleOrEmployeePosition() === 'DOCTOR') {
+    return router.navigate([ROUTES.DASHBOARD_DOCTOR]);
+  } else if (userState.getRoleOrEmployeePosition() === 'TECHNICAL') {
+    return router.navigate([ROUTES.DASHBOARD_TECHNICAL]);
   } else {
     return router.createUrlTree(['/error/500']);
   }

@@ -22,4 +22,11 @@ export class UserStateService {
   isAuthenticated() {
     return !!this.user();
   }
+
+  getRoleOrEmployeePosition() {
+    if (this.user()?.role === 'EMPLOYEE') {
+      return this.user()?.employee?.position;
+    }
+    return this.user()?.role;
+  }
 }

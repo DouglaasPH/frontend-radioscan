@@ -1,6 +1,8 @@
-export const ROLES = {
-  ADMIN: 'ADMIN',
-  PATIENT: 'PATIENT',
-  DOCTOR: 'DOCTOR',
-  TECHNICAL: 'TECHNICAL',
+export type Role = 'ADMIN' | 'PATIENT' | 'EMPLOYEE';
+
+export const ROLES_IN_PORTUGUESE = {
+  ADMIN: 'Administrador',
+  PATIENT: 'Paciente',
+  DOCTOR: 'Médico',
+  TECHNICAL: 'Técnico',
 };

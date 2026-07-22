@@ -1,12 +1,12 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AccessTokenStateService } from '../services/states/access-token-state.service';
-import { UserStateService } from '../services/states/user-state.service';
 import { ROUTES } from '../constants/routes.constants';
+import { UserState } from '../states/user.state';
+import { AccessTokenState } from '../states/access-token.state';
 
 export const guestGuard: CanActivateFn = () => {
-  const accessTokenState = inject(AccessTokenStateService);
-  const userState = inject(UserStateService);
+  const accessTokenState = inject(AccessTokenState);
+  const userState = inject(UserState);
 
   const router = inject(Router);
 

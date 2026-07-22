@@ -3,7 +3,7 @@ import { LoadingComponent } from '../../components/loading/loading.component';
 import { RouterOutlet } from '@angular/router';
 import { SidebarComponent } from '../../components/sidebar/sidebar.component';
 import { NavbarComponent } from '../../components/navbar/navbar.component';
-import { LoadingService } from '../../../core/services/loading.service';
+import { LoadingState } from '../../../core/states/loading.state';
 
 @Component({
   selector: 'app-main-layout',
@@ -12,5 +12,5 @@ import { LoadingService } from '../../../core/services/loading.service';
   templateUrl: './main-layout.component.html',
 })
 export class MainLayoutComponent {
-  protected loadingService = inject(LoadingService);
+  protected loadingState = inject(LoadingState);
 }

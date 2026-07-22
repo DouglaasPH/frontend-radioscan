@@ -3,7 +3,7 @@ import { Injectable, computed, signal } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class LoadingService {
+export class LoadingState {
   private requests = signal(0);
 
   readonly isLoading = computed(() => this.requests() > 0);

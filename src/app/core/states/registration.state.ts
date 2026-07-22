@@ -1,10 +1,10 @@
 import { Injectable, signal } from '@angular/core';
-import { RegisterPatientRequest } from '../../dto/patient/register-patient-request.dto';
+import { RegisterPatientRequest } from '../dto/patient/register-patient-request.dto';
 
 @Injectable({
   providedIn: 'root',
 })
-export class RegistrationStateService {
+export class RegistrationState {
   private registrationDataSignal = signal<RegisterPatientRequest | null>(null);
 
   readonly registrationData = this.registrationDataSignal.asReadonly();

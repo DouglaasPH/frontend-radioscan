@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { tap } from 'rxjs';
 import { environment } from '../../enviroments/environment.development';
 import { User } from '../models/user.model';
-import { UserStateService } from './states/user-state.service';
+import { UserState } from '../states/user.state';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ import { UserStateService } from './states/user-state.service';
 export class UserService {
   private http = inject(HttpClient);
 
-  private userState = inject(UserStateService);
+  private userState = inject(UserState);
 
   me() {
     return this.http.get<User>(`${environment.apiUrl}/user/me`).pipe(

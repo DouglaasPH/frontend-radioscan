@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { LoadingService } from '../../../core/services/loading.service';
+import { LoadingState } from '../../../core/states/loading.state';
 
 @Component({
   selector: 'component-loading',
@@ -8,11 +8,11 @@ import { LoadingService } from '../../../core/services/loading.service';
   styleUrl: './loading.component.css',
 })
 export class LoadingComponent {
-  loadingService = inject(LoadingService);
+  loadingState = inject(LoadingState);
 }
 
 /* 
-@if(loadingService.isLoading()){
+@if(loadingState.isLoading()){
 
     <loading-component />
 

@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { UserStateService } from '../../../core/services/states/user-state.service';
-import { AuthService } from '../../../core/services/auth.service';
+import { AuthService } from '../../../core/api/auth.api';
 import { Router, RouterLink } from '@angular/router';
 import { ROUTES } from '../../../core/constants/routes.constants';
 import { ROLES_IN_PORTUGUESE } from '../../../core/constants/roles.constants';
-import { VisibilitySidebarService } from '../../../core/services/states/visibility-sidebar-state.service';
+import { UserState } from '../../../core/states/user.state';
+import { VisibilitySidebarState } from '../../../core/states/visibility-sidebar.state';
 
 @Component({
   selector: 'component-navbar',
@@ -16,10 +16,10 @@ export class NavbarComponent {
   protected name = '';
   protected role = '';
 
-  private readonly userState = inject(UserStateService);
+  private readonly userState = inject(UserState);
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
-  protected readonly visibilitySidebarService = inject(VisibilitySidebarService);
+  protected visibilitySidebarState = inject(VisibilitySidebarState);
 
   constructor() {
     this.name = this.userState.get()!.name;
@@ -35,6 +35,6 @@ export class NavbarComponent {
   }
 
   protected toggleMenu() {
-    this.visibilitySidebarService.toggle();
+    this.visibilitySidebarState.toggle();
   }
 }

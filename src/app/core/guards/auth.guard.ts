@@ -2,10 +2,10 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 
 import { ROUTES } from '../constants/routes.constants';
-import { AccessTokenStateService } from '../services/states/access-token-state.service';
+import { AccessTokenState } from '../states/access-token.state';
 
 export const authGuard: CanActivateFn = () => {
-  const accessTokenState = inject(AccessTokenStateService);
+  const accessTokenState = inject(AccessTokenState);
   const router = inject(Router);
 
   if (accessTokenState.isAuthenticated()) {

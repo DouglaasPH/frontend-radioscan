@@ -5,7 +5,7 @@ import { RegisterPatientRequest } from '../../core/dto/patient/register-patient-
 import { CpfMaskDirective } from '../../shared/directives/cpf-mask.directive';
 import { PhoneMaskDirective } from '../../shared/directives/phone-mask.directive';
 import { ROUTES } from '../../core/constants/routes.constants';
-import { RegistrationStateService } from '../../core/services/states/registration-state.service';
+import { RegistrationState } from '../../core/states/registration.state';
 
 @Component({
   selector: 'app-create-account',
@@ -14,7 +14,7 @@ import { RegistrationStateService } from '../../core/services/states/registratio
 })
 export class CreateAccountPatient {
   private router = inject(Router);
-  private registrationStateService = inject(RegistrationStateService);
+  private registrationState = inject(RegistrationState);
 
   protected showPassword = signal(false);
   protected showConfirmPassword = signal(false);
@@ -57,7 +57,7 @@ export class CreateAccountPatient {
       },
     };
 
-    this.registrationStateService.set(dto);
+    this.registrationState.set(dto);
 
     this.router.navigate([ROUTES.TERMS_AND_CONDITIONS]);
   }

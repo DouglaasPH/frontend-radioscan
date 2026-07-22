@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { RefreshTokenService } from './refresh-token.service';
+import { RefreshTokenService } from '../services/refresh-token.service';
 import { tap } from 'rxjs';
 import { environment } from '../../enviroments/environment.development';
 import { RegisterPatientRequest } from '../dto/patient/register-patient-request.dto';
-import { AccessTokenStateService } from './states/access-token-state.service';
 import { LoginResponse } from '../dto/auth/login-response.dto';
+import { AccessTokenState } from '../states/access-token.state';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +13,7 @@ import { LoginResponse } from '../dto/auth/login-response.dto';
 export class PatientService {
   private http = inject(HttpClient);
 
-  private accessTokenState = inject(AccessTokenStateService);
+  private accessTokenState = inject(AccessTokenState);
   private refreshTokenService = inject(RefreshTokenService);
 
   register(credentials: RegisterPatientRequest) {

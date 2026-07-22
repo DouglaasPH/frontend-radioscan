@@ -2,12 +2,12 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { LoginRequest } from '../dto/auth/login-request.dto';
 import { LoginResponse } from '../dto/auth/login-response.dto';
-import { RefreshTokenService } from './refresh-token.service';
+import { RefreshTokenService } from '../services/refresh-token.service';
 import { catchError, of, switchMap, tap } from 'rxjs';
 import { environment } from '../../enviroments/environment.development';
-import { AccessTokenStateService } from './states/access-token-state.service';
-import { UserStateService } from './states/user-state.service';
 import { GoogleAuthRequest } from '../dto/auth/google-auth-request.dto';
+import { UserState } from '../states/user.state';
+import { AccessTokenState } from '../states/access-token.state';
 
 @Injectable({
   providedIn: 'root',
@@ -15,9 +15,9 @@ import { GoogleAuthRequest } from '../dto/auth/google-auth-request.dto';
 export class AuthService {
   private http = inject(HttpClient);
 
-  private accessTokenStateService = inject(AccessTokenStateService);
+  private accessTokenState = inject(AccessTokenState);
   private refreshTokenService = inject(RefreshTokenService);
-  private userState = inject(UserStateService);
+  private userState = inject(UserState);
 
   initAuth() {
     const refreshToken = this.refreshTokenService.get();
@@ -33,7 +33,7 @@ export class AuthService {
       .pipe(
         tap((response) => {
           // Salva o novo accessToken no State
-          this.accessTokenStateService.set(response.accessToken);
+          this.accessTokenState.set(response.accessToken);
         }),
         // 2. Com o token atualizado no State, busca os dados do usuário logado
         switchMap(() => this.http.get<any>(`${environment.apiUrl}/user/me`)),
@@ -46,7 +46,7 @@ export class AuthService {
           console.warn('Sessão expirada. Limpando credenciais locais...', error);
           localStorage.removeItem('refreshToken');
           this.refreshTokenService.clear();
-          this.accessTokenStateService.clear();
+          this.accessTokenState.clear();
           this.userState.clear();
           return of(false); // Não trava a inicialização do app se falhar
         }),
@@ -56,7 +56,7 @@ export class AuthService {
   login(credentials: LoginRequest) {
     return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, credentials).pipe(
       tap((response) => {
-        this.accessTokenStateService.set(response.accessToken);
+        this.accessTokenState.set(response.accessToken);
         this.refreshTokenService.set(response.refreshToken);
       }),
     );
@@ -71,7 +71,7 @@ export class AuthService {
       })
       .pipe(
         tap((response) => {
-          this.accessTokenStateService.set(response.accessToken);
+          this.accessTokenState.set(response.accessToken);
 
           this.refreshTokenService.set(response.refreshToken);
         }),
@@ -81,16 +81,16 @@ export class AuthService {
   loginGoogle(dto: GoogleAuthRequest) {
     return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login/google`, dto).pipe(
       tap((response) => {
-        this.accessTokenStateService.set(response.accessToken);
+        this.accessTokenState.set(response.accessToken);
         this.refreshTokenService.set(response.refreshToken);
-        console.log('access token: ', this.accessTokenStateService.get());
+        console.log('access token: ', this.accessTokenState.get());
         console.log('refresh token: ', this.refreshTokenService.get());
       }),
     );
   }
 
   logout(): void {
-    this.accessTokenStateService.clear();
+    this.accessTokenState.clear();
     this.refreshTokenService.clear();
     this.userState.clear();
   }

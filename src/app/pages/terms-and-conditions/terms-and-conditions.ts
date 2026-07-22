@@ -1,24 +1,22 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CpfMaskDirective } from '../../shared/directives/cpf-mask.directive';
-import { PhoneMaskDirective } from '../../shared/directives/phone-mask.directive';
 import { ROUTES } from '../../core/constants/routes.constants';
-import { RegistrationStateService } from '../../core/services/states/registration-state.service';
-import { PatientService } from '../../core/services/patient.service';
-import { UserService } from '../../core/services/user.service';
+import { PatientService } from '../../core/api/patient.api';
+import { UserService } from '../../core/api/user.api';
+import { RegistrationState } from '../../core/states/registration.state';
 
 @Component({
   selector: 'app-terms-and-conditions',
   standalone: true,
-  imports: [ReactiveFormsModule, CpfMaskDirective, PhoneMaskDirective],
+  imports: [ReactiveFormsModule],
   templateUrl: './terms-and-conditions.html',
 })
 export class TermsAndConditions {
   private router = inject(Router);
   private patientService = inject(PatientService);
   private userService = inject(UserService);
-  private registrationStateService = inject(RegistrationStateService);
+  private registrationState = inject(RegistrationState);
 
   termsForm = new FormGroup({
     acceptedTerms: new FormControl(false, {
@@ -32,7 +30,7 @@ export class TermsAndConditions {
       return;
     }
 
-    const pendingData = this.registrationStateService.registrationData();
+    const pendingData = this.registrationState.registrationData();
 
     if (!pendingData) {
       this.router.navigate([ROUTES.CREATE_ACCOUNT]);
@@ -41,7 +39,7 @@ export class TermsAndConditions {
 
     this.patientService.register(pendingData).subscribe({
       next: (response) => {
-        this.registrationStateService.clear();
+        this.registrationState.clear();
         console.log(response);
         this.userService.me().subscribe({
           next: (response) => {
@@ -55,7 +53,7 @@ export class TermsAndConditions {
   }
 
   cancel(): void {
-    this.registrationStateService.clear();
+    this.registrationState.clear();
     this.router.navigate([ROUTES.CREATE_ACCOUNT]);
   }
 }

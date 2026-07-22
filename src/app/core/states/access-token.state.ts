@@ -3,7 +3,7 @@ import { Injectable, signal } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class AccessTokenStateService {
+export class AccessTokenState {
   private accessToken = signal<string | null>(null);
 
   set(token: string): void {

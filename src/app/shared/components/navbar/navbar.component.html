@@ -5,7 +5,7 @@
   <span
     (click)="toggleMenu()"
     class="material-symbols-outlined !text-[30px] [font-variation-settings:'wght'_300] text-gray-600 cursor-pointer"
-    >{{ this.visibilitySidebarService.isVisible() ? 'menu_open' : 'menu' }}</span
+    >{{ this.visibilitySidebarState.isVisible() ? 'menu_open' : 'menu' }}</span
   >
   <div class="flex gap-6 items-center">
     <div

@@ -12,7 +12,7 @@ import { errorInterceptor } from './core/interceptors/error.interceptor';
 import { loadingInterceptor } from './core/interceptors/loading.interceptor';
 import { authInterceptor } from './core/interceptors/auth.interceptor';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import { AuthService } from './core/services/auth.service';
+import { AuthService } from './core/api/auth.api';
 
 export const appConfig: ApplicationConfig = {
   providers: [

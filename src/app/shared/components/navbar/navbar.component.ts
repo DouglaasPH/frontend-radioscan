@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { AuthService } from '../../../core/api/auth.api';
+import { AuthApi } from '../../../core/api/auth.api';
 import { Router, RouterLink } from '@angular/router';
 import { ROUTES } from '../../../core/constants/routes.constants';
 import { ROLES_IN_PORTUGUESE } from '../../../core/constants/roles.constants';
@@ -17,7 +17,7 @@ export class NavbarComponent {
   protected role = '';
 
   private readonly userState = inject(UserState);
-  private readonly authService = inject(AuthService);
+  private readonly authApi = inject(AuthApi);
   private readonly router = inject(Router);
   protected visibilitySidebarState = inject(VisibilitySidebarState);
 
@@ -30,7 +30,7 @@ export class NavbarComponent {
   }
 
   protected logout() {
-    this.authService.logout();
+    this.authApi.logout();
     this.router.navigate([ROUTES.LOGIN]);
   }
 

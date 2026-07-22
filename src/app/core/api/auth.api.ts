@@ -12,7 +12,7 @@ import { AccessTokenState } from '../states/access-token.state';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthService {
+export class AuthApi {
   private http = inject(HttpClient);
 
   private accessTokenState = inject(AccessTokenState);

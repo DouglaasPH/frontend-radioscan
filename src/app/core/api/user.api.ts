@@ -8,7 +8,7 @@ import { UserState } from '../states/user.state';
 @Injectable({
   providedIn: 'root',
 })
-export class UserService {
+export class UserApi {
   private http = inject(HttpClient);
 
   private userState = inject(UserState);

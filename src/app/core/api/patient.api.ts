@@ -10,7 +10,7 @@ import { AccessTokenState } from '../states/access-token.state';
 @Injectable({
   providedIn: 'root',
 })
-export class PatientService {
+export class PatientApi {
   private http = inject(HttpClient);
 
   private accessTokenState = inject(AccessTokenState);

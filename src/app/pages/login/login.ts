@@ -2,8 +2,8 @@ import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROUTES } from '../../core/constants/routes.constants';
-import { AuthService } from '../../core/api/auth.api';
-import { UserService } from '../../core/api/user.api';
+import { AuthApi } from '../../core/api/auth.api';
+import { UserApi } from '../../core/api/user.api';
 import { environment } from '../../enviroments/environment.development';
 
 declare const google: any;
@@ -15,8 +15,8 @@ declare const google: any;
   templateUrl: './login.html',
 })
 export class Login implements AfterViewInit {
-  private readonly authService = inject(AuthService);
-  private readonly userService = inject(UserService);
+  private readonly authApi = inject(AuthApi);
+  private readonly userApi = inject(UserApi);
   private readonly router = inject(Router);
 
   protected readonly showPassword = signal(false);
@@ -64,10 +64,10 @@ export class Login implements AfterViewInit {
 
   protected loginWithGoogle(googleToken: string): void {
     console.log('Google Token:', googleToken);
-    this.authService.loginGoogle({ googleToken }).subscribe({
+    this.authApi.loginGoogle({ googleToken }).subscribe({
       next: (response) => {
         console.log(response);
-        this.userService.me().subscribe({
+        this.userApi.me().subscribe({
           next: (response) => {
             this.redirectByUserRole(response.role);
           },
@@ -83,10 +83,10 @@ export class Login implements AfterViewInit {
 
     this.showError.set(false);
 
-    this.authService.login(this.loginForm.getRawValue()).subscribe({
+    this.authApi.login(this.loginForm.getRawValue()).subscribe({
       next: (response) => {
         console.log(response);
-        this.userService.me().subscribe({
+        this.userApi.me().subscribe({
           next: (response) => {
             this.redirectByUserRole(response.role);
           },

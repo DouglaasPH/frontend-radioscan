@@ -1,73 +1,63 @@
-<div class="flex w-full h-full">
-  <component-sidebar></component-sidebar>
-  <div class="flex-1 flex flex-col h-screen">
-    <component-navbar></component-navbar>
-    <main class="flex flex-col gap-5 p-lg p-10 pb-0 h-full">
-      <!-- Title and add employee button component -->
-      <section class="flex flex-col flex-wrap items-start gap-1">
-        <h1 class="text-4xl font-bold text-[#055cb9]">Consulta: Douglas Phelipe</h1>
-        <p class="font-medium text-gray-600">14 Nov, 2026, 09:30 AM</p>
-      </section>
-      <section class="flex justify-between flex-col lg:flex-row gap-5 lg:gap-0">
-        <!-- view image component-->
-        <div class="bg-red-800 w-full lg:w-[70%] h-full">view image</div>
-        <!-- Consultation details component -->
-        <div class="w-full lg:w-[28%] flex flex-col gap-2">
-          <!-- AI result component -->
-          <div
-            class="flex flex-col gap-2 p-4 bg-white border-l-5 border-2 border-red-800 rounded-lg shadow-md"
-          >
-            <div class="flex justify-between flex-wrap">
-              <div class="flex items-center gap-1">
-                <span class="material-symbols-outlined !text-[30px] text-red-700">neurology</span>
-                <span class="font-semibold text-lg text-gray-700">Resultado da IA</span>
-              </div>
-              <span class="uppercase text-[9px] font-bold text-red-700 bg-red-100 p-1 rounded-xl"
-                >Análise automática</span
-              >
-            </div>
-            <span class="pl-9 font-medium text-[14px] text-gray-800">95% para saudável</span>
-            <p class="bg-[#055cb9]/10 p-2 rounded-xl flex items-center gap-1">
-              <span class="material-symbols-outlined !text-[20px] text-[#055cb9]"
-                >check_circle</span
-              >
-              <span class="text-[13px] font-semibold text-gray-600"
-                >Confiança do modelo: 96,66%</span
-              >
-            </p>
+<main class="flex flex-col gap-5 p-lg p-10 pb-0 h-full">
+  <!-- Title and add employee button component -->
+  <section class="flex flex-col flex-wrap items-start gap-1">
+    <h1 class="text-4xl font-bold text-[#055cb9]">Consulta: Douglas Phelipe</h1>
+    <p class="font-medium text-gray-600">14 Nov, 2026, 09:30 AM</p>
+  </section>
+  <section class="flex justify-between flex-col lg:flex-row gap-5 lg:gap-0">
+    <!-- view image component-->
+    <div class="bg-red-800 w-full lg:w-[70%] h-full">view image</div>
+    <!-- Consultation details component -->
+    <div class="w-full lg:w-[28%] flex flex-col gap-2">
+      <!-- AI result component -->
+      <div
+        class="flex flex-col gap-2 p-4 bg-white border-l-5 border-2 border-red-800 rounded-lg shadow-md"
+      >
+        <div class="flex justify-between flex-wrap">
+          <div class="flex items-center gap-1">
+            <span class="material-symbols-outlined !text-[30px] text-red-700">neurology</span>
+            <span class="font-semibold text-lg text-gray-700">Resultado da IA</span>
           </div>
-          <!-- Parecer do Médico component -->
-          <div
-            class="flex flex-col gap-5 p-4 bg-white border-2 border-gray-200 rounded-lg shadow-md mt-4"
+          <span class="uppercase text-[9px] font-bold text-red-700 bg-red-100 p-1 rounded-xl"
+            >Análise automática</span
           >
-            <div class="flex items-center gap-1">
-              <span class="material-symbols-outlined !text-[30px] text-[#055cb9]">add_notes</span>
-              <span class="font-semibold text-lg text-gray-700">Parecer do Médico</span>
-            </div>
-            <div class="flex flex-col gap-2">
-              <span class="uppercase font-semibold text-[11px] text-gray-400"
-                >Descrição clínica detalhada</span
-              >
-              <textarea
-                name=""
-                id=""
-                class="border border-gray-300 rounded-md p-2 h-70"
-                placeholder="Escreva seu parecer sobre o exame, observações técnicas e recomendações..."
-              ></textarea>
-            </div>
-            <button class="bg-[#055cb9] p-4 rounded-xl text-white shadow-sm">
-              Salvar e Liberar para o Paciente
-            </button>
-            <div class="pl-1 flex gap-2">
-              <span class="material-symbols-outlined !text-[20px] text-[#055cb9]">info</span>
-              <span class="text-[13px] text-gray-500 font-medium"
-                >Ao salvar, o paciente poderá visualizar este laudo imediatamente através do portal
-                do paciente. Esta ação é irreversível e gera um protocolo digital.</span
-              >
-            </div>
-          </div>
         </div>
-      </section>
-    </main>
-  </div>
-</div>
+        <span class="pl-9 font-medium text-[14px] text-gray-800">95% para saudável</span>
+        <p class="bg-[#055cb9]/10 p-2 rounded-xl flex items-center gap-1">
+          <span class="material-symbols-outlined !text-[20px] text-[#055cb9]">check_circle</span>
+          <span class="text-[13px] font-semibold text-gray-600">Confiança do modelo: 96,66%</span>
+        </p>
+      </div>
+      <!-- Parecer do Médico component -->
+      <div
+        class="flex flex-col gap-5 p-4 bg-white border-2 border-gray-200 rounded-lg shadow-md mt-4"
+      >
+        <div class="flex items-center gap-1">
+          <span class="material-symbols-outlined !text-[30px] text-[#055cb9]">add_notes</span>
+          <span class="font-semibold text-lg text-gray-700">Parecer do Médico</span>
+        </div>
+        <div class="flex flex-col gap-2">
+          <span class="uppercase font-semibold text-[11px] text-gray-400"
+            >Descrição clínica detalhada</span
+          >
+          <textarea
+            name=""
+            id=""
+            class="border border-gray-300 rounded-md p-2 h-70"
+            placeholder="Escreva seu parecer sobre o exame, observações técnicas e recomendações..."
+          ></textarea>
+        </div>
+        <button class="bg-[#055cb9] p-4 rounded-xl text-white shadow-sm">
+          Salvar e Liberar para o Paciente
+        </button>
+        <div class="pl-1 flex gap-2">
+          <span class="material-symbols-outlined !text-[20px] text-[#055cb9]">info</span>
+          <span class="text-[13px] text-gray-500 font-medium"
+            >Ao salvar, o paciente poderá visualizar este laudo imediatamente através do portal do
+            paciente. Esta ação é irreversível e gera um protocolo digital.</span
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+</main>

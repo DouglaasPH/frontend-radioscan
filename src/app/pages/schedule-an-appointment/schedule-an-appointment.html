@@ -1,233 +1,207 @@
-<div class="flex w-full">
-  <component-sidebar></component-sidebar>
-  <div class="flex-1 flex flex-col">
-    <component-navbar></component-navbar>
-    <main class="flex flex-col gap-8 p-lg p-10">
-      <h1 class="text-4xl font-bold text-[#055cb9]">Marcar consulta</h1>
-      <section class="flex flex-col items-start gap-6 w-full">
-        <!-- type of appointment -->
-        <section class="flex flex-col gap-2">
-          <h2 class="text-2xl font-semibold">Tipo de consulta</h2>
-          <div class="flex flex-rows gap-2 select-none">
-            <button class="flex gap-2 items-center border-2 border-[#055cb9] p-2 rounded-xl">
-              <span
-                class="material-symbols-outlined !text-[22px] p-1 bg-[#055cb9] rounded-full text-white [font-variation-settings:'wght'_300]"
-                >photo_camera</span
-              >
-              <span>Captura de Exame</span>
-            </button>
-            <button class="flex gap-2 items-center border-2 border-gray-100 p-2 rounded-xl">
-              <span
-                class="material-symbols-outlined !text-[22px] p-1 bg-gray-300 rounded-full text-gray-600 [font-variation-settings:'wght'_300]"
-                >medical_services</span
-              >
-              <span>Retorno com Médico</span>
-            </button>
-          </div>
-        </section>
-        <!-- Calendar section-->
-        <section class="flex flex-col justify-center items-start w-1/4 h-full">
-          <h2 class="font-semibold text-lg">Selecione uma data:</h2>
-          <div class="w-full bg-gray-200 rounded-lg">
-            <mat-card class="demo-inline-calendar-card w-full">
-              <mat-calendar [(selected)]="selected" [minDate]="minDate"></mat-calendar>
-            </mat-card>
-          </div>
-        </section>
-      </section>
-      <!-- Time selection section -->
-      <section class="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-        <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-          <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-          <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-            <span
-              class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-              >person</span
-            >
-            <div class="flex flex-col items-start">
-              <p class="font-medium text-[14px]">Técnico</p>
-              <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-            </div>
-          </div>
-          <button
-            class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl"
+<main class="flex flex-col gap-8 p-lg p-10">
+  <h1 class="text-4xl font-bold text-[#055cb9]">Marcar consulta</h1>
+  <section class="flex flex-col items-start gap-6 w-full">
+    <!-- type of appointment -->
+    <section class="flex flex-col gap-2">
+      <h2 class="text-2xl font-semibold">Tipo de consulta</h2>
+      <div class="flex flex-rows gap-2 select-none">
+        <button class="flex gap-2 items-center border-2 border-[#055cb9] p-2 rounded-xl">
+          <span
+            class="material-symbols-outlined !text-[22px] p-1 bg-[#055cb9] rounded-full text-white [font-variation-settings:'wght'_300]"
+            >photo_camera</span
           >
-            <span>Marcar</span>
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
-        </div>
-        <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-          <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-          <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-            <span
-              class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-              >person</span
-            >
-            <div class="flex flex-col items-start">
-              <p class="font-medium text-[14px]">Técnico</p>
-              <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-            </div>
-          </div>
-          <button
-            class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl"
+          <span>Captura de Exame</span>
+        </button>
+        <button class="flex gap-2 items-center border-2 border-gray-100 p-2 rounded-xl">
+          <span
+            class="material-symbols-outlined !text-[22px] p-1 bg-gray-300 rounded-full text-gray-600 [font-variation-settings:'wght'_300]"
+            >medical_services</span
           >
-            <span>Marcar</span>
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
+          <span>Retorno com Médico</span>
+        </button>
+      </div>
+    </section>
+    <!-- Calendar section-->
+    <section class="flex flex-col justify-center items-start w-1/4 h-full">
+      <h2 class="font-semibold text-lg">Selecione uma data:</h2>
+      <div class="w-full bg-gray-200 rounded-lg">
+        <mat-card class="demo-inline-calendar-card w-full">
+          <mat-calendar [(selected)]="selected" [minDate]="minDate"></mat-calendar>
+        </mat-card>
+      </div>
+    </section>
+  </section>
+  <!-- Time selection section -->
+  <section class="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
+    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
+      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
+      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
+        <span
+          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
+          >person</span
+        >
+        <div class="flex flex-col items-start">
+          <p class="font-medium text-[14px]">Técnico</p>
+          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
         </div>
-        <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-          <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-          <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-            <span
-              class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-              >person</span
-            >
-            <div class="flex flex-col items-start">
-              <p class="font-medium text-[14px]">Técnico</p>
-              <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-            </div>
-          </div>
-          <button
-            class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl"
-          >
-            <span>Marcar</span>
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
+      </div>
+      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
+        <span>Marcar</span>
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
+      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
+      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
+        <span
+          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
+          >person</span
+        >
+        <div class="flex flex-col items-start">
+          <p class="font-medium text-[14px]">Técnico</p>
+          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
         </div>
-        <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-          <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-          <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-            <span
-              class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-              >person</span
-            >
-            <div class="flex flex-col items-start">
-              <p class="font-medium text-[14px]">Técnico</p>
-              <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-            </div>
-          </div>
-          <button
-            class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl"
-          >
-            <span>Marcar</span>
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
+      </div>
+      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
+        <span>Marcar</span>
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
+      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
+      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
+        <span
+          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
+          >person</span
+        >
+        <div class="flex flex-col items-start">
+          <p class="font-medium text-[14px]">Técnico</p>
+          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
         </div>
-        <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-          <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-          <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-            <span
-              class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-              >person</span
-            >
-            <div class="flex flex-col items-start">
-              <p class="font-medium text-[14px]">Técnico</p>
-              <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-            </div>
-          </div>
-          <button
-            class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl"
-          >
-            <span>Marcar</span>
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
+      </div>
+      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
+        <span>Marcar</span>
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
+      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
+      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
+        <span
+          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
+          >person</span
+        >
+        <div class="flex flex-col items-start">
+          <p class="font-medium text-[14px]">Técnico</p>
+          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
         </div>
-        <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-          <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-          <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-            <span
-              class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-              >person</span
-            >
-            <div class="flex flex-col items-start">
-              <p class="font-medium text-[14px]">Técnico</p>
-              <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-            </div>
-          </div>
-          <button
-            class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl"
-          >
-            <span>Marcar</span>
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
+      </div>
+      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
+        <span>Marcar</span>
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
+      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
+      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
+        <span
+          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
+          >person</span
+        >
+        <div class="flex flex-col items-start">
+          <p class="font-medium text-[14px]">Técnico</p>
+          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
         </div>
-        <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-          <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-          <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-            <span
-              class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-              >person</span
-            >
-            <div class="flex flex-col items-start">
-              <p class="font-medium text-[14px]">Técnico</p>
-              <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-            </div>
-          </div>
-          <button
-            class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl"
-          >
-            <span>Marcar</span>
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
+      </div>
+      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
+        <span>Marcar</span>
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
+      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
+      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
+        <span
+          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
+          >person</span
+        >
+        <div class="flex flex-col items-start">
+          <p class="font-medium text-[14px]">Técnico</p>
+          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
         </div>
-        <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-          <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-          <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-            <span
-              class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-              >person</span
-            >
-            <div class="flex flex-col items-start">
-              <p class="font-medium text-[14px]">Técnico</p>
-              <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-            </div>
-          </div>
-          <button
-            class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl"
-          >
-            <span>Marcar</span>
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
+      </div>
+      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
+        <span>Marcar</span>
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
+      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
+      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
+        <span
+          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
+          >person</span
+        >
+        <div class="flex flex-col items-start">
+          <p class="font-medium text-[14px]">Técnico</p>
+          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
         </div>
-        <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-          <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-          <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-            <span
-              class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-              >person</span
-            >
-            <div class="flex flex-col items-start">
-              <p class="font-medium text-[14px]">Técnico</p>
-              <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-            </div>
-          </div>
-          <button
-            class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl"
-          >
-            <span>Marcar</span>
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
+      </div>
+      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
+        <span>Marcar</span>
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
+      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
+      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
+        <span
+          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
+          >person</span
+        >
+        <div class="flex flex-col items-start">
+          <p class="font-medium text-[14px]">Técnico</p>
+          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
         </div>
-        <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-          <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-          <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-            <span
-              class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-              >person</span
-            >
-            <div class="flex flex-col items-start">
-              <p class="font-medium text-[14px]">Técnico</p>
-              <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-            </div>
-          </div>
-          <button
-            class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl"
-          >
-            <span>Marcar</span>
-            <span class="material-symbols-outlined">chevron_right</span>
-          </button>
+      </div>
+      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
+        <span>Marcar</span>
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
+      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
+      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
+        <span
+          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
+          >person</span
+        >
+        <div class="flex flex-col items-start">
+          <p class="font-medium text-[14px]">Técnico</p>
+          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
         </div>
-      </section>
-    </main>
-  </div>
-</div>
+      </div>
+      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
+        <span>Marcar</span>
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
+      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
+      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
+        <span
+          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
+          >person</span
+        >
+        <div class="flex flex-col items-start">
+          <p class="font-medium text-[14px]">Técnico</p>
+          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
+        </div>
+      </div>
+      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
+        <span>Marcar</span>
+        <span class="material-symbols-outlined">chevron_right</span>
+      </button>
+    </div>
+  </section>
+</main>

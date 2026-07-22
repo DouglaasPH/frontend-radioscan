@@ -6,104 +6,120 @@
         <p class="text-gray-600 font-normal text-md">Última atualização: 15 de Julho de 2026</p>
       </div>
       <div class="bg-white shadow-lg p-8 flex flex-col items-center rounded-b-4xl">
-        <div
-          class="flex-grow overflow-y-auto max-h-[512px] space-y-[30px] leading-relaxed items-center"
+        <form
+          [formGroup]="termsForm"
+          (ngSubmit)="goToTerms()"
+          class="bg-white shadow-lg p-8 flex flex-col items-center rounded-b-4xl"
         >
-          <!-- Aceitação dos termos -->
-          <div class="space-y-[8px]">
-            <h6 class="text-[#055cb9]">1. ACEITAÇÃO DOS TERMOS</h6>
-            <p>
-              Ao acessar e usar a plataforma Radioscan Clinic, você concorda em cumprir e ser regido
-              por estes Termos e Condições de Uso. Se você não concordar com qualquer parte destes
-              termos, não deverá utilizar nossos serviços.
-            </p>
-          </div>
-          <!-- Descrição do serviço -->
-          <div class="space-y-[8px]">
-            <h6 class="text-[#055cb9]">2. DESCRIÇÃO DO SERVIÇO</h6>
-            <p>
-              A Radioscan Clinic fornece uma plataforma digital para visualização, armazenamento e
-              gerenciamento de exames radiológicos. O serviço é destinado ao uso por pacientes para
-              acesso aos seus próprios exames e por profissionais de saúde autorizados para fins
-              diagnósticos e terapêuticos.
-            </p>
-          </div>
-          <!-- Privacidade e Proteção dos Dados -->
-          <div class="space-y-[8px]">
-            <h6 class="text-[#055cb9]">3. PRIVACIDADE E PROTEÇÃO DOS DADOS</h6>
-            <p>
-              A coleta e uso de informações pessoais e dados médicos são regidos por nossa
-              <a class="text-primary hover:underline font-medium" data-path="termos" href="#"
-                >Política de Privacidade</a
-              >. Cumprimos rigorosamente as legislações vigentes de proteção de dados (como a LGPD
-              no Brasil e GDPR onde aplicável), garantindo a confidencialidade e segurança das
-              informações de saúde.
-            </p>
-          </div>
-          <!-- Responsabilidades do Usuário -->
-          <div class="space-y-[8px]">
-            <h6 class="text-[#055cb9]">4. RESPONSABILIDADES DO USUÁRIO</h6>
-            <ul class="list-disc pl-[24px] space-y-[8px]">
-              <li>Fornecer informações verdadeiras, exatas e completas durante o cadastro.</li>
-              <li>Manter a confidencialidade de suas credenciais de acesso (login e senha).</li>
-              <li>
-                Notificar imediatamente a Radioscan Clinic sobre qualquer uso não autorizado de sua
-                conta.
-              </li>
-              <li>Não utilizar a plataforma para fins ilegais ou não autorizados.</li>
-            </ul>
-          </div>
-          <!-- Propriedade Intelectual -->
-          <div class="space-y-[8px]">
-            <h6 class="text-[#055cb9]">5. PROPRIEDADE INTELECTUAL</h6>
-            <p>
-              Todo o conteúdo, design, software e infraestrutura da plataforma Radioscan são de
-              propriedade exclusiva da Radioscan Clinic ou de seus licenciadores, protegidos por
-              leis de direitos autorais e propriedade intelectual. É proibida a reprodução,
-              distribuição ou modificação sem autorização prévia.
-            </p>
-          </div>
-          <!-- Limitação de Responsabilidade -->
-          <div class="space-y-[8px]">
-            <h6 class="text-[#055cb9]">6. LIMITAÇÃO DE RESPONSABILIDADE</h6>
-            <p>
-              A plataforma Radioscan é uma ferramenta de suporte. Os laudos e diagnósticos finais
-              devem sempre ser confirmados pelo médico responsável. Não nos responsabilizamos por
-              decisões médicas tomadas exclusivamente com base nas informações disponibilizadas na
-              plataforma.
-            </p>
-          </div>
-          <!-- Modificações dos Termos -->
-          <div class="space-y-[8px]">
-            <h6 class="text-[#055cb9]">7. MODIFICAÇÕES DOS TERMOS</h6>
-            <p>
-              A Radioscan Clinic reserva-se o direito de atualizar ou modificar estes termos a
-              qualquer momento. Os usuários serão notificados sobre alterações significativas, e a
-              continuação do uso do serviço após tais modificações constituirá a aceitação dos novos
-              termos.
-            </p>
-          </div>
-        </div>
-        <!-- Checkbox de Aceitação -->
-        <div class="w-full flex gap-2 items-center border-t border-gray-200 pt-4 mt-4">
-          <input type="checkbox" required id="terms-conditions" class="cursor-pointer" />
-          <label for="terms-conditions"
-            >Li e aceito os Termos e Condições e a Política de Privacidade</label
+          <div
+            class="flex-grow overflow-y-auto max-h-[512px] space-y-[30px] leading-relaxed items-center"
           >
-        </div>
-        <!-- Cancelar ou continuar buttons-->
-        <div class="w-full justify-end flex gap-4 mt-6">
-          <button type="button" class="text-gray-700 py-2 px-4 rounded-md hover:bg-red-100">
-            Cancelar
-          </button>
-          <button
-            type="submit"
-            class="bg-gray-200 text-white py-2 px-4 rounded-md hover:bg-[#055cb9]"
-            disabled
-          >
-            Continuar
-          </button>
-        </div>
+            <!-- Aceitação dos termos -->
+            <div class="space-y-[8px]">
+              <h6 class="text-[#055cb9]">1. ACEITAÇÃO DOS TERMOS</h6>
+              <p>
+                Ao acessar e usar a plataforma Radioscan Clinic, você concorda em cumprir e ser
+                regido por estes Termos e Condições de Uso. Se você não concordar com qualquer parte
+                destes termos, não deverá utilizar nossos serviços.
+              </p>
+            </div>
+            <!-- Descrição do serviço -->
+            <div class="space-y-[8px]">
+              <h6 class="text-[#055cb9]">2. DESCRIÇÃO DO SERVIÇO</h6>
+              <p>
+                A Radioscan Clinic fornece uma plataforma digital para visualização, armazenamento e
+                gerenciamento de exames radiológicos. O serviço é destinado ao uso por pacientes
+                para acesso aos seus próprios exames e por profissionais de saúde autorizados para
+                fins diagnósticos e terapêuticos.
+              </p>
+            </div>
+            <!-- Privacidade e Proteção dos Dados -->
+            <div class="space-y-[8px]">
+              <h6 class="text-[#055cb9]">3. PRIVACIDADE E PROTEÇÃO DOS DADOS</h6>
+              <p>
+                A coleta e uso de informações pessoais e dados médicos são regidos por nossa
+                <a class="text-primary hover:underline font-medium" data-path="termos" href="#"
+                  >Política de Privacidade</a
+                >. Cumprimos rigorosamente as legislações vigentes de proteção de dados (como a LGPD
+                no Brasil e GDPR onde aplicável), garantindo a confidencialidade e segurança das
+                informações de saúde.
+              </p>
+            </div>
+            <!-- Responsabilidades do Usuário -->
+            <div class="space-y-[8px]">
+              <h6 class="text-[#055cb9]">4. RESPONSABILIDADES DO USUÁRIO</h6>
+              <ul class="list-disc pl-[24px] space-y-[8px]">
+                <li>Fornecer informações verdadeiras, exatas e completas durante o cadastro.</li>
+                <li>Manter a confidencialidade de suas credenciais de acesso (login e senha).</li>
+                <li>
+                  Notificar imediatamente a Radioscan Clinic sobre qualquer uso não autorizado de
+                  sua conta.
+                </li>
+                <li>Não utilizar a plataforma para fins ilegais ou não autorizados.</li>
+              </ul>
+            </div>
+            <!-- Propriedade Intelectual -->
+            <div class="space-y-[8px]">
+              <h6 class="text-[#055cb9]">5. PROPRIEDADE INTELECTUAL</h6>
+              <p>
+                Todo o conteúdo, design, software e infraestrutura da plataforma Radioscan são de
+                propriedade exclusiva da Radioscan Clinic ou de seus licenciadores, protegidos por
+                leis de direitos autorais e propriedade intelectual. É proibida a reprodução,
+                distribuição ou modificação sem autorização prévia.
+              </p>
+            </div>
+            <!-- Limitação de Responsabilidade -->
+            <div class="space-y-[8px]">
+              <h6 class="text-[#055cb9]">6. LIMITAÇÃO DE RESPONSABILIDADE</h6>
+              <p>
+                A plataforma Radioscan é uma ferramenta de suporte. Os laudos e diagnósticos finais
+                devem sempre ser confirmados pelo médico responsável. Não nos responsabilizamos por
+                decisões médicas tomadas exclusivamente com base nas informações disponibilizadas na
+                plataforma.
+              </p>
+            </div>
+            <!-- Modificações dos Termos -->
+            <div class="space-y-[8px]">
+              <h6 class="text-[#055cb9]">7. MODIFICAÇÕES DOS TERMOS</h6>
+              <p>
+                A Radioscan Clinic reserva-se o direito de atualizar ou modificar estes termos a
+                qualquer momento. Os usuários serão notificados sobre alterações significativas, e a
+                continuação do uso do serviço após tais modificações constituirá a aceitação dos
+                novos termos.
+              </p>
+            </div>
+          </div>
+          <!-- Checkbox de Aceitação -->
+          <div class="w-full flex gap-2 items-center border-t border-gray-200 pt-4 mt-4">
+            <input
+              type="checkbox"
+              id="terms-conditions"
+              formControlName="acceptedTerms"
+              class="cursor-pointer"
+            />
+            <label for="terms-conditions"
+              >Li e aceito os Termos e Condições e a Política de Privacidade</label
+            >
+          </div>
+          <!-- Cancelar ou continuar buttons-->
+          <div class="w-full justify-end flex gap-4 mt-6">
+            <button
+              type="button"
+              (click)="cancel()"
+              class="text-gray-700 py-2 px-4 rounded-md hover:bg-red-100"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              [disabled]="termsForm.invalid"
+              class="bg-[#055cb9] text-white py-2 px-4 rounded-md"
+              disabled
+            >
+              Continuar
+            </button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

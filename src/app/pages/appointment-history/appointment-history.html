@@ -1,202 +1,184 @@
-<div class="flex w-full h-full">
-  <component-sidebar></component-sidebar>
-  <div class="flex-1 flex flex-col">
-    <component-navbar></component-navbar>
-    <main class="flex flex-col gap-8 p-lg p-10">
-      <h1 class="text-4xl font-bold text-[#055cb9]">Histórico de consultas</h1>
-      <!-- Filters -->
-      <section
-        class="w-100 bg-gray-50 border-1 border-gray-200 rounded-xl shadow-sm p-5 flex gap-5 justify-center"
+<main class="flex flex-col gap-8 p-lg p-10">
+  <h1 class="text-4xl font-bold text-[#055cb9]">Histórico de consultas</h1>
+  <!-- Filters -->
+  <section
+    class="w-100 bg-gray-50 border-1 border-gray-200 rounded-xl shadow-sm p-5 flex gap-5 justify-center"
+  >
+    <!-- status -->
+    <div class="flex flex-col leading-none gap-1 relative">
+      <label for="status" class="pl-1 text-[12px] font-medium text-gray-600">Status</label>
+      <select
+        name="status"
+        id="status"
+        class="bg-blue-100 p-2 pr-10 border-1 border-gray-200 text-gray-600 rounded-lg shadow-sm appearance-none focus:outline-none cursor-pointer"
       >
-        <!-- status -->
-        <div class="flex flex-col leading-none gap-1 relative">
-          <label for="status" class="pl-1 text-[12px] font-medium text-gray-600">Status</label>
-          <select
-            name="status"
-            id="status"
-            class="bg-blue-100 p-2 pr-10 border-1 border-gray-200 text-gray-600 rounded-lg shadow-sm appearance-none focus:outline-none cursor-pointer"
-          >
-            <option value="Marcado">Marcado</option>
-            <option value="Cancelado">Cancelado</option>
-            <option value="Concluído">Concluído</option>
-          </select>
-          <div class="pointer-events-none absolute inset-y-0 right-0 top-4 flex items-center pr-3">
-            <!-- Ajuste a cor no text-color e o tamanho no text-[size] -->
-            <span class="material-symbols-outlined text-2xl text-gray-500">
-              keyboard_arrow_down
-            </span>
-          </div>
-        </div>
-        <!-- tipos-->
-        <div class="flex flex-col leading-none gap-1 relative">
-          <label for="tipos" class="pl-1 text-[12px] font-medium text-gray-600">Tipos</label>
-          <select
-            name="tipos"
-            id="tipos"
-            class="bg-blue-100 p-2 pr-10 border-1 border-gray-200 text-gray-600 rounded-lg shadow-sm appearance-none focus:outline-none cursor-pointer"
-          >
-            <option value="Captura de exame">Captura de exame</option>
-            <option value="Revisão de exame">Revisão de exame</option>
-          </select>
-          <div class="pointer-events-none absolute inset-y-0 right-0 top-4 flex items-center pr-3">
-            <!-- Ajuste a cor no text-color e o tamanho no text-[size] -->
-            <span class="material-symbols-outlined text-2xl text-gray-500">
-              keyboard_arrow_down
-            </span>
-          </div>
-        </div>
-      </section>
-      <!-- Appointment List -->
-      <section class="flex flex-col gap-5">
-        <div
-          class="flex justify-between bg-white p-5 border-1 border-gray-200 rounded-xl shadow-sm"
+        <option value="Marcado">Marcado</option>
+        <option value="Cancelado">Cancelado</option>
+        <option value="Concluído">Concluído</option>
+      </select>
+      <div class="pointer-events-none absolute inset-y-0 right-0 top-4 flex items-center pr-3">
+        <!-- Ajuste a cor no text-color e o tamanho no text-[size] -->
+        <span class="material-symbols-outlined text-2xl text-gray-500"> keyboard_arrow_down </span>
+      </div>
+    </div>
+    <!-- tipos-->
+    <div class="flex flex-col leading-none gap-1 relative">
+      <label for="tipos" class="pl-1 text-[12px] font-medium text-gray-600">Tipos</label>
+      <select
+        name="tipos"
+        id="tipos"
+        class="bg-blue-100 p-2 pr-10 border-1 border-gray-200 text-gray-600 rounded-lg shadow-sm appearance-none focus:outline-none cursor-pointer"
+      >
+        <option value="Captura de exame">Captura de exame</option>
+        <option value="Revisão de exame">Revisão de exame</option>
+      </select>
+      <div class="pointer-events-none absolute inset-y-0 right-0 top-4 flex items-center pr-3">
+        <!-- Ajuste a cor no text-color e o tamanho no text-[size] -->
+        <span class="material-symbols-outlined text-2xl text-gray-500"> keyboard_arrow_down </span>
+      </div>
+    </div>
+  </section>
+  <!-- Appointment List -->
+  <section class="flex flex-col gap-5">
+    <div class="flex justify-between bg-white p-5 border-1 border-gray-200 rounded-xl shadow-sm">
+      <div class="flex gap-5 items-center">
+        <span
+          class="material-symbols-outlined !text-[50px] [font-variation-settings:'wght'_500] text-gray-500 bg-blue-200 p-3 rounded-xl"
+          >medical_services</span
         >
-          <div class="flex gap-5 items-center">
-            <span
-              class="material-symbols-outlined !text-[50px] [font-variation-settings:'wght'_500] text-gray-500 bg-blue-200 p-3 rounded-xl"
-              >medical_services</span
+        <div class="flex flex-col gap-1 leading-none">
+          <div class="flex gap-3">
+            <span class="bg-blue-200 p-1 rounded-lg uppercase text-blue-600 text-[12px]"
+              >Revisão de exame</span
             >
-            <div class="flex flex-col gap-1 leading-none">
-              <div class="flex gap-3">
-                <span class="bg-blue-200 p-1 rounded-lg uppercase text-blue-600 text-[12px]"
-                  >Revisão de exame</span
-                >
-                <span class="bg-blue-200 p-1 rounded-lg uppercase text-blue-600 text-[12px]"
-                  >Marcado</span
-                >
-              </div>
-              <h4 class="text-lg font-medium">Consulta de Acompanhamento</h4>
-              <div class="flex gap-2 items-center">
-                <span class="material-symbols-outlined !text-[20px] text-gray-500">person</span>
-                <span class="text-gray-500 text-[13px]">Dra. Sarah Jenkins</span>
-              </div>
-            </div>
+            <span class="bg-blue-200 p-1 rounded-lg uppercase text-blue-600 text-[12px]"
+              >Marcado</span
+            >
           </div>
-          <div class="flex gap-5 items-center">
-            <div class="flex flex-col items-end gap-1">
-              <span class="font-semibold text-xl">24 Março, 2026</span>
-              <span class="text-md text-gray-500">2:30 PM</span>
-            </div>
-            <button
-              class="bg-white text-medium text-[15px] font-medium border-1 border-red-700 text-red-700 p-2 rounded-lg"
-            >
-              Cancelar
-            </button>
+          <h4 class="text-lg font-medium">Consulta de Acompanhamento</h4>
+          <div class="flex gap-2 items-center">
+            <span class="material-symbols-outlined !text-[20px] text-gray-500">person</span>
+            <span class="text-gray-500 text-[13px]">Dra. Sarah Jenkins</span>
           </div>
         </div>
+      </div>
+      <div class="flex gap-5 items-center">
+        <div class="flex flex-col items-end gap-1">
+          <span class="font-semibold text-xl">24 Março, 2026</span>
+          <span class="text-md text-gray-500">2:30 PM</span>
+        </div>
+        <button
+          class="bg-white text-medium text-[15px] font-medium border-1 border-red-700 text-red-700 p-2 rounded-lg"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
 
-        <div
-          class="flex justify-between bg-gray-100 p-5 border-1 border-gray-200 rounded-xl shadow-sm"
+    <div class="flex justify-between bg-gray-100 p-5 border-1 border-gray-200 rounded-xl shadow-sm">
+      <div class="flex gap-5 items-center">
+        <span
+          class="material-symbols-outlined !text-[50px] [font-variation-settings:'wght'_500] text-gray-500 bg-gray-200 p-3 rounded-xl"
+          >skull</span
         >
-          <div class="flex gap-5 items-center">
-            <span
-              class="material-symbols-outlined !text-[50px] [font-variation-settings:'wght'_500] text-gray-500 bg-gray-200 p-3 rounded-xl"
-              >skull</span
+        <div class="flex flex-col gap-1 leading-none">
+          <div class="flex gap-3">
+            <span class="bg-gray-200 p-1 rounded-lg uppercase text-green-700 text-[12px]"
+              >captura de exame</span
             >
-            <div class="flex flex-col gap-1 leading-none">
-              <div class="flex gap-3">
-                <span class="bg-gray-200 p-1 rounded-lg uppercase text-green-700 text-[12px]"
-                  >captura de exame</span
-                >
-                <span class="bg-gray-200 p-1 rounded-lg uppercase text-green-700 text-[12px]"
-                  >Cancelado</span
-                >
-              </div>
-              <h4 class="text-lg font-medium">Raio X - Abdômen</h4>
-              <div class="flex gap-2 items-center">
-                <span class="material-symbols-outlined !text-[20px] text-gray-500">person</span>
-                <span class="text-gray-500 text-[13px]">Tec. Sarah Jenkins</span>
-              </div>
-            </div>
+            <span class="bg-gray-200 p-1 rounded-lg uppercase text-green-700 text-[12px]"
+              >Cancelado</span
+            >
           </div>
-          <div class="flex gap-5 items-center">
-            <div class="flex flex-col items-end gap-1">
-              <span class="font-semibold text-xl text-gray-500">24 Março, 2026</span>
-              <span class="text-md text-gray-400">2:30 PM</span>
-            </div>
-            <button
-              class="border-1 border-gray-300 text-medium text-[15px] text-gray-400 font-medium py-2 px-5 rounded-lg flex items-center gap-2"
-            >
-              <span>Indisponível</span>
-            </button>
+          <h4 class="text-lg font-medium">Raio X - Abdômen</h4>
+          <div class="flex gap-2 items-center">
+            <span class="material-symbols-outlined !text-[20px] text-gray-500">person</span>
+            <span class="text-gray-500 text-[13px]">Tec. Sarah Jenkins</span>
           </div>
         </div>
+      </div>
+      <div class="flex gap-5 items-center">
+        <div class="flex flex-col items-end gap-1">
+          <span class="font-semibold text-xl text-gray-500">24 Março, 2026</span>
+          <span class="text-md text-gray-400">2:30 PM</span>
+        </div>
+        <button
+          class="border-1 border-gray-300 text-medium text-[15px] text-gray-400 font-medium py-2 px-5 rounded-lg flex items-center gap-2"
+        >
+          <span>Indisponível</span>
+        </button>
+      </div>
+    </div>
 
-        <div
-          class="flex justify-between bg-white p-5 border-1 border-gray-200 rounded-xl shadow-sm"
+    <div class="flex justify-between bg-white p-5 border-1 border-gray-200 rounded-xl shadow-sm">
+      <div class="flex gap-5 items-center">
+        <span
+          class="material-symbols-outlined !text-[50px] [font-variation-settings:'wght'_500] text-gray-500 bg-green-400 p-3 rounded-xl"
+          >skull</span
         >
-          <div class="flex gap-5 items-center">
-            <span
-              class="material-symbols-outlined !text-[50px] [font-variation-settings:'wght'_500] text-gray-500 bg-green-400 p-3 rounded-xl"
-              >skull</span
+        <div class="flex flex-col gap-1 leading-none">
+          <div class="flex gap-3">
+            <span class="bg-green-400 p-1 rounded-lg uppercase text-green-700 text-[12px]"
+              >captura de exame</span
             >
-            <div class="flex flex-col gap-1 leading-none">
-              <div class="flex gap-3">
-                <span class="bg-green-400 p-1 rounded-lg uppercase text-green-700 text-[12px]"
-                  >captura de exame</span
-                >
-                <span class="bg-green-400 p-1 rounded-lg uppercase text-green-700 text-[12px]"
-                  >Concluído</span
-                >
-              </div>
-              <h4 class="text-lg font-medium">Raio X - Abdômen</h4>
-              <div class="flex gap-2 items-center">
-                <span class="material-symbols-outlined !text-[20px] text-gray-500">person</span>
-                <span class="text-gray-500 text-[13px]">Tec. Sarah Jenkins</span>
-              </div>
-            </div>
+            <span class="bg-green-400 p-1 rounded-lg uppercase text-green-700 text-[12px]"
+              >Concluído</span
+            >
           </div>
-          <div class="flex gap-5 items-center">
-            <div class="flex flex-col items-end gap-1">
-              <span class="font-semibold text-xl">24 Março, 2026</span>
-              <span class="text-md text-gray-500">2:30 PM</span>
-            </div>
-            <button
-              class="bg-blue-900 text-medium text-[15px] text-white font-medium py-2 px-5 rounded-lg flex items-center gap-2"
-            >
-              <span class="material-symbols-outlined text-2xl">download</span>
-              <span>Baixar Exame</span>
-            </button>
+          <h4 class="text-lg font-medium">Raio X - Abdômen</h4>
+          <div class="flex gap-2 items-center">
+            <span class="material-symbols-outlined !text-[20px] text-gray-500">person</span>
+            <span class="text-gray-500 text-[13px]">Tec. Sarah Jenkins</span>
           </div>
         </div>
+      </div>
+      <div class="flex gap-5 items-center">
+        <div class="flex flex-col items-end gap-1">
+          <span class="font-semibold text-xl">24 Março, 2026</span>
+          <span class="text-md text-gray-500">2:30 PM</span>
+        </div>
+        <button
+          class="bg-blue-900 text-medium text-[15px] text-white font-medium py-2 px-5 rounded-lg flex items-center gap-2"
+        >
+          <span class="material-symbols-outlined text-2xl">download</span>
+          <span>Baixar Exame</span>
+        </button>
+      </div>
+    </div>
 
-        <div
-          class="flex justify-between bg-white p-5 border-1 border-gray-200 rounded-xl shadow-sm"
+    <div class="flex justify-between bg-white p-5 border-1 border-gray-200 rounded-xl shadow-sm">
+      <div class="flex gap-5 items-center">
+        <span
+          class="material-symbols-outlined !text-[50px] [font-variation-settings:'wght'_500] text-gray-500 bg-green-400 p-3 rounded-xl"
+          >skull</span
         >
-          <div class="flex gap-5 items-center">
-            <span
-              class="material-symbols-outlined !text-[50px] [font-variation-settings:'wght'_500] text-gray-500 bg-green-400 p-3 rounded-xl"
-              >skull</span
+        <div class="flex flex-col gap-1 leading-none">
+          <div class="flex gap-3">
+            <span class="bg-green-400 p-1 rounded-lg uppercase text-green-700 text-[12px]"
+              >captura de exame</span
             >
-            <div class="flex flex-col gap-1 leading-none">
-              <div class="flex gap-3">
-                <span class="bg-green-400 p-1 rounded-lg uppercase text-green-700 text-[12px]"
-                  >captura de exame</span
-                >
-                <span class="bg-blue-200 p-1 rounded-lg uppercase text-blue-600 text-[12px]"
-                  >Marcado</span
-                >
-              </div>
-              <h4 class="text-lg font-medium">Raio X - Abdômen</h4>
-              <div class="flex gap-2 items-center">
-                <span class="material-symbols-outlined !text-[20px] text-gray-500">person</span>
-                <span class="text-gray-500 text-[13px]">Tec. Sarah Jenkins</span>
-              </div>
-            </div>
+            <span class="bg-blue-200 p-1 rounded-lg uppercase text-blue-600 text-[12px]"
+              >Marcado</span
+            >
           </div>
-          <div class="flex gap-5 items-center">
-            <div class="flex flex-col items-end gap-1">
-              <span class="font-semibold text-xl">24 Março, 2026</span>
-              <span class="text-md text-gray-500">2:30 PM</span>
-            </div>
-            <button
-              class="bg-white text-medium text-[15px] font-medium border-1 border-red-700 text-red-700 p-2 rounded-lg"
-            >
-              Cancelar
-            </button>
+          <h4 class="text-lg font-medium">Raio X - Abdômen</h4>
+          <div class="flex gap-2 items-center">
+            <span class="material-symbols-outlined !text-[20px] text-gray-500">person</span>
+            <span class="text-gray-500 text-[13px]">Tec. Sarah Jenkins</span>
           </div>
         </div>
-      </section>
-    </main>
-  </div>
-</div>
+      </div>
+      <div class="flex gap-5 items-center">
+        <div class="flex flex-col items-end gap-1">
+          <span class="font-semibold text-xl">24 Março, 2026</span>
+          <span class="text-md text-gray-500">2:30 PM</span>
+        </div>
+        <button
+          class="bg-white text-medium text-[15px] font-medium border-1 border-red-700 text-red-700 p-2 rounded-lg"
+        >
+          Cancelar
+        </button>
+      </div>
+    </div>
+  </section>
+</main>

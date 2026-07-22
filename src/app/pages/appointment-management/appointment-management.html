@@ -1,216 +1,197 @@
-<div class="flex w-full h-full">
-  <component-sidebar></component-sidebar>
-  <div class="flex-1 flex flex-col">
-    <component-navbar></component-navbar>
-    <main class="flex flex-col gap-8 p-lg p-10">
-      <!-- Title and add employee button component -->
-      <section class="flex justify-between flex-wrap items-center gap-4">
-        <h1 class="text-4xl font-bold text-[#055cb9]">Gerenciamento de Consultas</h1>
-      </section>
-      <!-- employee table component -->
-      <section class="flex flex-col justify-start bg-white rounded-2xl shadow-sm">
-        <!-- Filtros component -->
-        <div
-          class="flex flex-row items-center justify-between bg-[#055cb9]/10 px-6 py-5 rounded-t-2xl shadow-sm"
+<main class="flex flex-col gap-8 p-lg p-10">
+  <!-- Title and add employee button component -->
+  <section class="flex justify-between flex-wrap items-center gap-4">
+    <h1 class="text-4xl font-bold text-[#055cb9]">Gerenciamento de Consultas</h1>
+  </section>
+  <!-- employee table component -->
+  <section class="flex flex-col justify-start bg-white rounded-2xl shadow-sm">
+    <!-- Filtros component -->
+    <div
+      class="flex flex-row items-center justify-between bg-[#055cb9]/10 px-6 py-5 rounded-t-2xl shadow-sm"
+    >
+      <!-- Filtros component-->
+      <div class="flex flex-row items-center gap-6">
+        <span>Filtrar por status: </span>
+        <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-3 rounded-xl font-medium text-[14px]">
+          <button class="text-[#055cb9] bg-white py-2 px-4 rounded-lg">Todos</button>
+          <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">Disponíveis</button>
+          <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">Agendadas</button>
+          <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">Concluídas</button>
+          <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">Canceladas</button>
+        </div>
+      </div>
+      <button
+        class="p-3 rounded-xl text-md bg-[#055cb9] text-white font-medium hover:bg-[#055cb9]/90 transition-all shadow-sm flex items-center"
+      >
+        <span class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[25px]"
+          >add</span
         >
-          <!-- Filtros component-->
-          <div class="flex flex-row items-center gap-6">
-            <span>Filtrar por status: </span>
-            <div
-              class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-3 rounded-xl font-medium text-[14px]"
-            >
-              <button class="text-[#055cb9] bg-white py-2 px-4 rounded-lg">Todos</button>
-              <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">
-                Disponíveis
-              </button>
-              <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">
-                Agendadas
-              </button>
-              <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">
-                Concluídas
-              </button>
-              <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">
-                Canceladas
-              </button>
+        <span> Adicionar Consulta</span>
+      </button>
+    </div>
+    <table class="w-full text-left">
+      <thead>
+        <tr class="text-gray-500">
+          <th class="px-6 py-4 text-outline uppercase tracking-wider">Data/Hora</th>
+          <th class="px-6 py-4 text-outline uppercase tracking-wider">Tipo</th>
+          <th class="px-6 py-4 text-outline uppercase tracking-wider">Funcionário</th>
+          <th class="px-6 py-4 text-outline uppercase tracking-wider">Paciente</th>
+          <th class="px-6 py-4 text-outline uppercase tracking-wider">Status</th>
+          <th class="px-6 py-4 text-outline uppercase tracking-wider">Ação</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Row 1 -->
+        <tr class="border-b border-gray-100">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div>
+                <p class="font-medium text-on-surface">24 Maio, 2024</p>
+                <p class="text-gray-400 text-[12px]">09:00</p>
+              </div>
             </div>
-          </div>
-          <button
-            class="p-3 rounded-xl text-md bg-[#055cb9] text-white font-medium hover:bg-[#055cb9]/90 transition-all shadow-sm flex items-center"
-          >
+          </td>
+          <td class="px-6 py-4">
             <span
-              class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[25px]"
-              >add</span
+              class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm uppercase"
             >
-            <span> Adicionar Consulta</span>
-          </button>
-        </div>
-        <table class="w-full text-left">
-          <thead>
-            <tr class="text-gray-500">
-              <th class="px-6 py-4 text-outline uppercase tracking-wider">Data/Hora</th>
-              <th class="px-6 py-4 text-outline uppercase tracking-wider">Tipo</th>
-              <th class="px-6 py-4 text-outline uppercase tracking-wider">Funcionário</th>
-              <th class="px-6 py-4 text-outline uppercase tracking-wider">Paciente</th>
-              <th class="px-6 py-4 text-outline uppercase tracking-wider">Status</th>
-              <th class="px-6 py-4 text-outline uppercase tracking-wider">Ação</th>
-            </tr>
-          </thead>
-          <tbody>
-            <!-- Row 1 -->
-            <tr class="border-b border-gray-100">
-              <td class="px-6 py-4">
-                <div class="flex items-center gap-3">
-                  <div>
-                    <p class="font-medium text-on-surface">24 Maio, 2024</p>
-                    <p class="text-gray-400 text-[12px]">09:00</p>
-                  </div>
-                </div>
-              </td>
-              <td class="px-6 py-4">
-                <span
-                  class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm uppercase"
-                >
-                  Captura de exame
-                </span>
-              </td>
-              <td class="px-6 py-4 text-gray-500">Dr. Ricardo Silva</td>
-              <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
-                Douglas Phelipe
-              </td>
-              <td class="px-6 py-4">
-                <span
-                  class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
-                >
-                  Agendada
-                </span>
-              </td>
-              <td
-                class="px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
-              >
-                <span class="material-symbols-outlined !text-[18px]">cancel</span>
-                <span>Cancelar</span>
-              </td>
-            </tr>
-            <!-- Row 2 -->
-            <tr class="border-b border-gray-100">
-              <td class="px-6 py-4">
-                <div class="flex items-center gap-3">
-                  <div>
-                    <p class="font-medium text-on-surface">24 Maio, 2024</p>
-                    <p class="text-gray-400 text-[12px]">09:00</p>
-                  </div>
-                </div>
-              </td>
-              <td class="px-6 py-4">
-                <span
-                  class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm uppercase"
-                >
-                  Captura de exame
-                </span>
-              </td>
-              <td class="px-6 py-4 text-gray-500">Dr. Ricardo Silva</td>
-              <td
-                class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500"
-              ></td>
-              <td class="px-6 py-4">
-                <span
-                  class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
-                >
-                  Disponível
-                </span>
-              </td>
-              <td
-                class="hidden px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
-              >
-                <span class="material-symbols-outlined !text-[18px]">cancel</span>
-                <span>Cancelar</span>
-              </td>
-            </tr>
-            <!-- Row 3 -->
-            <tr class="border-b border-gray-100">
-              <td class="px-6 py-4">
-                <div class="flex items-center gap-3">
-                  <div>
-                    <p class="font-medium text-on-surface">24 Maio, 2024</p>
-                    <p class="text-gray-400 text-[12px]">09:00</p>
-                  </div>
-                </div>
-              </td>
-              <td class="px-6 py-4">
-                <span
-                  class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm uppercase"
-                >
-                  Captura de exame
-                </span>
-              </td>
-              <td class="px-6 py-4 text-gray-500">Dr. Ricardo Silva</td>
-              <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
-                Douglas Phelipe
-              </td>
-              <td class="px-6 py-4">
-                <span
-                  class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
-                >
-                  Concluída
-                </span>
-              </td>
-              <td
-                class="hidden px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
-              >
-                <span class="material-symbols-outlined !text-[18px]">cancel</span>
-                <span>Cancelar</span>
-              </td>
-            </tr>
-            <!-- Row 4 -->
-            <tr class="border-b border-gray-100">
-              <td class="px-6 py-4">
-                <div class="flex items-center gap-3">
-                  <div>
-                    <p class="font-medium text-on-surface">24 Maio, 2024</p>
-                    <p class="text-gray-400 text-[12px]">09:00</p>
-                  </div>
-                </div>
-              </td>
-              <td class="px-6 py-4">
-                <span
-                  class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm uppercase"
-                >
-                  REVISÃO DE EXAME
-                </span>
-              </td>
-              <td class="px-6 py-4 text-gray-500">Dr. Ricardo Silva</td>
-              <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
-                Douglas Phelipe
-              </td>
-              <td class="px-6 py-4">
-                <span
-                  class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
-                >
-                  Cancelada
-                </span>
-              </td>
-              <td
-                class="hidden px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
-              >
-                <span class="material-symbols-outlined !text-[18px]">cancel</span>
-                <span>Cancelar</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <!-- Pagination filter component -->
-        <div
-          class="flex flex-row justify-between items-center gap-6 bg-[#055cb9]/5 px-6 py-3 rounded-b-2xl shadow-sm"
-        >
-          <!-- Pagination filter component-->
-          <span class="text-[13px] text-gray-500">Mostrando 1-4 de 42 consultas</span>
-          <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-2 rounded-xl font-medium text-[14px]">
-            <button class="text-[#055cb9] bg-white py-2 px-4 rounded-lg">1</button>
-            <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">2</button>
-            <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">3</button>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
-</div>
+              Captura de exame
+            </span>
+          </td>
+          <td class="px-6 py-4 text-gray-500">Dr. Ricardo Silva</td>
+          <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
+            Douglas Phelipe
+          </td>
+          <td class="px-6 py-4">
+            <span
+              class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
+            >
+              Agendada
+            </span>
+          </td>
+          <td
+            class="px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
+          >
+            <span class="material-symbols-outlined !text-[18px]">cancel</span>
+            <span>Cancelar</span>
+          </td>
+        </tr>
+        <!-- Row 2 -->
+        <tr class="border-b border-gray-100">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div>
+                <p class="font-medium text-on-surface">24 Maio, 2024</p>
+                <p class="text-gray-400 text-[12px]">09:00</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span
+              class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm uppercase"
+            >
+              Captura de exame
+            </span>
+          </td>
+          <td class="px-6 py-4 text-gray-500">Dr. Ricardo Silva</td>
+          <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500"></td>
+          <td class="px-6 py-4">
+            <span
+              class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
+            >
+              Disponível
+            </span>
+          </td>
+          <td
+            class="hidden px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
+          >
+            <span class="material-symbols-outlined !text-[18px]">cancel</span>
+            <span>Cancelar</span>
+          </td>
+        </tr>
+        <!-- Row 3 -->
+        <tr class="border-b border-gray-100">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div>
+                <p class="font-medium text-on-surface">24 Maio, 2024</p>
+                <p class="text-gray-400 text-[12px]">09:00</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span
+              class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm uppercase"
+            >
+              Captura de exame
+            </span>
+          </td>
+          <td class="px-6 py-4 text-gray-500">Dr. Ricardo Silva</td>
+          <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
+            Douglas Phelipe
+          </td>
+          <td class="px-6 py-4">
+            <span
+              class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
+            >
+              Concluída
+            </span>
+          </td>
+          <td
+            class="hidden px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
+          >
+            <span class="material-symbols-outlined !text-[18px]">cancel</span>
+            <span>Cancelar</span>
+          </td>
+        </tr>
+        <!-- Row 4 -->
+        <tr class="border-b border-gray-100">
+          <td class="px-6 py-4">
+            <div class="flex items-center gap-3">
+              <div>
+                <p class="font-medium text-on-surface">24 Maio, 2024</p>
+                <p class="text-gray-400 text-[12px]">09:00</p>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4">
+            <span
+              class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm uppercase"
+            >
+              REVISÃO DE EXAME
+            </span>
+          </td>
+          <td class="px-6 py-4 text-gray-500">Dr. Ricardo Silva</td>
+          <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
+            Douglas Phelipe
+          </td>
+          <td class="px-6 py-4">
+            <span
+              class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
+            >
+              Cancelada
+            </span>
+          </td>
+          <td
+            class="hidden px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
+          >
+            <span class="material-symbols-outlined !text-[18px]">cancel</span>
+            <span>Cancelar</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Pagination filter component -->
+    <div
+      class="flex flex-row justify-between items-center gap-6 bg-[#055cb9]/5 px-6 py-3 rounded-b-2xl shadow-sm"
+    >
+      <!-- Pagination filter component-->
+      <span class="text-[13px] text-gray-500">Mostrando 1-4 de 42 consultas</span>
+      <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-2 rounded-xl font-medium text-[14px]">
+        <button class="text-[#055cb9] bg-white py-2 px-4 rounded-lg">1</button>
+        <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">2</button>
+        <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">3</button>
+      </div>
+    </div>
+  </section>
+</main>

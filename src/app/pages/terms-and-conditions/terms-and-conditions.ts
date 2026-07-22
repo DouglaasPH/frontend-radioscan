@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROUTES } from '../../core/constants/routes.constants';
-import { PatientApi } from '../../core/api/patient.api';
-import { UserApi } from '../../core/api/user.api';
+import { PatientApi } from '../../core/api/patient/patient.api';
+import { UserApi } from '../../core/api/user/user.api';
 import { RegistrationState } from '../../core/states/registration.state';
 
 @Component({

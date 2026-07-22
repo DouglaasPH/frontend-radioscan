@@ -1,5 +1,5 @@
 import { Component, inject } from '@angular/core';
-import { AuthApi } from '../../../core/api/auth.api';
+import { AuthApi } from '../../../core/api/auth/auth.api';
 import { Router, RouterLink } from '@angular/router';
 import { ROUTES } from '../../../core/constants/routes.constants';
 import { ROLES_IN_PORTUGUESE } from '../../../core/constants/roles.constants';

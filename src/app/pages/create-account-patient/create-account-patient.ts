@@ -1,7 +1,7 @@
 import { Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { RegisterPatientRequest } from '../../core/dto/patient/register-patient-request.dto';
+import { RegisterPatientRequest } from '../../core/api/patient/dto/register-patient-request.dto';
 import { CpfMaskDirective } from '../../shared/directives/cpf-mask.directive';
 import { PhoneMaskDirective } from '../../shared/directives/phone-mask.directive';
 import { ROUTES } from '../../core/constants/routes.constants';

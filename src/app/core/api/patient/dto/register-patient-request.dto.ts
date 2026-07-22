@@ -1,4 +1,4 @@
-import { CreateUserRequest } from '../user/create-user-request.dto';
+import { CreateUserRequest } from '../../user/dto/create-user-request.dto';
 
 export interface RegisterPatientRequest {
   user: CreateUserRequest;

@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { LoginRequest } from '../dto/auth/login-request.dto';
-import { LoginResponse } from '../dto/auth/login-response.dto';
-import { RefreshTokenService } from '../services/refresh-token.service';
+import { LoginRequest } from './dto/login-request.dto';
+import { LoginResponse } from './dto/login-response.dto';
+import { RefreshTokenService } from '../../services/refresh-token.service';
 import { catchError, of, switchMap, tap } from 'rxjs';
-import { environment } from '../../enviroments/environment.development';
-import { GoogleAuthRequest } from '../dto/auth/google-auth-request.dto';
-import { UserState } from '../states/user.state';
-import { AccessTokenState } from '../states/access-token.state';
+import { environment } from '../../../enviroments/environment.development';
+import { GoogleAuthRequest } from './dto/google-auth-request.dto';
+import { UserState } from '../../states/user.state';
+import { AccessTokenState } from '../../states/access-token.state';
 
 @Injectable({
   providedIn: 'root',

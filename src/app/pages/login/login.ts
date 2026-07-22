@@ -2,8 +2,8 @@ import { AfterViewInit, Component, inject, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ROUTES } from '../../core/constants/routes.constants';
-import { AuthApi } from '../../core/api/auth.api';
-import { UserApi } from '../../core/api/user.api';
+import { AuthApi } from '../../core/api/auth/auth.api';
+import { UserApi } from '../../core/api/user/user.api';
 import { environment } from '../../enviroments/environment.development';
 
 declare const google: any;

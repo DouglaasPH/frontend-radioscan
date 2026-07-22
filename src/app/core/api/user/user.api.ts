@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { tap } from 'rxjs';
-import { environment } from '../../enviroments/environment.development';
-import { User } from '../models/user.model';
-import { UserState } from '../states/user.state';
+import { environment } from '../../../enviroments/environment.development';
+import { User } from '../../models/user.model';
+import { UserState } from '../../states/user.state';
 
 @Injectable({
   providedIn: 'root',

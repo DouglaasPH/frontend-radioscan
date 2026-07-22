@@ -1,5 +1,5 @@
 import { Injectable, signal } from '@angular/core';
-import { RegisterPatientRequest } from '../dto/patient/register-patient-request.dto';
+import { RegisterPatientRequest } from '../api/patient/dto/register-patient-request.dto';
 
 @Injectable({
   providedIn: 'root',

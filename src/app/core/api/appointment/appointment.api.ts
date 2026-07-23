@@ -13,4 +13,11 @@ export class AppointmentApi {
   create(dto: CreateAppointmentRequestDto) {
     return this.http.post<LoginResponse>(`${environment.apiUrl}/appointment`, dto);
   }
+
+  cancel(appointmentId: number) {
+    return this.http.put<LoginResponse>(
+      `${environment.apiUrl}/appointment/${appointmentId}/cancel`,
+      {},
+    );
+  }
 }

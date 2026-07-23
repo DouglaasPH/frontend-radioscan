@@ -32,7 +32,15 @@ export class AdminApi {
     if (name) {
       params = params.set('name', name);
     }
-    console.log('Params:', params.toString()); // Log the params to see what is being sent
     return this.http.get<any>(`${environment.apiUrl}/admin/management/employees`, { params });
+  }
+
+  appointmentsManagementWithPagination(status: string | null, page: number) {
+    let params = new HttpParams().set('page', page.toString());
+
+    if (status) {
+      params = params.set('status', status);
+    }
+    return this.http.get<any>(`${environment.apiUrl}/admin/management/appointments`, { params });
   }
 }

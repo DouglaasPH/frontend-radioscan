@@ -13,11 +13,56 @@
       <div class="flex flex-row items-center gap-6">
         <span>Filtrar por status: </span>
         <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-3 rounded-xl font-medium text-[14px]">
-          <button class="text-[#055cb9] bg-white py-2 px-4 rounded-lg">Todos</button>
-          <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">Disponíveis</button>
-          <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">Agendadas</button>
-          <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">Concluídas</button>
-          <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">Canceladas</button>
+          <button
+            class="py-2 px-4 rounded-lg transition-colors"
+            [class.bg-white]="selectedAppointmentStatus() === ''"
+            [class.text-[#055cb9]]="selectedAppointmentStatus() === ''"
+            [class.text-gray-500]="selectedAppointmentStatus() !== ''"
+            [class.hover:bg-white/50]="selectedAppointmentStatus() !== ''"
+            (click)="selectedAppointmentStatus.set('')"
+          >
+            Todos
+          </button>
+          <button
+            class="py-2 px-4 rounded-lg transition-colors"
+            [class.bg-white]="selectedAppointmentStatus() === 'AVAILABLE'"
+            [class.text-[#055cb9]]="selectedAppointmentStatus() === 'AVAILABLE'"
+            [class.text-gray-500]="selectedAppointmentStatus() !== 'AVAILABLE'"
+            [class.hover:bg-white/50]="selectedAppointmentStatus() !== 'AVAILABLE'"
+            (click)="selectedAppointmentStatus.set('AVAILABLE')"
+          >
+            Disponíveis
+          </button>
+          <button
+            class="py-2 px-4 rounded-lg transition-colors"
+            [class.bg-white]="selectedAppointmentStatus() === 'SCHEDULED'"
+            [class.text-[#055cb9]]="selectedAppointmentStatus() === 'SCHEDULED'"
+            [class.text-gray-500]="selectedAppointmentStatus() !== 'SCHEDULED'"
+            [class.hover:bg-white/50]="selectedAppointmentStatus() !== 'SCHEDULED'"
+            (click)="selectedAppointmentStatus.set('SCHEDULED')"
+          >
+            Agendadas
+          </button>
+          <button
+            class="py-2 px-4 rounded-lg transition-colors"
+            [class.bg-white]="selectedAppointmentStatus() === 'COMPLETED'"
+            [class.text-[#055cb9]]="selectedAppointmentStatus() === 'COMPLETED'"
+            [class.text-gray-500]="selectedAppointmentStatus() !== 'COMPLETED'"
+            [class.hover:bg-white/50]="selectedAppointmentStatus() !== 'COMPLETED'"
+            (click)="selectedAppointmentStatus.set('COMPLETED')"
+          >
+            Concluídas
+          </button>
+          <button
+            class="py-2 px-4 rounded-lg transition-colors"
+            [class.bg-white]="selectedAppointmentStatus() === 'CANCELED'"
+            [class.text-[#055cb9]]="selectedAppointmentStatus() === 'CANCELED'"
+            [class.text-gray-500]="selectedAppointmentStatus() !== 'CANCELED'"
+            [class.hover:bg-white/50]="selectedAppointmentStatus() !== 'CANCELED'"
+            (click)="selectedAppointmentStatus.set('CANCELED')"
+          >
+            Canceladas
+          </button>
         </div>
       </div>
       <button
@@ -41,144 +86,76 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Row 1 -->
-        <tr class="border-b border-gray-100">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <p class="font-medium text-on-surface">24 Maio, 2024</p>
-                <p class="text-gray-400 text-[12px]">09:00</p>
+        @for (appointment of appointments(); track appointment.id) {
+          <tr class="border-b border-gray-100">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <div>
+                  <p class="font-medium text-on-surface">
+                    {{ formatDate(appointment.dateHour) }}
+                  </p>
+
+                  <p class="text-gray-400 text-[12px]">{{ formatTime(appointment.dateHour) }}</p>
+                </div>
               </div>
-            </div>
-          </td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm uppercase"
-            >
-              Captura de exame
-            </span>
-          </td>
-          <td class="px-6 py-4 text-gray-500">Dr. Ricardo Silva</td>
-          <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
-            Douglas Phelipe
-          </td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
-            >
-              Agendada
-            </span>
-          </td>
-          <td
-            class="px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
-          >
-            <span class="material-symbols-outlined !text-[18px]">cancel</span>
-            <span>Cancelar</span>
-          </td>
-        </tr>
-        <!-- Row 2 -->
-        <tr class="border-b border-gray-100">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <p class="font-medium text-on-surface">24 Maio, 2024</p>
-                <p class="text-gray-400 text-[12px]">09:00</p>
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm uppercase"
-            >
-              Captura de exame
-            </span>
-          </td>
-          <td class="px-6 py-4 text-gray-500">Dr. Ricardo Silva</td>
-          <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500"></td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
-            >
-              Disponível
-            </span>
-          </td>
-          <td
-            class="hidden px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
-          >
-            <span class="material-symbols-outlined !text-[18px]">cancel</span>
-            <span>Cancelar</span>
-          </td>
-        </tr>
-        <!-- Row 3 -->
-        <tr class="border-b border-gray-100">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <p class="font-medium text-on-surface">24 Maio, 2024</p>
-                <p class="text-gray-400 text-[12px]">09:00</p>
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm uppercase"
-            >
-              Captura de exame
-            </span>
-          </td>
-          <td class="px-6 py-4 text-gray-500">Dr. Ricardo Silva</td>
-          <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
-            Douglas Phelipe
-          </td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
-            >
-              Concluída
-            </span>
-          </td>
-          <td
-            class="hidden px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
-          >
-            <span class="material-symbols-outlined !text-[18px]">cancel</span>
-            <span>Cancelar</span>
-          </td>
-        </tr>
-        <!-- Row 4 -->
-        <tr class="border-b border-gray-100">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <p class="font-medium text-on-surface">24 Maio, 2024</p>
-                <p class="text-gray-400 text-[12px]">09:00</p>
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm uppercase"
-            >
-              REVISÃO DE EXAME
-            </span>
-          </td>
-          <td class="px-6 py-4 text-gray-500">Dr. Ricardo Silva</td>
-          <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
-            Douglas Phelipe
-          </td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
-            >
-              Cancelada
-            </span>
-          </td>
-          <td
-            class="hidden px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
-          >
-            <span class="material-symbols-outlined !text-[18px]">cancel</span>
-            <span>Cancelar</span>
-          </td>
-        </tr>
+            </td>
+
+            <td class="px-6 py-4">
+              @if (appointment!.appointmentType === 1) {
+                <span class="px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm">
+                  CAPTURA DE EXAME
+                </span>
+              } @else {
+                <span class="px-3 py-1 rounded-full bg-[#055cb9]/30 text-gray-500 shadow-sm">
+                  REVISÃO DE EXAME
+                </span>
+              }
+            </td>
+
+            <td class="px-6 py-4 font-mono text-gray-500">
+              {{ appointment!.employeeName ? appointment!.employeeName : '' }}
+            </td>
+
+            <td class="px-6 py-4 font-mono text-gray-500">
+              {{ appointment!.patientName ? appointment!.patientName : '' }}
+            </td>
+
+            <td class="px-6 py-4">
+              <span
+                class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
+              >
+                {{
+                  appointment.appointmentStatus == 1
+                    ? 'Disponível'
+                    : appointment.appointmentStatus == 2
+                      ? 'Agendada'
+                      : appointment.appointmentStatus == 3
+                        ? 'Cancelada'
+                        : appointment.appointmentStatus == 4
+                          ? 'Concluída'
+                          : ''
+                }}
+              </span>
+            </td>
+            @if (
+              appointment!.appointmentStatus !== 3 &&
+              appointment!.appointmentStatus !== 4 &&
+              !isLessThan24HoursAway(appointment.dateHour)
+            ) {
+              <td
+                (click)="cancelAppointment(appointment.id)"
+                class="px-6 py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all"
+              >
+                <span class="material-symbols-outlined !text-[18px]">cancel</span>
+                <span>Cancelar</span>
+              </td>
+            }
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="text-center py-10 text-gray-400">Nenhuma consulta encontrada</td>
+          </tr>
+        }
       </tbody>
     </table>
     <!-- Pagination filter component -->
@@ -186,11 +163,44 @@
       class="flex flex-row justify-between items-center gap-6 bg-[#055cb9]/5 px-6 py-3 rounded-b-2xl shadow-sm"
     >
       <!-- Pagination filter component-->
-      <span class="text-[13px] text-gray-500">Mostrando 1-4 de 42 consultas</span>
+      <span class="text-[13px] text-gray-500"
+        >Mostrando
+        {{
+          Math.min(
+            (this.currentPage() + 1) *
+              (this.numberOfElements() === 0
+                ? 0
+                : this.numberOfElements() === 4
+                  ? 4
+                  : this.currentPage() * 4),
+            this.totalAppointments()
+          ) - (this.numberOfElements() === 0 ? 0 : this.numberOfElements() - 1)
+        }}-{{
+          Math.min(
+            (this.currentPage() + 1) *
+              (this.numberOfElements() === 0
+                ? 0
+                : this.numberOfElements() === 4
+                  ? 4
+                  : this.currentPage() * 4),
+            this.totalAppointments()
+          )
+        }}
+        de {{ this.totalAppointments() }} funcionários</span
+      >
       <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-2 rounded-xl font-medium text-[14px]">
-        <button class="text-[#055cb9] bg-white py-2 px-4 rounded-lg">1</button>
-        <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">2</button>
-        <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">3</button>
+        @for (page of this.paginationPages(); track page) {
+          <button
+            class="py-2 px-4 rounded-lg"
+            [ngClass]="{
+              'text-[#055cb9] bg-white': this.currentPage() === page,
+              'text-gray-500 hover:bg-white/50': this.currentPage() !== page,
+            }"
+            (click)="this.changePage(page)"
+          >
+            {{ page + 1 }}
+          </button>
+        }
       </div>
     </div>
   </section>

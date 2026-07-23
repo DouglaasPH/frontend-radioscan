@@ -1,7 +1,8 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../enviroments/environment.development';
-import { DashboardRequestDto } from './dto/dashboard-request.dto';
+import { DashboardMetricsAdminResponseDto } from './dto/dashboard-metrics-admin-response.dto';
+import { EmployeesManagementMetricsAdminResponseDto } from './dto/employees-management-metrics-admin-response.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,29 @@ import { DashboardRequestDto } from './dto/dashboard-request.dto';
 export class AdminApi {
   private http = inject(HttpClient);
 
-  dashboard() {
-    return this.http.get<DashboardRequestDto>(`${environment.apiUrl}/admin`);
+  dashboardMetrics() {
+    return this.http.get<DashboardMetricsAdminResponseDto>(
+      `${environment.apiUrl}/admin/metrics/dashboard`,
+    );
+  }
+
+  employeesManagementMetrics() {
+    return this.http.get<EmployeesManagementMetricsAdminResponseDto>(
+      `${environment.apiUrl}/admin/metrics/employees`,
+    );
+  }
+
+  employeesManagementWithPagination(name: string | null, position: string | null, page: number) {
+    let params = new HttpParams().set('page', page.toString());
+
+    if (position) {
+      params = params.set('position', position);
+    }
+
+    if (name) {
+      params = params.set('name', name);
+    }
+    console.log('Params:', params.toString()); // Log the params to see what is being sent
+    return this.http.get<any>(`${environment.apiUrl}/admin/management/employees`, { params });
   }
 }

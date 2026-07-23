@@ -20,7 +20,7 @@ export class DashboardAdmin {
   constructor() {
     this.name = this.userState.get()!.name;
 
-    this.adminApi.dashboard().subscribe({
+    this.adminApi.dashboardMetrics().subscribe({
       next: (response) => {
         this.data.set({
           numberOfExamsPerformed: response.numberOfExamsPerformed,

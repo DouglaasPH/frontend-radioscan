@@ -1,8 +1,10 @@
 <div class="flex w-full h-full">
   <component-sidebar></component-sidebar>
-  <main class="flex-1 flex flex-col">
+
+  <main class="flex-1 min-w-0 flex flex-col">
     <component-navbar></component-navbar>
-    <section class="flex-1 p-lg">
+
+    <section class="flex-1 p-lg min-w-0">
       <router-outlet />
     </section>
   </main>

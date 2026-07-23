@@ -1,179 +1,221 @@
-<main class="flex flex-col gap-8 p-lg p-10">
+<main class="flex flex-col gap-8 p-4 md:p-10">
   <!-- Title and add employee button component -->
   <section class="flex justify-between flex-wrap items-center gap-4">
     <h1 class="text-4xl font-bold text-[#055cb9]">Gerenciamento de Funcionários</h1>
-  </section>
-  <section class="flex items-center md:gap-10 justify-between md:justify-start flex-wrap">
-    <!-- Total de funcionários component -->
-    <div
-      class="w-full md:w-70 flex items-center gap-4 bg-white border-1 border-gray-100 rounded-xl shadow-sm p-6"
+    <button
+      type="button"
+      routerLink="/dashboard/admin/create-account-employee"
+      class="p-3 rounded-xl text-md bg-[#055cb9] text-white font-medium hover:bg-[#055cb9]/90 transition-all shadow-sm flex items-center"
     >
+      <span class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[25px]"
+        >add</span
+      >
+      <span> Criar conta de funcionário </span>
+    </button>
+  </section>
+  <section
+    class="grid grid-cols-1 md:grid-cols-3 gap-5 lg:gap-10 justify-between md:justify-start flex-wrap"
+  >
+    <!-- Total de funcionários component -->
+    <div class="flex items-center gap-4 bg-white border-1 border-gray-100 rounded-xl shadow-sm p-6">
       <span
         class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[35px] bg-[#055cb9]/15 text-[#055cb9] p-2 rounded-2xl"
         >groups</span
       >
       <div class="flex flex-col items-start">
         <span class="text-gray-600 font-medium text-[13px]">Total de Funcionários</span>
-        <span class="text-2xl font-bold">42</span>
+        <span class="text-2xl font-bold">{{ metrics().total }}</span>
       </div>
     </div>
     <!-- Médicos component -->
-    <div
-      class="w-full md:w-70 flex items-center gap-4 bg-white border-1 border-gray-100 rounded-xl shadow-sm p-6"
-    >
+    <div class="flex items-center gap-4 bg-white border-1 border-gray-100 rounded-xl shadow-sm p-6">
       <span
         class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[35px] bg-gray-200 text-gray-600 p-2 rounded-2xl"
         >medical_services</span
       >
       <div class="flex flex-col items-start">
         <span class="text-gray-600 font-medium text-[13px]">Médicos</span>
-        <span class="text-2xl font-bold">18</span>
+        <span class="text-2xl font-bold">{{ metrics().doctors }}</span>
       </div>
     </div>
     <!-- Técnicos component -->
-    <div
-      class="w-full md:w-70 flex items-center gap-4 bg-white border-1 border-gray-100 rounded-xl shadow-sm p-6"
-    >
+    <div class="flex items-center gap-4 bg-white border-1 border-gray-100 rounded-xl shadow-sm p-6">
       <span
         class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[35px] bg-gray-200 text-gray-600 p-2 rounded-2xl"
         >biotech</span
       >
       <div class="flex flex-col items-start">
         <span class="text-gray-600 font-medium text-[13px]">Técnicos</span>
-        <span class="text-2xl font-bold">24</span>
+        <span class="text-2xl font-bold">{{ metrics().technicians }}</span>
       </div>
     </div>
   </section>
   <!-- employee table component -->
-  <section class="flex flex-col justify-start bg-white rounded-2xl shadow-sm">
+  <section class="flex flex-col justify-start bg-white rounded-2xl shadow-sm overflow-visible">
     <!-- Filtros component -->
     <div
-      class="flex flex-row items-center justify-between bg-[#055cb9]/10 px-6 py-5 rounded-t-2xl shadow-sm"
+      class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-10 w-full bg-[#055cb9]/10 px-4 md:px-6 py-5 rounded-t-2xl gap-5 overflow-hidden"
     >
-      <!-- Filtros component-->
-      <div class="flex flex-row items-center gap-6">
-        <span>Filtrar por cargo: </span>
-        <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-3 rounded-xl font-medium text-[14px]">
-          <button class="text-[#055cb9] bg-white py-2 px-4 rounded-lg">Todos</button>
-          <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">Técnicos</button>
-          <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">Doutores</button>
+      <!-- Find name component -->
+      <div class="flex flex-col gap-2 w-full lg:w-2/4">
+        <div class="relative group">
+          <span
+            class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[22px] text-gray-400 [font-variation-settings:'wght'_300]"
+            >search</span
+          >
+          <input
+            placeholder="Digite o nome do funcionário"
+            type="text"
+            required
+            class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
+            [ngModel]="searchName()"
+            (ngModelChange)="onSearchNameChange($event)"
+          />
+          <button
+            (click)="searchEmployees()"
+            class="bg-[#055cb9] text-white py-2 px-4 rounded-lg hover:bg-[#055cb9]/90 outlined absolute right-3 top-1/2 -translate-y-1/2"
+          >
+            Buscar
+          </button>
         </div>
       </div>
-      <button
-        class="p-3 rounded-xl text-md bg-[#055cb9] text-white font-medium hover:bg-[#055cb9]/90 transition-all shadow-sm flex items-center"
-      >
-        <span class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[25px]"
-          >add</span
-        >
-        <span> Adicionar Funcionário </span>
-      </button>
+      <!-- Filtros component-->
+      <div class="flex flex-col lg:flex-row items-start lg:items-center gap-6">
+        <span>Filtrar por cargo: </span>
+        <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-3 rounded-xl font-medium text-[14px]">
+          <button
+            class="py-2 px-4 rounded-lg transition-colors"
+            [class.bg-white]="selectedPosition() === ''"
+            [class.text-[#055cb9]]="selectedPosition() === ''"
+            [class.text-gray-500]="selectedPosition() !== ''"
+            [class.hover:bg-white/50]="selectedPosition() !== ''"
+            (click)="selectedPosition.set('')"
+          >
+            Todos
+          </button>
+          <button
+            class="py-2 px-4 rounded-lg transition-colors"
+            [class.bg-white]="selectedPosition() === 'TECHNICAL'"
+            [class.text-[#055cb9]]="selectedPosition() === 'TECHNICAL'"
+            [class.text-gray-500]="selectedPosition() !== 'TECHNICAL'"
+            [class.hover:bg-white/50]="selectedPosition() !== 'TECHNICAL'"
+            (click)="selectedPosition.set('TECHNICAL')"
+          >
+            Técnicos
+          </button>
+          <button
+            class="py-2 px-4 rounded-lg transition-colors"
+            [class.bg-white]="selectedPosition() === 'DOCTOR'"
+            [class.text-[#055cb9]]="selectedPosition() === 'DOCTOR'"
+            [class.text-gray-500]="selectedPosition() !== 'DOCTOR'"
+            [class.hover:bg-white/50]="selectedPosition() !== 'DOCTOR'"
+            (click)="selectedPosition.set('DOCTOR')"
+          >
+            Doutores
+          </button>
+        </div>
+      </div>
     </div>
-    <table class="w-full text-left">
-      <thead>
-        <tr class="text-gray-500">
-          <th class="px-6 py-4 text-outline uppercase tracking-wider">Nome</th>
-          <th class="px-6 py-4 text-outline uppercase tracking-wider">E-mail</th>
-          <th class="px-6 py-4 text-outline uppercase tracking-wider">Cargo</th>
-          <th class="px-6 py-4 text-outline uppercase tracking-wider">Nº de Licença</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Row 1 -->
-        <tr class="border-b border-gray-100">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <p class="font-medium text-on-surface">Dr. Ricardo Silva</p>
-                <p class="text-gray-400 text-[12px]">ID: #4502</p>
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4 text-gray-500">ricardo.silva@radprecision.com</td>
-          <td class="px-6 py-4">
-            <span class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm">
-              Médico
-            </span>
-          </td>
-          <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
-            CRM/SP 123456
-          </td>
-        </tr>
-        <!-- Row 2 -->
-        <tr class="border-b border-gray-100">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <p class="font-medium text-on-surface">Ricardo Silva</p>
-                <p class="text-gray-400 text-[12px]">ID: #4502</p>
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4 text-gray-500">ricardo.silva@radprecision.com</td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-3 py-1 rounded-full bg-[#055cb9]/30 text-gray-500 shadow-sm"
-            >
-              Técnico
-            </span>
-          </td>
-          <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
-            CRM/SP 123456
-          </td>
-        </tr>
-        <!-- Row 1 -->
-        <tr class="border-b border-gray-100">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <p class="font-medium text-on-surface">Dr. Ricardo Silva</p>
-                <p class="text-gray-400 text-[12px]">ID: #4502</p>
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4 text-gray-500">ricardo.silva@radprecision.com</td>
-          <td class="px-6 py-4">
-            <span class="items-center px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm">
-              Médico
-            </span>
-          </td>
-          <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
-            CRM/SP 123456
-          </td>
-        </tr>
-        <!-- Row 2 -->
-        <tr class="border-b border-gray-100">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <p class="font-medium text-on-surface">Ricardo Silva</p>
-                <p class="text-gray-400 text-[12px]">ID: #4502</p>
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4 text-gray-500">ricardo.silva@radprecision.com</td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-3 py-1 rounded-full bg-[#055cb9]/30 text-gray-500 shadow-sm"
-            >
-              Técnico
-            </span>
-          </td>
-          <td class="px-6 py-4 font-mono text-label-md text-on-surface-variant text-gray-500">
-            CRM/SP 123456
-          </td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="overflow-x-auto">
+      <div class="min-w-[700px]">
+        <table class="w-full text-left">
+          <thead>
+            <tr class="text-gray-500">
+              <th class="px-6 py-4 text-outline uppercase tracking-wider">Nome</th>
+              <th class="px-6 py-4 text-outline uppercase tracking-wider">E-mail</th>
+              <th class="px-6 py-4 text-outline uppercase tracking-wider">Cargo</th>
+              <th class="px-6 py-4 text-outline uppercase tracking-wider">Nº de Licença</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (employee of employees(); track employee.id) {
+              <tr class="border-b border-gray-100">
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-3">
+                    <div>
+                      <p class="font-medium text-on-surface">
+                        {{ employee.name }}
+                      </p>
+
+                      <p class="text-gray-400 text-[12px]">ID: #{{ employee.id }}</p>
+                    </div>
+                  </div>
+                </td>
+
+                <td class="px-6 py-4 text-gray-500">
+                  {{ employee.email }}
+                </td>
+
+                <td class="px-6 py-4">
+                  @if (employee.employee!.position === 'DOCTOR') {
+                    <span class="px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm">
+                      Doutor
+                    </span>
+                  } @else {
+                    <span class="px-3 py-1 rounded-full bg-[#055cb9]/30 text-gray-500 shadow-sm">
+                      Técnico
+                    </span>
+                  }
+                </td>
+
+                <td class="px-6 py-4 font-mono text-gray-500">
+                  {{ employee.employee!.licenseNumber }}
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="4" class="text-center py-10 text-gray-400">
+                  Nenhum funcionário encontrado
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
     <!-- Pagination filter component -->
     <div
-      class="flex flex-row justify-between items-center gap-6 bg-[#055cb9]/5 px-6 py-3 rounded-b-2xl shadow-sm"
+      class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 bg-[#055cb9]/5 px-6 py-3 rounded-b-2xl shadow-sm"
     >
       <!-- Pagination filter component-->
-      <span class="text-[13px] text-gray-500">Mostrando 1-4 de 42 funcionários</span>
+      <span class="text-[13px] text-gray-500"
+        >Mostrando
+        {{
+          Math.min(
+            (this.currentPage() + 1) *
+              (this.numberOfElements() === 0
+                ? 0
+                : this.numberOfElements() === 4
+                  ? 4
+                  : this.currentPage() * 4),
+            this.totalEmployees()
+          ) - (this.numberOfElements() === 0 ? 0 : this.numberOfElements() - 1)
+        }}-{{
+          Math.min(
+            (this.currentPage() + 1) *
+              (this.numberOfElements() === 0
+                ? 0
+                : this.numberOfElements() === 4
+                  ? 4
+                  : this.currentPage() * 4),
+            this.totalEmployees()
+          )
+        }}
+        de {{ this.totalEmployees() }} funcionários</span
+      >
       <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-2 rounded-xl font-medium text-[14px]">
-        <button class="text-[#055cb9] bg-white py-2 px-4 rounded-lg">1</button>
-        <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">2</button>
-        <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50">3</button>
+        @for (page of this.paginationPages(); track page) {
+          <button
+            class="py-2 px-4 rounded-lg"
+            [ngClass]="{
+              'text-[#055cb9] bg-white': this.currentPage() === page,
+              'text-gray-500 hover:bg-white/50': this.currentPage() !== page,
+            }"
+            (click)="this.changePage(page)"
+          >
+            {{ page + 1 }}
+          </button>
+        }
       </div>
     </div>
   </section>

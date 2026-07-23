@@ -23,7 +23,7 @@ export class EmployeeManagement {
 
   protected readonly employees = signal<User[]>([]); // Array para armazenar os funcionários
 
-  protected readonly currentPage = signal(2); // Página atual
+  protected readonly currentPage = signal(0); // Página atual
   protected readonly totalPages = signal(0); // Total de páginas disponíveis
   protected readonly totalEmployees = signal(0); // Total de usuários encontrados
   protected readonly numberOfElements = signal(0); // Número de elementos na página atual

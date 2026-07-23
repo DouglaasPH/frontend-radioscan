@@ -2,32 +2,80 @@
   <!-- Title component -->
   <h1 class="text-4xl font-bold text-[#055cb9]">Nova vaga de Consulta</h1>
   <!-- Content for the new consultation appointment slot -->
-  <section class="bg-white/100 p-10 rounded-xl shadow-sm flex flex-col gap-10">
+  <form
+    [formGroup]="createAppointmentForm"
+    (ngSubmit)="create()"
+    class="bg-white/100 p-10 rounded-xl shadow-sm flex flex-col gap-10"
+  >
     <div class="flex flex-col gap-3">
       <h4 class="font-bold text-[14px] text-gray-500 uppercase">Tipo de consulta</h4>
       <div class="flex justify-between flex-wrap w-full gap-5 md:gap-0">
         <button
-          class="flex gap-5 items-center border-2 border-[#055cb9] p-3 rounded-2xl hover:bg-[#055cb9]/10 transition-all w-full md:w-[49%]"
+          type="button"
+          (click)="
+            this.createAppointmentForm.controls.type.setValue('EXAM_CAPTURE'); loadEmployees()
+          "
+          [class.border-[#055cb9]]="this.createAppointmentForm.value.type === 'EXAM_CAPTURE'"
+          [class.border-gray-400]="this.createAppointmentForm.value.type !== 'EXAM_CAPTURE'"
+          [class.hover:bg-[#055cb9]/10]="this.createAppointmentForm.value.type === 'EXAM_CAPTURE'"
+          [class.hover:bg-gray-200]="this.createAppointmentForm.value.type !== 'EXAM_CAPTURE'"
+          class="flex gap-5 items-center border-2 p-3 rounded-2xl hover: transition-all w-full md:w-[49%]"
         >
           <span
-            class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[35px] bg-[#055cb9]/15 text-[#055cb9] p-2 rounded-xl"
+            [class.bg-[#055cb9]/15]="this.createAppointmentForm.value.type === 'EXAM_CAPTURE'"
+            [class.text-[#055cb9]]="this.createAppointmentForm.value.type === 'EXAM_CAPTURE'"
+            [class.bg-[#055cb9]/7]="this.createAppointmentForm.value.type !== 'EXAM_CAPTURE'"
+            [class.text-gray-500]="this.createAppointmentForm.value.type !== 'EXAM_CAPTURE'"
+            class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[35px] p-2 rounded-xl"
             >biotech</span
           >
           <div class="flex flex-col items-start">
-            <span class="font-medium text-[18px] text-gray-700">Captura de Exame</span>
-            <span class="text-[12px] text-gray-400">Capturar imagens da radiografia</span>
+            <span
+              [class.text-[#055cb9]]="this.createAppointmentForm.value.type === 'EXAM_CAPTURE'"
+              [class.text-gray-700]="this.createAppointmentForm.value.type !== 'EXAM_CAPTURE'"
+              class="font-medium text-[18px]"
+              >Captura de Exame</span
+            >
+            <span
+              [class.text-[#055cb9]/70]="this.createAppointmentForm.value.type === 'EXAM_CAPTURE'"
+              [class.text-gray-700]="this.createAppointmentForm.value.type !== 'EXAM_CAPTURE'"
+              class="text-[12px]"
+              >Capturar imagens da radiografia (apenas para técnicos)</span
+            >
           </div>
         </button>
         <button
-          class="flex gap-5 items-center border-2 border-gray-400 p-3 rounded-2xl hover:bg-gray-200 transition-all w-full md:w-[49%]"
+          type="button"
+          (click)="
+            this.createAppointmentForm.controls.type.setValue('REPORT_REVIEW'); loadEmployees()
+          "
+          [class.border-[#055cb9]]="this.createAppointmentForm.value.type === 'REPORT_REVIEW'"
+          [class.border-gray-400]="this.createAppointmentForm.value.type !== 'REPORT_REVIEW'"
+          [class.hover:bg-[#055cb9]/10]="this.createAppointmentForm.value.type === 'REPORT_REVIEW'"
+          [class.hover:bg-gray-200]="this.createAppointmentForm.value.type !== 'REPORT_REVIEW'"
+          class="flex gap-5 items-center border-2 p-3 rounded-2xl hover: transition-all w-full md:w-[49%]"
         >
           <span
-            class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[35px] bg-[#055cb9]/7 text-gray-500 p-2 rounded-xl"
+            [class.bg-[#055cb9]/15]="this.createAppointmentForm.value.type === 'REPORT_REVIEW'"
+            [class.text-[#055cb9]]="this.createAppointmentForm.value.type === 'REPORT_REVIEW'"
+            [class.bg-[#055cb9]/7]="this.createAppointmentForm.value.type !== 'REPORT_REVIEW'"
+            [class.text-gray-500]="this.createAppointmentForm.value.type !== 'REPORT_REVIEW'"
+            class="material-symbols-outlined [font-variation-settings:'wght'_300] !text-[35px] p-2 rounded-xl"
             >medical_services</span
           >
           <div class="flex flex-col items-start">
-            <span class="font-medium text-[18px] text-gray-700">Revisão de exame</span>
-            <span class="text-[12px] text-gray-400">Análise de resultados e laudos</span>
+            <span
+              [class.text-[#055cb9]]="this.createAppointmentForm.value.type === 'REPORT_REVIEW'"
+              [class.text-gray-700]="this.createAppointmentForm.value.type !== 'REPORT_REVIEW'"
+              class="font-medium text-[18px]"
+              >Revisão de exame</span
+            >
+            <span
+              [class.text-[#055cb9]/70]="this.createAppointmentForm.value.type === 'REPORT_REVIEW'"
+              [class.text-gray-700]="this.createAppointmentForm.value.type !== 'REPORT_REVIEW'"
+              class="text-[12px]"
+              >Análise de resultados e laudos (apenas para doutores)</span
+            >
           </div>
         </button>
       </div>
@@ -39,6 +87,8 @@
         <input
           type="date"
           required
+          formControlName="date"
+          [min]="minDate"
           class="border-1 border-gray-300 p-3 rounded-xl w-full cursor-pointer"
         />
       </div>
@@ -47,33 +97,157 @@
         <input
           type="time"
           required
+          formControlName="hour"
           class="border-1 border-gray-300 p-3 rounded-xl w-full cursor-pointer"
         />
       </div>
     </div>
     <!-- Funcionário responsável componente -->
-    <div class="w-full flex flex-col leading-none gap-1 relative">
-      <h4 class="font-bold text-[14px] text-gray-500 uppercase">Funcionário responsável</h4>
-      <select
-        name="status"
-        id="status"
-        required
-        class="p-4 pr-10 border-1 border-gray-200 text-gray-600 rounded-xl shadow-sm appearance-none focus:outline-none cursor-pointer"
+    <section class="flex flex-col justify-start bg-white rounded-2xl shadow-sm">
+      <!-- Filtros component -->
+      <div
+        class="flex flex-col items-start gap-2 bg-[#055cb9]/10 px-6 py-5 rounded-t-2xl shadow-sm"
       >
-        <option value="Marcos">Marcos</option>
-        <option value="Zé antonio">Zé antonio</option>
-        <option value="Ambitrio">Ambitrio</option>
-      </select>
-      <div class="pointer-events-none absolute inset-y-0 right-0 top-0 flex items-center pr-3">
-        <span class="material-symbols-outlined text-2xl text-gray-500"> keyboard_arrow_down </span>
+        <h4 class="font-bold text-[14px] text-gray-500 uppercase">Funcionário responsável</h4>
+        <!-- Filtros component-->
+        <div class="flex flex-row items-center gap-6 w-full">
+          <div class="relative group w-full">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-[22px] text-gray-400 [font-variation-settings:'wght'_300]"
+              >search</span
+            >
+            <input
+              placeholder="Digite o nome do funcionário"
+              type="text"
+              required
+              class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
+              [(ngModel)]="searchName"
+              [ngModelOptions]="{ standalone: true }"
+              (ngModelChange)="onSearchNameChange($event)"
+            />
+            <button
+              (click)="searchEmployees()"
+              class="bg-[#055cb9] text-white py-2 px-4 rounded-lg hover:bg-[#055cb9]/90 outlined absolute right-3 top-1/2 -translate-y-1/2"
+            >
+              Buscar
+            </button>
+          </div>
+        </div>
       </div>
-      <span class="text-[#055cb9] text-[12px] mt-1"
-        >Somente técnicos disponíveis para este tipo de consulta</span
+      <table class="w-full text-left">
+        <thead>
+          <tr class="text-gray-500">
+            <th class="px-6 py-4 text-outline uppercase tracking-wider">Nome</th>
+            <th class="px-6 py-4 text-outline uppercase tracking-wider">E-mail</th>
+            <th class="px-6 py-4 text-outline uppercase tracking-wider">Cargo</th>
+            <th class="px-6 py-4 text-outline uppercase tracking-wider">Nº de Licença</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (employee of employees(); track employee.id) {
+            <tr
+              (click)="clickedEmployee(employee)"
+              [class.bg-[#055cb9]/10]="selectedEmployeeId() === employee.employee!.id"
+              class="border-b border-gray-100 cursor-pointer hover:bg-[#055cb9]/10 select-none transition-all"
+            >
+              <td class="px-6 py-4">
+                <div class="flex items-center gap-3">
+                  <div>
+                    <p class="font-medium text-on-surface">
+                      {{ employee.name }}
+                    </p>
+
+                    <p class="text-gray-400 text-[12px]">ID: #{{ employee.employee!.id }}</p>
+                  </div>
+                </div>
+              </td>
+
+              <td class="px-6 py-4 text-gray-500">
+                {{ employee.email }}
+              </td>
+
+              <td class="px-6 py-4">
+                @if (employee.employee!.position === 'DOCTOR') {
+                  <span class="px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm">
+                    Doutor
+                  </span>
+                } @else {
+                  <span class="px-3 py-1 rounded-full bg-[#055cb9]/30 text-gray-500 shadow-sm">
+                    Técnico
+                  </span>
+                }
+              </td>
+
+              <td class="px-6 py-4 font-mono text-gray-500">
+                {{ employee.employee!.licenseNumber }}
+              </td>
+            </tr>
+          } @empty {
+            <tr>
+              <td colspan="4" class="text-center py-10 text-gray-400">
+                Nenhum funcionário encontrado
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+      <!-- Pagination filter component -->
+      <div
+        class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 bg-[#055cb9]/5 px-6 py-3 rounded-b-2xl shadow-sm"
       >
-    </div>
+        <!-- Pagination filter component-->
+        <span class="text-[13px] text-gray-500"
+          >Mostrando
+          {{
+            Math.min(
+              (this.currentPage() + 1) *
+                (this.numberOfElements() === 0
+                  ? 0
+                  : this.numberOfElements() === 4
+                    ? 4
+                    : this.currentPage() * 4),
+              this.totalEmployees()
+            ) - (this.numberOfElements() === 0 ? 0 : this.numberOfElements() - 1)
+          }}-{{
+            Math.min(
+              (this.currentPage() + 1) *
+                (this.numberOfElements() === 0
+                  ? 0
+                  : this.numberOfElements() === 4
+                    ? 4
+                    : this.currentPage() * 4),
+              this.totalEmployees()
+            )
+          }}
+          de {{ this.totalEmployees() }} funcionários</span
+        >
+        <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-2 rounded-xl font-medium text-[14px]">
+          @for (page of this.paginationPages(); track page) {
+            <button
+              class="py-2 px-4 rounded-lg"
+              [ngClass]="{
+                'text-[#055cb9] bg-white': this.currentPage() === page,
+                'text-gray-500 hover:bg-white/50': this.currentPage() !== page,
+              }"
+              (click)="this.changePage(page)"
+            >
+              {{ page + 1 }}
+            </button>
+          }
+        </div>
+      </div>
+    </section>
     <!-- Criar vaga buton component-->
-    <div>
-      <button class="bg-[#055cb9] p-4 rounded-xl text-white shadow-sm">Criar Vaga</button>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      <button (click)="create()" class="bg-[#055cb9] p-4 rounded-xl text-white shadow-sm">
+        Criar Vaga
+      </button>
+      <button
+        routerLink="/dashboard/admin/appointment-management"
+        class="bg-red-600 p-4 rounded-xl text-white shadow-sm"
+      >
+        Cancelar
+      </button>
     </div>
-  </section>
+  </form>
 </main>

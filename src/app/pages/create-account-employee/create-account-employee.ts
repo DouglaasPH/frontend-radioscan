@@ -77,7 +77,7 @@ export class CreateAccountEmployee {
       },
       employee: {
         licenseNumber: formValues.licenseNumber,
-        position: formValues.position === 'Doutor' ? 'DOCTOR' : 'TECHNICAL',
+        position: formValues.position,
       },
     };
 

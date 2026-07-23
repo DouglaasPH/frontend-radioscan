@@ -5,7 +5,11 @@
     <div class="text-center gap-2 flex flex-col">
       <h2 class="text-5xl font-semibold text-gray-800">Criar Conta de Funcionário</h2>
     </div>
-    <form class="flex flex-col gap-3 w-full justify-center items-center">
+    <form
+      [formGroup]="registerForm"
+      (ngSubmit)="goToDashboard()"
+      class="flex flex-col gap-3 w-full justify-center items-center"
+    >
       <!-- Inputs de Nome e Sobrenome -->
       <div class="grid grid-cols-1 md:grid-cols-2 w-full gap-4">
         <!-- Nome Input -->
@@ -20,6 +24,7 @@
               id="Nome"
               placeholder="Seu Nome"
               type="text"
+              formControlName="first_name"
               required
               class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
             />
@@ -37,6 +42,7 @@
               id="Sobrenome"
               placeholder="Seu Sobrenome"
               type="text"
+              formControlName="second_name"
               required
               class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
             />
@@ -55,6 +61,7 @@
             id="email"
             placeholder="seu.email@exemplo.com"
             type="email"
+            formControlName="email"
             required
             class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
           />
@@ -72,15 +79,16 @@
             <input
               id="password"
               placeholder="••••••••"
+              [type]="showPassword() ? 'text' : 'password'"
+              formControlName="password"
               required=""
-              type="password"
               class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
             />
-            <button id="togglePassword" type="button">
+            <button type="button" (click)="togglePassword()">
               <span
                 id="visibilityIcon"
                 class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-[22px] text-gray-400 [font-variation-settings:'wght'_300]"
-                >visibility</span
+                >{{ showPassword() ? 'visibility_off' : 'visibility' }}</span
               >
             </button>
           </div>
@@ -99,14 +107,15 @@
               id="confirmPassword"
               placeholder="••••••••"
               required=""
-              type="password"
+              [type]="showConfirmPassword() ? 'text' : 'password'"
+              formControlName="confirmPassword"
               class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
             />
-            <button id="togglePassword" type="button">
+            <button type="button" (click)="toggleConfirmPassword()">
               <span
                 id="visibilityIcon"
                 class="material-symbols-outlined absolute right-3 top-1/2 -translate-y-1/2 text-outline text-[22px] text-gray-400 [font-variation-settings:'wght'_300]"
-                >visibility</span
+                >{{ showConfirmPassword() ? 'visibility_off' : 'visibility' }}</span
               >
             </button>
           </div>
@@ -126,6 +135,7 @@
             id="licenseNumber"
             placeholder="000.000.000-00"
             type="text"
+            formControlName="licenseNumber"
             required
             class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none"
           />
@@ -144,6 +154,7 @@
               name="status"
               id="status"
               class="w-full pl-12 pr-4 py-3.5 rounded-xl text-md focus:bg-white transition-all shadow-sm border border-gray-200 focus:border-primary/50 bg-gray-100 text-gray-700 focus:outline-none appearance-none"
+              formControlName="position"
               required
             >
               <option value="Doutor">Doutor</option>
@@ -169,7 +180,7 @@
         </button>
         <!-- Cancelar button -->
         <button
-          type="submit"
+          routerLink="/dashboard/admin/employee-management"
           class="w-full py-3.5 rounded-xl text-md bg-red-700 text-white font-medium hover:bg-red-700/80 transition-all shadow-sm"
         >
           Cancelar

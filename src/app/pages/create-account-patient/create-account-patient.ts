@@ -34,7 +34,7 @@ export class CreateAccountPatient {
     password: new FormControl('', { nonNullable: true }),
     confirmPassword: new FormControl('', { nonNullable: true }),
     cpf: new FormControl('', { nonNullable: true }),
-    phone: new FormControl('', { nonNullable: true }),
+    phone: new FormControl('', { nonNullable: true }), // default value
   });
 
   goToTerms(): void {

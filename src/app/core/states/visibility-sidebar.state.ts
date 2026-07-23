@@ -4,7 +4,7 @@ import { Injectable, signal } from '@angular/core';
   providedIn: 'root',
 })
 export class VisibilitySidebarState {
-  readonly isVisible = signal(true);
+  readonly isVisible = signal(false);
 
   toggle() {
     this.isVisible.update((value) => !value);

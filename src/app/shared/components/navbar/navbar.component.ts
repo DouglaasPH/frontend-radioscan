@@ -12,7 +12,6 @@ import { VisibilitySidebarState } from '../../../core/states/visibility-sidebar.
   templateUrl: './navbar.component.html',
 })
 export class NavbarComponent {
-  protected readonly isMenuOpen = false;
   protected name = '';
   protected role = '';
 

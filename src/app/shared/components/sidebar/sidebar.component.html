@@ -1,13 +1,22 @@
 <aside
-  class="w-[280px] h-full p-lg border-r-1 border-gray-50 shadow-sm flex flex-col gap-18 transition-all duration-300"
-  [hidden]="!visibilitySidebarState.isVisible()"
+  [class.flex]="visibilitySidebarState.isVisible()"
+  [class.hidden]="!visibilitySidebarState.isVisible()"
+  class="absolute md:static w-full md:w-[280px] h-full p-lg border-r-1 border-gray-50 shadow-sm flex-col gap-18 transition-all duration-300 bg-gray-50"
 >
-  <div class="pl-3 pt-4 w-full p-lg flex items-center gap-sm mb-xl">
-    <span class="material-symbols-outlined text-[#055cb9] !text-[40px]">radiology</span>
-    <div class="flex flex-col gap-0.5">
-      <span class="font-semibold text-lg text-[#055cb9] leading-none">Radioscan</span>
-      <span class="font-medium text-[11px] uppercase leading-none">Sistema clínico</span>
+  <div class="flex items-center justify-between px-3 pt-4">
+    <div class="w-full p-lg flex items-center gap-sm mb-xl">
+      <span class="material-symbols-outlined text-[#055cb9] !text-[40px]">radiology</span>
+      <div class="flex flex-col gap-0.5">
+        <span class="font-semibold text-lg text-[#055cb9] leading-none">Radioscan</span>
+        <span class="font-medium text-[11px] uppercase leading-none">Sistema clínico</span>
+      </div>
+      <!-- menu open is menu_open and menu closed is menu-->
     </div>
+    <span
+      (click)="toggleMenu()"
+      class="md:!hidden material-symbols-outlined !text-[30px] [font-variation-settings:'wght'_300] text-gray-600 cursor-pointer"
+      >{{ this.visibilitySidebarState.isVisible() ? 'menu_open' : 'menu' }}</span
+    >
   </div>
 
   <!-- Sidebar navigation for patient -->

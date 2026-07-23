@@ -12,4 +12,9 @@ export class SidebarComponent {
   protected readonly userState = inject(UserState);
   protected readonly visibilitySidebarState = inject(VisibilitySidebarState);
   protected readonly role = this.userState.getRoleOrEmployeePosition() as string;
+  protected readonly windowWidth = window.innerWidth;
+
+  protected toggleMenu() {
+    this.visibilitySidebarState.toggle();
+  }
 }

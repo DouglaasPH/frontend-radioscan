@@ -62,22 +62,6 @@ export class AuthApi {
     );
   }
 
-  refresh() {
-    const refreshToken = this.refreshTokenService.get();
-
-    return this.http
-      .post<LoginResponse>('/refresh', {
-        refreshToken,
-      })
-      .pipe(
-        tap((response) => {
-          this.accessTokenState.set(response.accessToken);
-
-          this.refreshTokenService.set(response.refreshToken);
-        }),
-      );
-  }
-
   loginGoogle(dto: GoogleAuthRequest) {
     return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login/google`, dto).pipe(
       tap((response) => {

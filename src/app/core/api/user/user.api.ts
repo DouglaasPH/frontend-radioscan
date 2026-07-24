@@ -5,6 +5,7 @@ import { environment } from '../../../enviroments/environment.development';
 import { User } from '../../models/user.model';
 import { UserState } from '../../states/user.state';
 import { UpdateUserDataRequest } from './dto/update-user-data-request.dto';
+import { UpdateUserPasswordRequest } from './dto/update-user-password-request.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -26,6 +27,15 @@ export class UserApi {
     return this.http.put<User>(`${environment.apiUrl}/user/data`, dto).pipe(
       tap((response) => {
         console.log('user/data', response);
+        this.userState.set(response);
+      }),
+    );
+  }
+
+  updatePassword(dto: UpdateUserPasswordRequest) {
+    return this.http.put<User>(`${environment.apiUrl}/user/password`, dto).pipe(
+      tap((response) => {
+        console.log('user/password', response);
         this.userState.set(response);
       }),
     );

@@ -123,11 +123,16 @@ export const routes: Routes = [
       },
       {
         path: 'profile',
-        component: Profile,
-      },
-      {
-        path: 'change-password',
-        component: ChangePassword,
+        children: [
+          {
+            path: '',
+            component: Profile,
+          },
+          {
+            path: 'change-password',
+            component: ChangePassword,
+          },
+        ],
       },
     ],
   },

@@ -1,16 +1,16 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { finalize } from 'rxjs';
-import { LoadingState } from '../states/loading.state';
+import { LoadingService } from '../services/loading.service';
 
 export const loadingInterceptor: HttpInterceptorFn = (req, next) => {
-  const loadingState = inject(LoadingState);
+  const loadingService = inject(LoadingService);
 
-  loadingState.start();
+  loadingService.show();
 
   return next(req).pipe(
     finalize(() => {
-      loadingState.stop();
+      loadingService.hide();
     }),
   );
 };

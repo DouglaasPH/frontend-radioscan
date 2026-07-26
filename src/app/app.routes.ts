@@ -26,24 +26,29 @@ export const routes: Routes = [
     path: 'login',
     component: Login,
     canActivate: [guestGuard],
+    data: { showLoading: false },
   },
   {
     path: 'create-account',
     component: CreateAccountPatient,
+    data: { showLoading: false },
   },
   {
     path: 'create-account/terms-and-conditions',
     component: TermsAndConditions,
     canActivate: [guestGuard],
+    data: { showLoading: false },
   },
   {
     path: 'error/:code',
     component: Error,
+    data: { showLoading: false },
   },
   {
     path: '',
     component: MainLayoutComponent,
     canActivate: [authGuard],
+    data: { showLoading: true },
     children: [
       {
         path: 'dashboard/patient',

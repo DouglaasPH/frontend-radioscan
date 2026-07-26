@@ -24,8 +24,6 @@ export class RefreshTokenApi {
       })
       .pipe(
         tap((response: RefreshTokenResponse) => {
-          // O 'tap' executa essa ação assim que o valor chega,
-          // mas continua repassando a resposta para quem chamou (o interceptor)
           this.accessTokenState.set(response.accessToken);
           this.refreshTokenService.set(response.refreshToken);
         }),

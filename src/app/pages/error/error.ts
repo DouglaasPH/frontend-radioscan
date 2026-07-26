@@ -1,4 +1,7 @@
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserState } from '../../core/states/user.state';
+import { ROUTES } from '../../core/constants/routes.constants';
 
 @Component({
   selector: 'app-error',
@@ -6,6 +9,9 @@ import { Component, input } from '@angular/core';
   templateUrl: './error.html',
 })
 export class Error {
+  private userState = inject(UserState);
+  private router = inject(Router);
+
   private MESSAGE = {
     401: ['Acesso não autorizado', 'Por favor, faça login para continuar.'],
     403: ['Acesso proibido', 'Você não tem permissão para visualizar esta página.'],
@@ -36,6 +42,28 @@ export class Error {
         return this.MESSAGE[505];
       default:
         return this.MESSAGE[401];
+    }
+  }
+
+  clickButton() {
+    if (this.userState.get() !== null) {
+      switch (this.userState.get()!.role) {
+        case 'ADMIN':
+          this.router.navigate([ROUTES.DASHBOARD_ADMIN]);
+          break;
+        case 'PATIENT':
+          this.router.navigate([ROUTES.DASHBOARD_PATIENT]);
+          break;
+        case 'EMPLOYEE':
+          if (this.userState.get()!.employee?.position === 'DOCTOR') {
+            this.router.navigate([ROUTES.DASHBOARD_DOCTOR]);
+          } else if (this.userState.get()!.employee?.position === 'TECHNICAL') {
+            this.router.navigate([ROUTES.DASHBOARD_TECHNICAL]);
+          }
+          break;
+      }
+    } else {
+      this.router.navigate([ROUTES.LOGIN]);
     }
   }
 }

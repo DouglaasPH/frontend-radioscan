@@ -79,6 +79,8 @@ export class Login implements AfterViewInit {
   }
 
   protected loginWithoutGoogle(): void {
+    console.log('Login Form Value:', this.loginForm.getRawValue());
+    console.log('Login Form Invalid:', this.loginForm.invalid);
     if (this.loginForm.invalid) return;
 
     this.showError.set(false);
@@ -88,7 +90,13 @@ export class Login implements AfterViewInit {
         console.log(response);
         this.userApi.me().subscribe({
           next: (response) => {
-            this.redirectByUserRole(response.role);
+            console.log(response);
+            if (response.role !== 'EMPLOYEE') {
+              this.redirectByUserRole(response.role);
+            }
+            if (response.role === 'EMPLOYEE') {
+              this.redirectByUserRole(response.employee!.position);
+            }
           },
           error: (err) => console.log(err),
         });

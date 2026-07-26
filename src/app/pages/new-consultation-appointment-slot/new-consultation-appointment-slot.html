@@ -134,63 +134,67 @@
           </div>
         </div>
       </div>
-      <table class="w-full text-left">
-        <thead>
-          <tr class="text-gray-500">
-            <th class="px-6 py-4 text-outline uppercase tracking-wider">Nome</th>
-            <th class="px-6 py-4 text-outline uppercase tracking-wider">E-mail</th>
-            <th class="px-6 py-4 text-outline uppercase tracking-wider">Cargo</th>
-            <th class="px-6 py-4 text-outline uppercase tracking-wider">Nº de Licença</th>
-          </tr>
-        </thead>
-        <tbody>
-          @for (employee of employees(); track employee.id) {
-            <tr
-              (click)="clickedEmployee(employee)"
-              [class.bg-[#055cb9]/10]="selectedEmployeeId() === employee.employee!.id"
-              class="border-b border-gray-100 cursor-pointer hover:bg-[#055cb9]/10 select-none transition-all"
-            >
-              <td class="px-6 py-4">
-                <div class="flex items-center gap-3">
-                  <div>
-                    <p class="font-medium text-on-surface">
-                      {{ employee.name }}
-                    </p>
+      <div class="overflow-x-auto">
+        <div class="min-w-[700px]">
+          <table class="w-full text-left">
+            <thead>
+              <tr class="text-gray-500">
+                <th class="px-6 py-4 text-outline uppercase tracking-wider">Nome</th>
+                <th class="px-6 py-4 text-outline uppercase tracking-wider">E-mail</th>
+                <th class="px-6 py-4 text-outline uppercase tracking-wider">Cargo</th>
+                <th class="px-6 py-4 text-outline uppercase tracking-wider">Nº de Licença</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (employee of employees(); track employee.id) {
+                <tr
+                  (click)="clickedEmployee(employee)"
+                  [class.bg-[#055cb9]/10]="selectedEmployeeId() === employee.employee!.id"
+                  class="border-b border-gray-100 cursor-pointer hover:bg-[#055cb9]/10 select-none transition-all"
+                >
+                  <td class="px-6 py-4">
+                    <div class="flex items-center gap-3">
+                      <div>
+                        <p class="font-medium text-on-surface">
+                          {{ employee.name }}
+                        </p>
 
-                    <p class="text-gray-400 text-[12px]">ID: #{{ employee.employee!.id }}</p>
-                  </div>
-                </div>
-              </td>
+                        <p class="text-gray-400 text-[12px]">ID: #{{ employee.employee!.id }}</p>
+                      </div>
+                    </div>
+                  </td>
 
-              <td class="px-6 py-4 text-gray-500">
-                {{ employee.email }}
-              </td>
+                  <td class="px-6 py-4 text-gray-500">
+                    {{ employee.email }}
+                  </td>
 
-              <td class="px-6 py-4">
-                @if (employee.employee!.position === 'DOCTOR') {
-                  <span class="px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm">
-                    Doutor
-                  </span>
-                } @else {
-                  <span class="px-3 py-1 rounded-full bg-[#055cb9]/30 text-gray-500 shadow-sm">
-                    Técnico
-                  </span>
-                }
-              </td>
+                  <td class="px-6 py-4">
+                    @if (employee.employee!.position === 'DOCTOR') {
+                      <span class="px-3 py-1 rounded-full bg-[#055cb9] text-white shadow-sm">
+                        Doutor
+                      </span>
+                    } @else {
+                      <span class="px-3 py-1 rounded-full bg-[#055cb9]/30 text-gray-500 shadow-sm">
+                        Técnico
+                      </span>
+                    }
+                  </td>
 
-              <td class="px-6 py-4 font-mono text-gray-500">
-                {{ employee.employee!.licenseNumber }}
-              </td>
-            </tr>
-          } @empty {
-            <tr>
-              <td colspan="4" class="text-center py-10 text-gray-400">
-                Nenhum funcionário encontrado
-              </td>
-            </tr>
-          }
-        </tbody>
-      </table>
+                  <td class="px-6 py-4 font-mono text-gray-500">
+                    {{ employee.employee!.licenseNumber }}
+                  </td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="4" class="text-center py-10 text-gray-400">
+                    Nenhum funcionário encontrado
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
       <!-- Pagination filter component -->
       <div
         class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 bg-[#055cb9]/5 px-6 py-3 rounded-b-2xl shadow-sm"

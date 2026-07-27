@@ -1,5 +1,4 @@
 import { Component, effect, inject, signal, untracked } from '@angular/core';
-import { AdminApi } from '../../core/api/admin/admin.api';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';
 import { RouterLink } from '@angular/router';
@@ -8,7 +7,7 @@ import {
   formatTime,
   isLessThan24HoursAway,
 } from '../../shared/utils/formatDateAndHour';
-import { AppointmentsManagementAdminResponseDto } from '../../core/api/admin/dto/appointments-management-admin-response.dto';
+import { AppointmentsManagementAdminForAdminResponseDto } from '../../core/api/appointment/dto/appointments-management-for-admin-response.dto';
 import { AppointmentApi } from '../../core/api/appointment/appointment.api';
 
 @Component({
@@ -18,7 +17,6 @@ import { AppointmentApi } from '../../core/api/appointment/appointment.api';
 })
 export class AppointmentManagement {
   protected readonly Math = Math;
-  private readonly adminApi = inject(AdminApi);
   private readonly appointmentApi = inject(AppointmentApi);
   protected readonly formatDate = formatDate;
   protected readonly formatTime = formatTime;
@@ -26,7 +24,7 @@ export class AppointmentManagement {
 
   protected readonly selectedAppointmentStatus = signal(''); // '' ou 'DOCTOR' ou 'TECHNICAL' para filtrar os funcionários por posição
 
-  protected readonly appointments = signal<AppointmentsManagementAdminResponseDto[]>([]); // Array para armazenar os funcionários
+  protected readonly appointments = signal<AppointmentsManagementAdminForAdminResponseDto[]>([]); // Array para armazenar os funcionários
 
   protected readonly currentPage = signal(0); // Página atual
   protected readonly totalPages = signal(0); // Total de páginas disponíveis
@@ -45,7 +43,7 @@ export class AppointmentManagement {
   }
 
   loadEmployees() {
-    this.adminApi
+    this.appointmentApi
       .appointmentsManagementWithPagination(this.selectedAppointmentStatus(), this.currentPage())
       .subscribe({
         next: (response) => {

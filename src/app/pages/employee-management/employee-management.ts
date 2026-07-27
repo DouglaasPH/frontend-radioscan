@@ -1,9 +1,9 @@
 import { Component, effect, inject, signal, untracked } from '@angular/core';
-import { AdminApi } from '../../core/api/admin/admin.api';
 import { RouterLink } from '@angular/router';
 import { User } from '../../core/models/user.model';
 import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { EmployeeApi } from '../../core/api/employee/employee.api';
 
 @Component({
   selector: 'app-employee-management',
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 })
 export class EmployeeManagement {
   protected readonly Math = Math;
-  private readonly adminApi = inject(AdminApi);
+  private readonly employeeApi = inject(EmployeeApi);
   protected readonly metrics = signal({
     total: 0,
     doctors: 0,
@@ -42,7 +42,7 @@ export class EmployeeManagement {
   }
 
   private loadMetrics() {
-    this.adminApi.employeesManagementMetrics().subscribe({
+    this.employeeApi.employeesManagementMetrics().subscribe({
       next: (response) => {
         this.metrics.set({
           total: response.numberOfEmployees,
@@ -54,7 +54,7 @@ export class EmployeeManagement {
   }
 
   loadEmployees() {
-    this.adminApi
+    this.employeeApi
       .employeesManagementWithPagination(
         this.searchName(),
         this.selectedPosition(),

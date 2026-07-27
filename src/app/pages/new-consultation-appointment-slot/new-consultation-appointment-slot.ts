@@ -7,13 +7,13 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AdminApi } from '../../core/api/admin/admin.api';
 import { User } from '../../core/models/user.model';
 import { NgClass } from '@angular/common';
 import { A11yModule } from '@angular/cdk/a11y';
 import { AppointmentApi } from '../../core/api/appointment/appointment.api';
 import { CreateAppointmentRequestDto } from '../../core/api/appointment/dto/create-appointment-request.dto';
 import { ROUTES } from '../../core/constants/routes.constants';
+import { EmployeeApi } from '../../core/api/employee/employee.api';
 
 @Component({
   selector: 'app-new-consultation-appointment-slot',
@@ -29,7 +29,7 @@ export class NewConsultationAppointmentSlot {
   });
 
   protected readonly Math = Math;
-  private readonly adminApi = inject(AdminApi);
+  private readonly employeeApi = inject(EmployeeApi);
   private readonly appointmentApi = inject(AppointmentApi);
   private readonly router = inject(Router);
 
@@ -62,7 +62,7 @@ export class NewConsultationAppointmentSlot {
   loadEmployees() {
     const position =
       this.createAppointmentForm.value.type === 'EXAM_CAPTURE' ? 'TECHNICAL' : 'DOCTOR';
-    this.adminApi
+    this.employeeApi
       .employeesManagementWithPagination(this.searchName(), position, this.currentPage())
       .subscribe({
         next: (response) => {

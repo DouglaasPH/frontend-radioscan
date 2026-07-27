@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../enviroments/environment.development';
 import { LoginResponse } from '../auth/dto/login-response.dto';
 import { CreateAppointmentRequestDto } from './dto/create-appointment-request.dto';
+import { DashboardMetricsForEmployeeResponseDto } from './dto/dashboard-metrics-for-employee-response.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -21,14 +22,29 @@ export class AppointmentApi {
     );
   }
 
-  appointmentsManagementWithPagination(status: string | null, page: number) {
+  appointmentsManagementWithPagination(
+    status: string | null,
+    page: number,
+    employeeName: string | null,
+  ) {
     let params = new HttpParams().set('page', page.toString());
 
     if (status) {
       params = params.set('status', status);
     }
-    return this.http.get<any>(`${environment.apiUrl}/appointment/management/admin`, {
+
+    if (employeeName) {
+      params = params.set('employeeName', employeeName);
+    }
+
+    return this.http.get<any>(`${environment.apiUrl}/appointment/management`, {
       params,
     });
+  }
+
+  appointmentsManagementMetrics() {
+    return this.http.get<DashboardMetricsForEmployeeResponseDto>(
+      `${environment.apiUrl}/appointment/metrics`,
+    );
   }
 }

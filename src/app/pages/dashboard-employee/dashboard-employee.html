@@ -14,7 +14,7 @@
       >
       <div class="flex flex-col items-start">
         <span class="text-gray-600 font-semibold text-[12px] uppercase">Hoje</span>
-        <span class="text-2xl font-bold">12</span>
+        <span class="text-2xl font-bold">{{ metrics().totalAppointments || 0 }}</span>
       </div>
     </div>
     <!-- Médicos component -->
@@ -26,8 +26,8 @@
         >check_circle</span
       >
       <div class="flex flex-col items-start">
-        <span class="text-gray-600 font-semibold text-[12px] uppercase">Concluídas</span>
-        <span class="text-2xl font-bold">3</span>
+        <span class="text-gray-600 font-semibold text-[12px] uppercase">Concluídas hoje</span>
+        <span class="text-2xl font-bold">{{ metrics().completedAppointments || 0 }}</span>
       </div>
     </div>
     <!-- Técnicos component -->
@@ -39,8 +39,8 @@
         >pending</span
       >
       <div class="flex flex-col items-start">
-        <span class="text-gray-600 font-semibold text-[12px] uppercase">Pendentes</span>
-        <span class="text-2xl font-bold">9</span>
+        <span class="text-gray-600 font-semibold text-[12px] uppercase">Pendentes hoje</span>
+        <span class="text-2xl font-bold">{{ metrics().pendingAppointments || 0 }}</span>
       </div>
     </div>
   </section>
@@ -48,139 +48,189 @@
   <section
     class="flex flex-col justify-start bg-white rounded-2xl shadow-sm w-full overflow-hidden"
   >
+    <!-- Filtros component -->
+    <div
+      class="flex flex-col md:flex-row gap-5 md:gap-0 items-center justify-between bg-[#055cb9]/10 px-6 py-5 rounded-t-2xl shadow-sm"
+    >
+      <!-- Filtros component-->
+      <div class="flex flex-col md:flex-row items-center gap-6">
+        <span>Filtrar por status: </span>
+        <div
+          class="flex gap-3 flex-col md:flex-row bg-[#055cb9]/10 p-3 rounded-xl font-medium text-[14px]"
+        >
+          <button
+            class="py-2 px-4 rounded-lg transition-colors"
+            [class.bg-white]="selectedAppointmentStatus() === ''"
+            [class.text-[#055cb9]]="selectedAppointmentStatus() === ''"
+            [class.text-gray-500]="selectedAppointmentStatus() !== ''"
+            [class.hover:bg-white/50]="selectedAppointmentStatus() !== ''"
+            (click)="selectedAppointmentStatus.set('')"
+          >
+            Todos
+          </button>
+          <button
+            class="py-2 px-4 rounded-lg transition-colors"
+            [class.bg-white]="selectedAppointmentStatus() === 'SCHEDULED'"
+            [class.text-[#055cb9]]="selectedAppointmentStatus() === 'SCHEDULED'"
+            [class.text-gray-500]="selectedAppointmentStatus() !== 'SCHEDULED'"
+            [class.hover:bg-white/50]="selectedAppointmentStatus() !== 'SCHEDULED'"
+            (click)="selectedAppointmentStatus.set('SCHEDULED')"
+          >
+            Agendadas
+          </button>
+          <button
+            class="py-2 px-4 rounded-lg transition-colors"
+            [class.bg-white]="selectedAppointmentStatus() === 'COMPLETED'"
+            [class.text-[#055cb9]]="selectedAppointmentStatus() === 'COMPLETED'"
+            [class.text-gray-500]="selectedAppointmentStatus() !== 'COMPLETED'"
+            [class.hover:bg-white/50]="selectedAppointmentStatus() !== 'COMPLETED'"
+            (click)="selectedAppointmentStatus.set('COMPLETED')"
+          >
+            Concluídas
+          </button>
+          <button
+            class="py-2 px-4 rounded-lg transition-colors"
+            [class.bg-white]="selectedAppointmentStatus() === 'CANCELED'"
+            [class.text-[#055cb9]]="selectedAppointmentStatus() === 'CANCELED'"
+            [class.text-gray-500]="selectedAppointmentStatus() !== 'CANCELED'"
+            [class.hover:bg-white/50]="selectedAppointmentStatus() !== 'CANCELED'"
+            (click)="selectedAppointmentStatus.set('CANCELED')"
+          >
+            Canceladas
+          </button>
+        </div>
+      </div>
+    </div>
     <table class="w-full text-left border-collapse">
       <thead class="bg-gray-200 text-gray-500">
         <tr>
-          <th class="rounded-tl-2xl px-6 py-4 text-outline uppercase tracking-wider font-semibold">
+          <th class="2xl px-6 py-4 text-outline uppercase tracking-wider font-semibold">
             Data/Hora
           </th>
           <th class="px-6 py-4 text-outline uppercase tracking-wider font-semibold">Paciente</th>
           <th class="px-6 py-4 text-outline uppercase tracking-wider font-semibold">Status</th>
-          <th class="rounded-tr-2xl px-6 py-4 text-outline uppercase tracking-wider font-semibold">
-            Ação
-          </th>
+          <th class="2xl px-6 py-4 text-outline uppercase tracking-wider font-semibold">Ação</th>
         </tr>
       </thead>
 
-      <tbody class="divide-y divide-gray-100">
-        <!-- Row 1 -->
-        <tr class="hover:bg-gray-50/50 transition-colors">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <p class="font-medium text-on-surface">14 Nov, 2026</p>
-                <p class="text-gray-400 text-[12px]">09:30 AM</p>
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4 text-gray-500">Ricardo Silva</td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
-            >
-              Agendada
-            </span>
-          </td>
-          <td
-            class="px-6 py-4 text-[#055cb9] flex gap-2 items-center cursor-pointer hover:text-[#055cb9]/90 transition-all"
-          >
-            <span>Ver detalhes</span>
-            <span class="material-symbols-outlined !text-[12px]">arrow_forward_ios</span>
-          </td>
-          <!-- Row 1 -->
-        </tr>
+      <tbody>
+        @for (appointment of appointments(); track appointment.id) {
+          <tr class="border-b border-gray-100">
+            <td class="px-6 py-4">
+              <div class="flex items-center gap-3">
+                <div>
+                  <p class="font-medium text-on-surface">
+                    {{ formatDate(appointment.dateHour) }}
+                  </p>
 
-        <tr class="hover:bg-gray-50/50 transition-colors">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <p class="font-medium text-on-surface">14 Nov, 2026</p>
-                <p class="text-gray-400 text-[12px]">09:30 AM</p>
+                  <p class="text-gray-400 text-[12px]">
+                    {{ formatTime(appointment.dateHour) }}
+                  </p>
+                </div>
               </div>
-            </div>
-          </td>
-          <td class="px-6 py-4 text-gray-500">Ricardo Silva</td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
-            >
-              Concluída
-            </span>
-          </td>
-          <td
-            class="px-6 py-4 text-[#055cb9] flex gap-2 items-center cursor-pointer hover:text-[#055cb9]/90 transition-all"
-          >
-            <span>Ver detalhes</span>
-            <span class="material-symbols-outlined !text-[12px]">arrow_forward_ios</span>
-          </td>
-          <!-- Row 1 -->
-        </tr>
+            </td>
 
-        <tr class="hover:bg-gray-50/50 transition-colors">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <p class="font-medium text-on-surface">14 Nov, 2026</p>
-                <p class="text-gray-400 text-[12px]">09:30 AM</p>
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4 text-gray-500">Ricardo Silva</td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
-            >
-              Cancelada
-            </span>
-          </td>
-          <td
-            class="px-6 py-4 text-[#055cb9] flex gap-2 items-center cursor-pointer hover:text-[#055cb9]/90 transition-all"
-          >
-            <span>Ver detalhes</span>
-            <span class="material-symbols-outlined !text-[12px]">arrow_forward_ios</span>
-          </td>
-        </tr>
-        <!-- Row 1 -->
-        <tr class="hover:bg-gray-50/50 transition-colors">
-          <td class="px-6 py-4">
-            <div class="flex items-center gap-3">
-              <div>
-                <p class="font-medium text-on-surface">14 Nov, 2026</p>
-                <p class="text-gray-400 text-[12px]">09:30 AM</p>
-              </div>
-            </div>
-          </td>
-          <td class="px-6 py-4 text-gray-500">Ricardo Silva</td>
-          <td class="px-6 py-4">
-            <span
-              class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
-            >
-              Agendada
-            </span>
-          </td>
-          <td
-            class="px-6 py-4 text-[#055cb9] flex gap-2 items-center cursor-pointer hover:text-[#055cb9]/90 transition-all"
-          >
-            <span>Ver detalhes</span>
-            <span class="material-symbols-outlined !text-[12px]">arrow_forward_ios</span>
-          </td>
-        </tr>
+            <td class="py-4 font-mono text-gray-500">
+              {{
+                appointment!.patientName ? appointment!.patientName : 'Nenhum paciente vinculado'
+              }}
+            </td>
+
+            <td class="px-6 py-4">
+              <span
+                class="items-center px-4 py-2 rounded-full bg-[#055cb9]/10 text-gray-600 border border-gray-200 shadow-sm"
+              >
+                {{
+                  appointment.appointmentStatus == 1
+                    ? 'Disponível'
+                    : appointment.appointmentStatus == 2
+                      ? 'Agendada'
+                      : appointment.appointmentStatus == 3
+                        ? 'Cancelada'
+                        : appointment.appointmentStatus == 4
+                          ? 'Concluída'
+                          : ''
+                }}
+              </span>
+            </td>
+            @if (appointment!.appointmentStatus === 2 // Agendada) {
+              <td
+                class="py-4 text-green-600 flex gap-2 items-center cursor-pointer hover:text-green-600/90 transition-all"
+                routerLink="/dashboard/technical/exam-upload/{{ appointment.id }}"
+              >
+                <span>Fazer upload de exame</span>
+                <span class="material-symbols-outlined !text-[12px]">arrow_forward_ios</span>
+              </td>
+            } @else if (
+              appointment!.appointmentStatus === 1 || appointment!.appointmentStatus === 3  // Disponível e Cancelada
+            ) {
+              <td
+                class="py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-600/90 transition-all"
+                routerLink="/dashboard/technical/exam-upload/{{ appointment.id }}"
+              >
+                <span>Não é possível fazer upload do exame.</span>
+              </td>
+            } @else {
+              <td
+                class="py-4 text-[#055cb9] flex gap-2 items-center cursor-pointer hover:text-[#055cb9]/90 transition-all"
+              >
+                <span>Exame já enviado.</span>
+              </td>
+            }
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="4" class="text-center py-10 text-gray-400">
+              Nenhuma consulta vinculada a você foi encontrada.
+            </td>
+          </tr>
+        }
       </tbody>
     </table>
 
     <!-- Pagination filter component -->
     <div
-      class="flex flex-row justify-between items-center gap-6 bg-[#055cb9]/5 px-6 py-3 shadow-sm"
+      class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 bg-[#055cb9]/5 px-6 py-3 rounded-b-2xl shadow-sm"
     >
-      <span class="text-[13px] text-gray-500">Mostrando 1-4 de 42 funcionários</span>
+      <!-- Pagination filter component-->
+      <span class="text-[13px] text-gray-500"
+        >Mostrando
+        {{
+          Math.min(
+            (this.currentPage() + 1) *
+              (this.numberOfElements() === 0
+                ? 0
+                : this.numberOfElements() === 4
+                  ? 4
+                  : this.currentPage() * 4),
+            this.totalAppointments()
+          ) - (this.numberOfElements() === 0 ? 0 : this.numberOfElements() - 1)
+        }}-{{
+          Math.min(
+            (this.currentPage() + 1) *
+              (this.numberOfElements() === 0
+                ? 0
+                : this.numberOfElements() === 4
+                  ? 4
+                  : this.currentPage() * 4),
+            this.totalAppointments()
+          )
+        }}
+        de {{ this.totalAppointments() }} consultas</span
+      >
       <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-2 rounded-xl font-medium text-[14px]">
-        <button class="text-[#055cb9] bg-white py-2 px-4 rounded-lg shadow-sm">1</button>
-        <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50 transition-colors">
-          2
-        </button>
-        <button class="text-gray-500 py-2 px-4 rounded-lg hover:bg-white/50 transition-colors">
-          3
-        </button>
+        @for (page of this.paginationPages(); track page) {
+          <button
+            class="py-2 px-4 rounded-lg"
+            [ngClass]="{
+              'text-[#055cb9] bg-white': this.currentPage() === page,
+              'text-gray-500 hover:bg-white/50': this.currentPage() !== page,
+            }"
+            (click)="this.changePage(page)"
+          >
+            {{ page + 1 }}
+          </button>
+        }
       </div>
     </div>
   </section>

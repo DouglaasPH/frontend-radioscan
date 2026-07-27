@@ -7,7 +7,7 @@ import {
   formatTime,
   isLessThan24HoursAway,
 } from '../../shared/utils/formatDateAndHour';
-import { AppointmentsManagementAdminForAdminResponseDto } from '../../core/api/appointment/dto/appointments-management-for-admin-response.dto';
+import { AppointmentsManagementResponseDto } from '../../core/api/appointment/dto/appointments-management-response.dto';
 import { AppointmentApi } from '../../core/api/appointment/appointment.api';
 
 @Component({
@@ -24,7 +24,7 @@ export class AppointmentManagement {
 
   protected readonly selectedAppointmentStatus = signal(''); // '' ou 'DOCTOR' ou 'TECHNICAL' para filtrar os funcionários por posição
 
-  protected readonly appointments = signal<AppointmentsManagementAdminForAdminResponseDto[]>([]); // Array para armazenar os funcionários
+  protected readonly appointments = signal<AppointmentsManagementResponseDto[]>([]); // Array para armazenar os funcionários
 
   protected readonly currentPage = signal(0); // Página atual
   protected readonly totalPages = signal(0); // Total de páginas disponíveis
@@ -44,7 +44,11 @@ export class AppointmentManagement {
 
   loadEmployees() {
     this.appointmentApi
-      .appointmentsManagementWithPagination(this.selectedAppointmentStatus(), this.currentPage())
+      .appointmentsManagementWithPagination(
+        this.selectedAppointmentStatus(),
+        this.currentPage(),
+        null,
+      )
       .subscribe({
         next: (response) => {
           this.appointments.set(response.content);

@@ -121,7 +121,7 @@ export const routes: Routes = [
             component: DashboardEmployee,
           },
           {
-            path: 'exam-upload',
+            path: 'exam-upload/:appointmentId',
             component: ExamUpload,
           },
         ],

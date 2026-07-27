@@ -1,4 +1,4 @@
-export interface AppointmentsManagementAdminForAdminResponseDto {
+export interface AppointmentsManagementResponseDto {
   id: number;
   dateHour: string;
   appointmentStatus: number;

@@ -4,6 +4,7 @@ import { environment } from '../../../enviroments/environment.development';
 import { LoginResponse } from '../auth/dto/login-response.dto';
 import { CreateAppointmentRequestDto } from './dto/create-appointment-request.dto';
 import { DashboardMetricsForEmployeeResponseDto } from './dto/dashboard-metrics-for-employee-response.dto';
+import { Appointment } from '../../models/appointment.model';
 
 @Injectable({
   providedIn: 'root',
@@ -45,6 +46,23 @@ export class AppointmentApi {
   appointmentsManagementMetrics() {
     return this.http.get<DashboardMetricsForEmployeeResponseDto>(
       `${environment.apiUrl}/appointment/metrics`,
+    );
+  }
+
+  allAvailabilitiesAppointments(appointmentType: String, date: String, page: number) {
+    let params = new HttpParams().set('page', page.toString());
+    params = params.set('appointmentType', appointmentType.toString());
+    params = params.set('date', date.toString());
+
+    return this.http.get<any>(`${environment.apiUrl}/appointment/available`, {
+      params,
+    });
+  }
+
+  bookAppointment(appointmentId: Number) {
+    return this.http.put<Appointment>(
+      `${environment.apiUrl}/appointment/${appointmentId}/book`,
+      null,
     );
   }
 }

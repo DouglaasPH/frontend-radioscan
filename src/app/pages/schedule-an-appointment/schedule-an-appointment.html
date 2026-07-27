@@ -5,15 +5,31 @@
     <section class="flex flex-col gap-2">
       <h2 class="text-2xl font-semibold">Tipo de consulta</h2>
       <div class="flex flex-rows gap-2 select-none">
-        <button class="flex gap-2 items-center border-2 border-[#055cb9] p-2 rounded-xl">
+        <button
+          [class.border-[#055cb9]]="selectedAppointmentType() === 'EXAM_CAPTURE'"
+          [class.border-gray-300]="selectedAppointmentType() !== 'EXAM_CAPTURE'"
+          (click)="selectedAppointmentType.set('EXAM_CAPTURE')"
+          class="flex gap-2 items-center border-2 p-2 rounded-xl"
+        >
           <span
-            class="material-symbols-outlined !text-[22px] p-1 bg-[#055cb9] rounded-full text-white [font-variation-settings:'wght'_300]"
+            [class.bg-[#055cb9]]="selectedAppointmentType() === 'EXAM_CAPTURE'"
+            [class.bg-gray-300]="selectedAppointmentType() !== 'EXAM_CAPTURE'"
+            [class.text-white]="selectedAppointmentType() === 'EXAM_CAPTURE'"
+            class="material-symbols-outlined !text-[22px] p-1 bg-gray-300 rounded-full text-gray-600 [font-variation-settings:'wght'_300]"
             >photo_camera</span
           >
           <span>Captura de Exame</span>
         </button>
-        <button class="flex gap-2 items-center border-2 border-gray-100 p-2 rounded-xl">
+        <button
+          [class.border-[#055cb9]]="selectedAppointmentType() === 'REPORT_REVIEW'"
+          [class.border-gray-300]="selectedAppointmentType() !== 'REPORT_REVIEW'"
+          (click)="selectedAppointmentType.set('REPORT_REVIEW')"
+          class="flex gap-2 items-center border-2 p-2 rounded-xl"
+        >
           <span
+            [class.bg-[#055cb9]]="selectedAppointmentType() === 'REPORT_REVIEW'"
+            [class.bg-gray-300]="selectedAppointmentType() !== 'REPORT_REVIEW'"
+            [class.text-white]="selectedAppointmentType() === 'REPORT_REVIEW'"
             class="material-symbols-outlined !text-[22px] p-1 bg-gray-300 rounded-full text-gray-600 [font-variation-settings:'wght'_300]"
             >medical_services</span
           >
@@ -22,186 +38,111 @@
       </div>
     </section>
     <!-- Calendar section-->
-    <section class="flex flex-col justify-center items-start w-1/4 h-full">
+    <section class="flex flex-col justify-center items-start w-full lg:w-1/4 h-full">
       <h2 class="font-semibold text-lg">Selecione uma data:</h2>
       <div class="w-full bg-gray-200 rounded-lg">
         <mat-card class="demo-inline-calendar-card w-full">
-          <mat-calendar [(selected)]="selected" [minDate]="minDate"></mat-calendar>
+          <mat-calendar [(selected)]="selectedDate" [minDate]="minDate"></mat-calendar>
         </mat-card>
       </div>
     </section>
   </section>
-  <!-- Time selection section -->
-  <section class="grid gap-5 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-        <span
-          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-          >person</span
-        >
-        <div class="flex flex-col items-start">
-          <p class="font-medium text-[14px]">Técnico</p>
-          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-        </div>
-      </div>
-      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
-        <span>Marcar</span>
-        <span class="material-symbols-outlined">chevron_right</span>
-      </button>
+  <!-- employee table component -->
+  <section class="flex flex-col justify-start bg-white rounded-2xl shadow-sm overflow-visible">
+    <!-- Filtros component -->
+    <div
+      class="flex flex-col md:flex-row gap-5 md:gap-0 items-center justify-between bg-[#055cb9]/10 px-6 py-5 rounded-t-2xl shadow-sm"
+    >
+      <span class="font-bold text-xl text-gray-500">Selecione uma consulta</span>
     </div>
-    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-        <span
-          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-          >person</span
-        >
-        <div class="flex flex-col items-start">
-          <p class="font-medium text-[14px]">Técnico</p>
-          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-        </div>
+    <div class="overflow-x-auto">
+      <div class="min-w-[700px]">
+        <table class="w-full text-left">
+          <thead>
+            <tr class="text-gray-500">
+              <th class="px-6 py-4 text-outline uppercase tracking-wider">Data/Horário</th>
+              <th class="px-6 py-4 text-outline uppercase tracking-wider">Nome do funcionário</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (appointment of appointments(); track appointment.id) {
+              <tr
+                class="border-b border-gray-100 hover:bg-gray-100 transition-all cursor-pointer select-none"
+                (click)="onSelectedAppointment(appointment.id)"
+              >
+                <td class="px-6 py-4">
+                  <div class="flex items-center gap-3">
+                    <div>
+                      <p class="font-medium text-on-surface">
+                        {{ formatDate(appointment.dateHour) }}
+                      </p>
+
+                      <p class="text-gray-400 text-[12px]">
+                        {{ formatTime(appointment.dateHour) }}
+                      </p>
+                    </div>
+                  </div>
+                </td>
+
+                <td class="px-6 py-4 text-gray-500">
+                  {{ appointment.employeeName }}
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="4" class="text-center py-10 text-gray-400">
+                  Nenhuma consulta foi encontrada.
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
       </div>
-      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
-        <span>Marcar</span>
-        <span class="material-symbols-outlined">chevron_right</span>
-      </button>
     </div>
-    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-        <span
-          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-          >person</span
-        >
-        <div class="flex flex-col items-start">
-          <p class="font-medium text-[14px]">Técnico</p>
-          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-        </div>
+    <!-- Pagination filter component -->
+    <div
+      class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 bg-[#055cb9]/5 px-6 py-3 rounded-b-2xl shadow-sm"
+    >
+      <!-- Pagination filter component-->
+      <span class="text-[13px] text-gray-500"
+        >Mostrando
+        {{
+          Math.min(
+            (this.currentPage() + 1) *
+              (this.numberOfElements() === 0
+                ? 0
+                : this.numberOfElements() === 4
+                  ? 4
+                  : this.currentPage() * 4),
+            this.totalEmployees()
+          ) - (this.numberOfElements() === 0 ? 0 : this.numberOfElements() - 1)
+        }}-{{
+          Math.min(
+            (this.currentPage() + 1) *
+              (this.numberOfElements() === 0
+                ? 0
+                : this.numberOfElements() === 4
+                  ? 4
+                  : this.currentPage() * 4),
+            this.totalEmployees()
+          )
+        }}
+        de {{ this.totalEmployees() }} consultas</span
+      >
+      <div class="flex gap-3 flex-wrap bg-[#055cb9]/10 p-2 rounded-xl font-medium text-[14px]">
+        @for (page of this.paginationPages(); track page) {
+          <button
+            class="py-2 px-4 rounded-lg"
+            [ngClass]="{
+              'text-[#055cb9] bg-white': this.currentPage() === page,
+              'text-gray-500 hover:bg-white/50': this.currentPage() !== page,
+            }"
+            (click)="this.changePage(page)"
+          >
+            {{ page + 1 }}
+          </button>
+        }
       </div>
-      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
-        <span>Marcar</span>
-        <span class="material-symbols-outlined">chevron_right</span>
-      </button>
-    </div>
-    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-        <span
-          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-          >person</span
-        >
-        <div class="flex flex-col items-start">
-          <p class="font-medium text-[14px]">Técnico</p>
-          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-        </div>
-      </div>
-      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
-        <span>Marcar</span>
-        <span class="material-symbols-outlined">chevron_right</span>
-      </button>
-    </div>
-    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-        <span
-          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-          >person</span
-        >
-        <div class="flex flex-col items-start">
-          <p class="font-medium text-[14px]">Técnico</p>
-          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-        </div>
-      </div>
-      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
-        <span>Marcar</span>
-        <span class="material-symbols-outlined">chevron_right</span>
-      </button>
-    </div>
-    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-        <span
-          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-          >person</span
-        >
-        <div class="flex flex-col items-start">
-          <p class="font-medium text-[14px]">Técnico</p>
-          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-        </div>
-      </div>
-      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
-        <span>Marcar</span>
-        <span class="material-symbols-outlined">chevron_right</span>
-      </button>
-    </div>
-    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-        <span
-          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-          >person</span
-        >
-        <div class="flex flex-col items-start">
-          <p class="font-medium text-[14px]">Técnico</p>
-          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-        </div>
-      </div>
-      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
-        <span>Marcar</span>
-        <span class="material-symbols-outlined">chevron_right</span>
-      </button>
-    </div>
-    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-        <span
-          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-          >person</span
-        >
-        <div class="flex flex-col items-start">
-          <p class="font-medium text-[14px]">Técnico</p>
-          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-        </div>
-      </div>
-      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
-        <span>Marcar</span>
-        <span class="material-symbols-outlined">chevron_right</span>
-      </button>
-    </div>
-    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-        <span
-          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-          >person</span
-        >
-        <div class="flex flex-col items-start">
-          <p class="font-medium text-[14px]">Técnico</p>
-          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-        </div>
-      </div>
-      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
-        <span>Marcar</span>
-        <span class="material-symbols-outlined">chevron_right</span>
-      </button>
-    </div>
-    <div class="bg-gray-200 flex flex-col p-5 rounded-xl justify-between h-55">
-      <h2 class="text-4xl font-medium uppercase">09:15 AM</h2>
-      <div class="flex gap-2 items-center px-4 transition-all bg-[#055cb9]/20 p-1 rounded-xl">
-        <span
-          class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300] bg-[#055cb9] text-white rounded-full p-1"
-          >person</span
-        >
-        <div class="flex flex-col items-start">
-          <p class="font-medium text-[14px]">Técnico</p>
-          <p class="text-[13px] text-gray-600">Douglas Phelipe</p>
-        </div>
-      </div>
-      <button class="flex justify-center gap-2 items-center bg-[#055cb9] text-white p-2 rounded-xl">
-        <span>Marcar</span>
-        <span class="material-symbols-outlined">chevron_right</span>
-      </button>
     </div>
   </section>
 </main>

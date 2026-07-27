@@ -161,26 +161,6 @@
           <span>Gerenciar consultas</span>
         </a>
       </li>
-      <!-- show only for doctors or technicals -->
-      <li [hidden]="role !== 'DOCTOR' && role !== 'TECHNICAL'">
-        <a
-          [routerLink]="'/dashboard/' + role.toLowerCase() + '/my-consultations'"
-          routerLinkActive
-          [routerLinkActiveOptions]="{ exact: true }"
-          #rla8="routerLinkActive"
-          class="p-2 rounded-xl text-[14px] font-medium transition-all flex items-center gap-2 w-full"
-          [class.bg-blue-100]="rla8.isActive"
-          [class.text-[#055cb9]]="rla8.isActive"
-          [class.hover:bg-blue-50]="rla8.isActive"
-          [class.text-gray-600]="!rla8.isActive"
-          [class.hover:bg-gray-100]="!rla8.isActive"
-        >
-          <span class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300]"
-            >insert_chart</span
-          >
-          <span>Minhas consultas</span>
-        </a>
-      </li>
     </ul>
   </nav>
 </aside>

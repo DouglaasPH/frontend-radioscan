@@ -5,6 +5,7 @@ import { LoginResponse } from '../auth/dto/login-response.dto';
 import { CreateAppointmentRequestDto } from './dto/create-appointment-request.dto';
 import { DashboardMetricsForEmployeeResponseDto } from './dto/dashboard-metrics-for-employee-response.dto';
 import { Appointment } from '../../models/appointment.model';
+import { PatientEmployeeAppointmentResponseDto } from './dto/patient-employee-appointment-response.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -63,6 +64,12 @@ export class AppointmentApi {
     return this.http.put<Appointment>(
       `${environment.apiUrl}/appointment/${appointmentId}/book`,
       null,
+    );
+  }
+
+  findAllAppointmentsLinkedToTheUser() {
+    return this.http.get<PatientEmployeeAppointmentResponseDto[]>(
+      `${environment.apiUrl}/appointment`,
     );
   }
 }

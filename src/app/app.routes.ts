@@ -13,13 +13,13 @@ import { NewConsultationAppointmentSlot } from './pages/new-consultation-appoint
 import { DashboardPatient } from './pages/dashboard-patient/dashboard-patient';
 import { DashboardAdmin } from './pages/dashboard-admin/dashboard-admin';
 import { AppointmentManagement } from './pages/appointment-management/appointment-management';
-import { MyConsultations } from './pages/my-consultations/my-consultations';
 import { ViewConsultationDetails } from './pages/view-consultation-details/view-consultation-details';
 import { ExamUpload } from './pages/exam-upload/exam-upload';
 import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.component';
 import { authGuard } from './core/guards/auth.guard';
 import { guestGuard } from './core/guards/guest.guard';
 import { roleGuard } from './core/guards/role.guard';
+import { DashboardEmployee } from './pages/dashboard-employee/dashboard-employee';
 
 export const routes: Routes = [
   {
@@ -103,7 +103,7 @@ export const routes: Routes = [
         children: [
           {
             path: '',
-            component: MyConsultations,
+            component: DashboardEmployee,
           },
           {
             path: 'consultation',
@@ -118,7 +118,7 @@ export const routes: Routes = [
         children: [
           {
             path: '',
-            component: MyConsultations,
+            component: DashboardEmployee,
           },
           {
             path: 'exam-upload',

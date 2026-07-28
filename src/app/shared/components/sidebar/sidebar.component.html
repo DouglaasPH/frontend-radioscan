@@ -61,26 +61,6 @@
           <span>Marcar consulta</span>
         </a>
       </li>
-      <!-- show only for patients -->
-      <li [hidden]="role !== 'PATIENT'">
-        <a
-          routerLink="/dashboard/patient/appointment-history"
-          routerLinkActive
-          [routerLinkActiveOptions]="{ exact: true }"
-          #rla3="routerLinkActive"
-          class="p-2 rounded-xl text-[14px] font-medium transition-all flex items-center gap-2 w-full"
-          [class.bg-blue-100]="rla3.isActive"
-          [class.text-[#055cb9]]="rla3.isActive"
-          [class.hover:bg-blue-50]="rla3.isActive"
-          [class.text-gray-600]="!rla3.isActive"
-          [class.hover:bg-gray-100]="!rla3.isActive"
-        >
-          <span class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300]"
-            >event_note</span
-          >
-          <span>Histórico de consultas</span>
-        </a>
-      </li>
       <!-- show only for admins -->
       <li [hidden]="role !== 'ADMIN'">
         <a

@@ -10,7 +10,6 @@ import { ChangePassword } from './pages/change-password/change-password';
 import { CreateAccountEmployee } from './pages/create-account-employee/create-account-employee';
 import { EmployeeManagement } from './pages/employee-management/employee-management';
 import { NewConsultationAppointmentSlot } from './pages/new-consultation-appointment-slot/new-consultation-appointment-slot';
-import { DashboardPatient } from './pages/dashboard-patient/dashboard-patient';
 import { DashboardAdmin } from './pages/dashboard-admin/dashboard-admin';
 import { AppointmentManagement } from './pages/appointment-management/appointment-management';
 import { ViewConsultationDetails } from './pages/view-consultation-details/view-consultation-details';
@@ -57,15 +56,11 @@ export const routes: Routes = [
         children: [
           {
             path: '',
-            component: DashboardPatient,
+            component: AppointmentHistory,
           },
           {
             path: 'schedule-an-appointment',
             component: ScheduleAnAppointment,
-          },
-          {
-            path: 'appointment-history',
-            component: AppointmentHistory,
           },
         ],
       },

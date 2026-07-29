@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, signal } from '@angular/core';
 import { ExamUploadMainComponent } from './components/exam-upload-main-component/exam-upload-main.component';
 import { ExamSuccessfullySubmittedComponent } from './components/exam-successfully-submitted/exam-succesfully-submitted.component';
 
@@ -7,4 +7,11 @@ import { ExamSuccessfullySubmittedComponent } from './components/exam-successful
   imports: [ExamUploadMainComponent, ExamSuccessfullySubmittedComponent],
   templateUrl: './exam-upload.html',
 })
-export class ExamUpload {}
+export class ExamUpload {
+  @Input() appointmentId!: string;
+  protected isExamSuccessfullySubmitted = signal(true);
+
+  onUploadSuccess(): void {
+    this.isExamSuccessfullySubmitted.set(true);
+  }
+}

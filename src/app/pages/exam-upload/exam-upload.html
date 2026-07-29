@@ -13,7 +13,13 @@
   <section
     class="bg-white p-6 sm:p-8 md:p-10 rounded-xl border border-gray-200 shadow-sm w-full md:w-2/3"
   >
-    <component-exam-upload-main class="hidden"></component-exam-upload-main>
-    <component-exam-succesfully-submitted></component-exam-succesfully-submitted>
+    <component-exam-upload-main
+      [class.hidden]="isExamSuccessfullySubmitted() === true"
+      [appointmentId]="appointmentId"
+      (uploadSuccess)="onUploadSuccess()"
+    ></component-exam-upload-main>
+    <component-exam-succesfully-submitted
+      [class.hidden]="isExamSuccessfullySubmitted() === false"
+    ></component-exam-succesfully-submitted>
   </section>
 </main>

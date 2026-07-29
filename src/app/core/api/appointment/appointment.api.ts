@@ -6,6 +6,7 @@ import { CreateAppointmentRequestDto } from './dto/create-appointment-request.dt
 import { DashboardMetricsForEmployeeResponseDto } from './dto/dashboard-metrics-for-employee-response.dto';
 import { Appointment } from '../../models/appointment.model';
 import { PatientEmployeeAppointmentResponseDto } from './dto/patient-employee-appointment-response.dto';
+import { RequestUploadResponseDto } from './dto/request-upload-response.dto';
 
 @Injectable({
   providedIn: 'root',
@@ -70,6 +71,13 @@ export class AppointmentApi {
   findAllAppointmentsLinkedToTheUser() {
     return this.http.get<PatientEmployeeAppointmentResponseDto[]>(
       `${environment.apiUrl}/appointment`,
+    );
+  }
+
+  requestUpload(appointmentId: number) {
+    return this.http.post<RequestUploadResponseDto>(
+      `${environment.apiUrl}/appointment/${appointmentId}/request-upload`,
+      null,
     );
   }
 }

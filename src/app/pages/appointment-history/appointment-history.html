@@ -56,7 +56,7 @@
             <div class="flex gap-2 items-center">
               <span class="material-symbols-outlined !text-[20px] text-gray-500">person</span>
               <span class="text-gray-500 text-[13px]">
-                {{ appointment.appointmentType === 1 ? 'Dr. ' : 'Tec. '
+                {{ appointment.appointmentType === 2 ? 'Dr. ' : 'Tec. '
                 }}{{ appointment.employeeName }}</span
               >
             </div>
@@ -77,18 +77,19 @@
             >
           </div>
           <button
-            [class.border-red-700]="appointment.appointmentStatus === 2"
-            [class.text-red-700]="appointment.appointmentStatus === 2"
-            [class.border-gray-300]="appointment.appointmentStatus === 3"
-            [class.text-gray-400]="appointment.appointmentStatus === 3"
-            [class.border-blue-900]="appointment.appointmentStatus === 4"
-            [class.text-white]="appointment.appointmentStatus === 4"
-            class="bg-white text-medium text-[15px] font-medium border-1 border-red-700 text-red-700 p-2 rounded-lg"
+            [class.bg-red-700]="appointment.appointmentStatus === 2"
+            [class.bg-gray-300]="appointment.appointmentStatus === 3"
+            [class.bg-blue-900]="
+              appointment.appointmentStatus === 4 && appointment.isReleasedToPatientXRayReport
+            "
+            [class.text-white]="appointment.isReleasedToPatientXRayReport"
+            [class.text-red-600]="!appointment.isReleasedToPatientXRayReport"
+            class="text-medium text-[15px] font-medium p-3 rounded-lg"
             (click)="
               appointment.appointmentStatus === 2
                 ? cancelAppointment(appointment.id)
-                : appointment.appointmentStatus === 4
-                  ? downloadExam(appointment.id)
+                : appointment.appointmentStatus === 4 && appointment.isReleasedToPatientXRayReport
+                  ? downloadExam(appointment.xRayReportId!)
                   : null
             "
           >
@@ -97,7 +98,9 @@
                 ? 'Cancelar'
                 : appointment.appointmentStatus === 3
                   ? 'Indisponível'
-                  : 'Baixar Exame'
+                  : appointment.isReleasedToPatientXRayReport
+                    ? 'Baixar Exame'
+                    : 'Exame não disponível'
             }}
           </button>
         </div>

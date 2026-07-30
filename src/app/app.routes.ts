@@ -59,7 +59,11 @@ export const routes: Routes = [
             component: AppointmentHistory,
           },
           {
-            path: 'schedule-an-appointment',
+            path: 'schedule-an-appointment/capture-exam',
+            component: ScheduleAnAppointment,
+          },
+          {
+            path: 'schedule-an-appointment/report-review/:xRayReportId',
             component: ScheduleAnAppointment,
           },
         ],

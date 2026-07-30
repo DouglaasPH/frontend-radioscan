@@ -11,7 +11,7 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
   return next(req).pipe(
     catchError((error: HttpErrorResponse) => {
       if (
-        error.status === 500 &&
+        error.status === 400 &&
         error.error.message === "The appointment can only be cancelled with 24 hours' notice."
       ) {
         return throwError(() => error);

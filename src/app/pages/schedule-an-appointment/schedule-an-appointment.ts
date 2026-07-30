@@ -1,4 +1,4 @@
-import { Component, effect, inject, model, signal, untracked } from '@angular/core';
+import { Component, effect, inject, Input, model, signal, untracked } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
 import { provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -6,7 +6,7 @@ import { AppointmentApi } from '../../core/api/appointment/appointment.api';
 import { AllAvailabilitiesAppointmentsResponseDto } from '../../core/api/appointment/dto/all-availabilities-appointments-response.dto';
 import { formatDate, formatTime } from '../../shared/utils/formatDateAndHour';
 import { NgClass } from '@angular/common';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ROUTES } from '../../core/constants/routes.constants';
 
 function getTomorrow(): Date {
@@ -27,9 +27,10 @@ export class ScheduleAnAppointment {
   protected readonly formatTime = formatTime;
   private readonly router = inject(Router);
   protected minDate = new Date();
-  protected selectedAppointmentType = signal('EXAM_CAPTURE');
+  protected selectedAppointmentType = signal('');
   protected selectedDate = signal<Date>(getTomorrow());
   private readonly appointmentApi = inject(AppointmentApi);
+  private readonly activatedRoute = inject(ActivatedRoute);
 
   protected readonly appointments = signal<AllAvailabilitiesAppointmentsResponseDto[]>([]);
 
@@ -37,6 +38,23 @@ export class ScheduleAnAppointment {
   protected readonly totalPages = signal(0);
   protected readonly totalEmployees = signal(0);
   protected readonly numberOfElements = signal(0);
+
+  @Input() xRayReportId: string = '';
+
+  ngOnInit(): void {
+    // 1. Pegue o parâmetro real da rota via paramMap ou use o @Input()
+    const reportIdFromRoute = this.activatedRoute.snapshot.paramMap.get('xRayReportId');
+    const currentPath = this.activatedRoute.snapshot.routeConfig?.path;
+
+    console.log('ID do Laudo:', this.xRayReportId || reportIdFromRoute);
+
+    // 2. Verifique se o parâmetro existe ou se a rota contém 'capture-exam'
+    if (currentPath?.includes('capture-exam')) {
+      this.selectedAppointmentType.set('EXAM_CAPTURE');
+    } else if (reportIdFromRoute || this.xRayReportId) {
+      this.selectedAppointmentType.set('REPORT_REVIEW');
+    }
+  }
 
   constructor() {
     this.minDate.setDate(this.minDate.getDate() + 1);
@@ -98,10 +116,18 @@ export class ScheduleAnAppointment {
   }
 
   protected onSelectedAppointment(appointmentId: number) {
-    this.appointmentApi.bookAppointment(appointmentId).subscribe({
-      next: (response) => {
-        this.router.navigate([ROUTES.DASHBOARD_PATIENT]);
-      },
-    });
+    if (this.selectedAppointmentType() === 'EXAM_CAPTURE') {
+      this.appointmentApi.bookExamCapture(appointmentId).subscribe({
+        next: (response) => {
+          this.router.navigate([ROUTES.DASHBOARD_PATIENT]);
+        },
+      });
+    } else if (this.selectedAppointmentType() === 'REPORT_REVIEW') {
+      this.appointmentApi.bookReportReview(appointmentId, Number(this.xRayReportId)).subscribe({
+        next: (response) => {
+          this.router.navigate([ROUTES.DASHBOARD_PATIENT]);
+        },
+      });
+    }
   }
 }

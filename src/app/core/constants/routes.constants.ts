@@ -8,7 +8,8 @@ export const ROUTES = {
 
   // ONLY PATIENT
   DASHBOARD_PATIENT: '/dashboard/patient',
-  SCHEDULE_AN_APPOINTMENT: '/dashboard/patient/schedule-an-appointment',
+  SCHEDULE_AN_APPOINTMENT_CAPTURE_EXAM: '/dashboard/patient/schedule-an-appointment/capture-exam',
+  SCHEDULE_AN_APPOINTMENT_REPORT_REVIEW: '/dashboard/patient/schedule-an-appointment/report-review',
   APPOINTMENT_HISTORY: '/dashboard/patient/appointment-history',
 
   // ONLY ADMIN

@@ -1,51 +1,13 @@
 <main class="flex flex-col gap-8 p-lg p-10">
-  <h1 class="text-4xl font-bold text-[#055cb9]">Marcar consulta</h1>
-  <section class="flex flex-col items-start gap-6 w-full">
-    <!-- type of appointment -->
-    <section class="flex flex-col gap-2">
-      <h2 class="text-2xl font-semibold">Tipo de consulta</h2>
-      <div class="flex flex-rows gap-2 select-none">
-        <button
-          [class.border-[#055cb9]]="selectedAppointmentType() === 'EXAM_CAPTURE'"
-          [class.border-gray-300]="selectedAppointmentType() !== 'EXAM_CAPTURE'"
-          (click)="selectedAppointmentType.set('EXAM_CAPTURE')"
-          class="flex gap-2 items-center border-2 p-2 rounded-xl"
-        >
-          <span
-            [class.bg-[#055cb9]]="selectedAppointmentType() === 'EXAM_CAPTURE'"
-            [class.bg-gray-300]="selectedAppointmentType() !== 'EXAM_CAPTURE'"
-            [class.text-white]="selectedAppointmentType() === 'EXAM_CAPTURE'"
-            class="material-symbols-outlined !text-[22px] p-1 bg-gray-300 rounded-full text-gray-600 [font-variation-settings:'wght'_300]"
-            >photo_camera</span
-          >
-          <span>Captura de Exame</span>
-        </button>
-        <button
-          [class.border-[#055cb9]]="selectedAppointmentType() === 'REPORT_REVIEW'"
-          [class.border-gray-300]="selectedAppointmentType() !== 'REPORT_REVIEW'"
-          (click)="selectedAppointmentType.set('REPORT_REVIEW')"
-          class="flex gap-2 items-center border-2 p-2 rounded-xl"
-        >
-          <span
-            [class.bg-[#055cb9]]="selectedAppointmentType() === 'REPORT_REVIEW'"
-            [class.bg-gray-300]="selectedAppointmentType() !== 'REPORT_REVIEW'"
-            [class.text-white]="selectedAppointmentType() === 'REPORT_REVIEW'"
-            class="material-symbols-outlined !text-[22px] p-1 bg-gray-300 rounded-full text-gray-600 [font-variation-settings:'wght'_300]"
-            >medical_services</span
-          >
-          <span>Retorno com Médico</span>
-        </button>
-      </div>
-    </section>
-    <!-- Calendar section-->
-    <section class="flex flex-col justify-center items-start w-full lg:w-1/4 h-full">
-      <h2 class="font-semibold text-lg">Selecione uma data:</h2>
-      <div class="w-full bg-gray-200 rounded-lg">
-        <mat-card class="demo-inline-calendar-card w-full">
-          <mat-calendar [(selected)]="selectedDate" [minDate]="minDate"></mat-calendar>
-        </mat-card>
-      </div>
-    </section>
+  <h1 class="text-4xl font-bold text-[#055cb9]">Marcar captura de exame</h1>
+  <!-- Calendar section-->
+  <section class="flex flex-col justify-center items-start w-full lg:w-1/4 h-full">
+    <h2 class="font-semibold text-lg">Selecione uma data:</h2>
+    <div class="w-full bg-gray-200 rounded-lg">
+      <mat-card class="demo-inline-calendar-card w-full">
+        <mat-calendar [(selected)]="selectedDate" [minDate]="minDate"></mat-calendar>
+      </mat-card>
+    </div>
   </section>
   <!-- employee table component -->
   <section class="flex flex-col justify-start bg-white rounded-2xl shadow-sm overflow-visible">

@@ -44,7 +44,7 @@
       <!-- show only for patients -->
       <li [hidden]="role !== 'PATIENT'">
         <a
-          routerLink="/dashboard/patient/schedule-an-appointment"
+          routerLink="/dashboard/patient/schedule-an-appointment/capture-exam"
           routerLinkActive
           [routerLinkActiveOptions]="{ exact: true }"
           #rla2="routerLinkActive"
@@ -58,7 +58,7 @@
           <span class="material-symbols-outlined !text-[24px] [font-variation-settings:'wght'_300]"
             >calendar_add_on</span
           >
-          <span>Marcar consulta</span>
+          <span>Marcar captura de exame</span>
         </a>
       </li>
       <!-- show only for admins -->

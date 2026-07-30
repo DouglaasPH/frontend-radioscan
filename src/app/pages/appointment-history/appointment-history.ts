@@ -3,6 +3,8 @@ import { AppointmentApi } from '../../core/api/appointment/appointment.api';
 import { formatDate, formatTime } from '../../shared/utils/formatDateAndHour';
 import { PatientEmployeeAppointmentResponseDto } from '../../core/api/appointment/dto/patient-employee-appointment-response.dto';
 import { XRayReportApi } from '../../core/api/x-ray-report/xRayReport.api';
+import { Router } from '@angular/router';
+import { ROUTES } from '../../core/constants/routes.constants';
 @Component({
   selector: 'app-appointment-history',
   imports: [],
@@ -15,6 +17,8 @@ export class AppointmentHistory {
   private readonly appointmentApi = inject(AppointmentApi);
   private readonly xRayReportApi = inject(XRayReportApi);
   protected readonly appointments = signal<PatientEmployeeAppointmentResponseDto[]>([]);
+  private readonly router = inject(Router);
+  protected readonly errorMessageAppointmentId = signal<number | null>(null);
 
   constructor() {
     this.loadAppointments();
@@ -35,11 +39,19 @@ export class AppointmentHistory {
         this.loadAppointments();
       },
       error: (error) => {
+        console.log(error);
+        console.log(error.status);
+        console.log(error.error?.message);
         if (
-          error.status === 500 &&
+          error.status === 400 &&
           error.error?.message === "The appointment can only be cancelled with 24 hours' notice."
         ) {
+          this.errorMessageAppointmentId.set(appointmentId);
           console.error('Error canceling appointment:', error);
+
+          setTimeout(() => {
+            this.errorMessageAppointmentId.set(null);
+          }, 5000);
         }
       },
     });
@@ -64,5 +76,10 @@ export class AppointmentHistory {
         alert(err.error?.message || 'Erro ao gerar link de download do exame.');
       },
     });
+  }
+
+  bookReportReview(xRayReportId: number): void {
+    console.log('Booking report review for X-Ray Report ID:', xRayReportId);
+    this.router.navigate([ROUTES.SCHEDULE_AN_APPOINTMENT_REPORT_REVIEW, xRayReportId]);
   }
 }

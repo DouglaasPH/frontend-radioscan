@@ -61,9 +61,16 @@ export class AppointmentApi {
     });
   }
 
-  bookAppointment(appointmentId: Number) {
+  bookExamCapture(appointmentId: Number) {
     return this.http.put<Appointment>(
-      `${environment.apiUrl}/appointment/${appointmentId}/book`,
+      `${environment.apiUrl}/appointment/exam-capture/${appointmentId}/book`,
+      null,
+    );
+  }
+
+  bookReportReview(appointmentId: Number, xRayReportId: Number) {
+    return this.http.put<Appointment>(
+      `${environment.apiUrl}/appointment/report-review/${appointmentId}/${xRayReportId}/book`,
       null,
     );
   }

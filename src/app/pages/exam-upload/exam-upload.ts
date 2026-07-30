@@ -9,7 +9,7 @@ import { ExamSuccessfullySubmittedComponent } from './components/exam-successful
 })
 export class ExamUpload {
   @Input() appointmentId!: string;
-  protected isExamSuccessfullySubmitted = signal(true);
+  protected isExamSuccessfullySubmitted = signal(false);
 
   onUploadSuccess(): void {
     this.isExamSuccessfullySubmitted.set(true);

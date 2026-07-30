@@ -5,5 +5,6 @@ export interface PatientEmployeeAppointmentResponseDto {
   employeeName: string;
   dateHour: string;
   xRayReportId: number | null;
-  isReleasedToPatientXRayReport: boolean;
+  isReleasedToPatientXRayReport: boolean | null;
+  isPendingProcessing: boolean;
 }

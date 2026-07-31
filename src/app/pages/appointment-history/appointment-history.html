@@ -62,7 +62,7 @@
             </div>
           </div>
           <button
-            [class.hidden]="appointment.isPendingProcessing"
+            [class.hidden]="!appointment.isPendingProcessing"
             [class.bg-green-600]="appointment.isPendingProcessing"
             class="text-medium text-[15px] font-medium p-3 rounded-lg text-white font-semibold"
             (click)="bookReportReview(appointment.xRayReportId!)"

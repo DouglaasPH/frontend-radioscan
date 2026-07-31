@@ -64,7 +64,7 @@ export class AppointmentActionCellComponent {
     if (currentRole === 'DOCTOR') {
       if (currentStatus === 2) {
         return {
-          text: 'Revisar laudo.',
+          text: 'Revisar laudo',
           textColor: 'text-green-600',
           route: `/dashboard/doctor/exam-view/${id}`,
           isLink: true,

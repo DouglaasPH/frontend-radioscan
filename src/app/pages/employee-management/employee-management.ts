@@ -66,6 +66,10 @@ export class EmployeeManagement {
           this.totalEmployees.set(response.totalElements);
           this.totalPages.set(response.totalPages);
           this.numberOfElements.set(response.numberOfElements);
+          console.log('currentPage', this.currentPage());
+          console.log('totalElements', this.totalEmployees());
+          console.log('totalPages', this.totalPages());
+          console.log('numberOfElements', this.numberOfElements());
         },
       });
   }

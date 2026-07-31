@@ -187,7 +187,7 @@
                 ? 0
                 : this.numberOfElements() === 4
                   ? 4
-                  : this.currentPage() * 4),
+                  : (this.currentPage() + 1) * 4),
             this.totalEmployees()
           ) - (this.numberOfElements() === 0 ? 0 : this.numberOfElements() - 1)
         }}-{{
@@ -197,7 +197,7 @@
                 ? 0
                 : this.numberOfElements() === 4
                   ? 4
-                  : this.currentPage() * 4),
+                  : (this.currentPage() + 1) * 4),
             this.totalEmployees()
           )
         }}

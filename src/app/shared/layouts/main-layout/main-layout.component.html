@@ -1,11 +1,12 @@
-<div class="flex w-full">
+<div class="flex w-screen min-h-screen">
   <component-sidebar></component-sidebar>
+  <div class="flex w-full h-full">
+    <main class="flex-1 min-w-0 flex flex-col">
+      <component-navbar></component-navbar>
 
-  <main class="flex-1 min-w-0 flex flex-col">
-    <component-navbar></component-navbar>
-
-    <section class="flex-1 p-lg min-w-0">
-      <router-outlet />
-    </section>
-  </main>
+      <section class="flex-1 p-lg min-w-0">
+        <router-outlet />
+      </section>
+    </main>
+  </div>
 </div>

@@ -153,30 +153,13 @@
                 }}
               </span>
             </td>
-            @if (appointment!.appointmentStatus === 2 // Agendada) {
-              <td
-                class="py-4 text-green-600 flex gap-2 items-center cursor-pointer hover:text-green-600/90 transition-all"
-                routerLink="/dashboard/technical/exam-upload/{{ appointment.id }}"
-              >
-                <span>Fazer upload de exame</span>
-                <span class="material-symbols-outlined !text-[12px]">arrow_forward_ios</span>
-              </td>
-            } @else if (
-              appointment!.appointmentStatus === 1 || appointment!.appointmentStatus === 3  // Disponível e Cancelada
-            ) {
-              <td
-                class="py-4 text-red-600 flex gap-2 items-center cursor-pointer hover:text-red-600/90 transition-all"
-                routerLink="/dashboard/technical/exam-upload/{{ appointment.id }}"
-              >
-                <span>Não é possível fazer upload do exame.</span>
-              </td>
-            } @else {
-              <td
-                class="py-4 text-[#055cb9] flex gap-2 items-center cursor-pointer hover:text-[#055cb9]/90 transition-all"
-              >
-                <span>Exame já enviado.</span>
-              </td>
-            }
+            <td class="px-6 py-4">
+              <app-appointment-action-cell
+                [appointmentId]="appointment.id"
+                [status]="appointment.appointmentStatus"
+                [role]="currentUserRole()!"
+              />
+            </td>
           </tr>
         } @empty {
           <tr>

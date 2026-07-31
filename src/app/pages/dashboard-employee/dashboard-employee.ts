@@ -9,10 +9,11 @@ import { AppointmentsManagementResponseDto } from '../../core/api/appointment/dt
 import { RouterLink } from '@angular/router';
 import { UserState } from '../../core/states/user.state';
 import { NgClass } from '@angular/common';
+import { AppointmentActionCellComponent } from './components/appointment-action-cell.component';
 
 @Component({
   selector: 'app-dashboard-employee',
-  imports: [RouterLink, NgClass],
+  imports: [RouterLink, NgClass, AppointmentActionCellComponent],
   templateUrl: './dashboard-employee.html',
 })
 export class DashboardEmployee {
@@ -27,6 +28,7 @@ export class DashboardEmployee {
     completedAppointments: 0,
     pendingAppointments: 0,
   });
+  currentUserRole = signal(this.userState.getRoleOrEmployeePosition());
 
   protected readonly selectedAppointmentStatus = signal(''); // '' ou 'DOCTOR' ou 'TECHNICAL' para filtrar os funcionários por posição
 

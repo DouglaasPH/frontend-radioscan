@@ -105,7 +105,7 @@ export const routes: Routes = [
             component: DashboardEmployee,
           },
           {
-            path: 'consultation',
+            path: 'review-exam/:appointmentId/:patientName',
             component: ViewConsultationDetails,
           },
         ],

@@ -1,12 +1,18 @@
 <main class="flex flex-col gap-5 p-lg p-10 pb-0 h-full">
   <!-- Title and add employee button component -->
   <section class="flex flex-col flex-wrap items-start gap-1">
-    <h1 class="text-4xl font-bold text-[#055cb9]">Consulta: Douglas Phelipe</h1>
-    <p class="font-medium text-gray-600">14 Nov, 2026, 09:30 AM</p>
+    <h1 class="text-4xl font-bold text-[#055cb9]">Consulta: {{ patientName }}</h1>
+    <p class="font-medium text-gray-600">
+      {{ formatDate(appointment()!.dateHour) }}, {{ formatTime(appointment()!.dateHour) }}
+    </p>
   </section>
   <section class="flex justify-between flex-col lg:flex-row gap-5 lg:gap-0">
     <!-- view image component-->
-    <div class="bg-red-800 w-full lg:w-[70%] h-full">view image</div>
+    <div
+      class="w-full lg:w-[70%] h-full bg-gray-200 p-2 rounded-xl flex items-center justify-center"
+    >
+      <img [src]="imageUrl()" alt="Raio-X do paciente" class="w-150 h-150" />
+    </div>
     <!-- Consultation details component -->
     <div class="w-full lg:w-[28%] flex flex-col gap-2">
       <!-- AI result component -->
@@ -22,7 +28,9 @@
             >Análise automática</span
           >
         </div>
-        <span class="pl-9 font-medium text-[14px] text-gray-800">95% para saudável</span>
+        <span class="pl-9 font-medium text-[14px] text-gray-800">{{
+          appointment()!.xRayReport!.aiResult
+        }}</span>
         <p class="bg-[#055cb9]/10 p-2 rounded-xl flex items-center gap-1">
           <span class="material-symbols-outlined !text-[20px] text-[#055cb9]">check_circle</span>
           <span class="text-[13px] font-semibold text-gray-600">Confiança do modelo: 96,66%</span>
@@ -41,13 +49,21 @@
             >Descrição clínica detalhada</span
           >
           <textarea
-            name=""
-            id=""
+            [(ngModel)]="finalDiagnosis"
+            name="finalDiagnosis"
+            id="finalDiagnosis"
+            maxlength="255"
             class="border border-gray-300 rounded-md p-2 h-70"
             placeholder="Escreva seu parecer sobre o exame, observações técnicas e recomendações..."
           ></textarea>
+          <span class="text-right text-xs text-gray-400">
+            {{ finalDiagnosis()?.length || 0 }}/255 caracteres
+          </span>
         </div>
-        <button class="bg-[#055cb9] p-4 rounded-xl text-white shadow-sm">
+        <button
+          (click)="saveFinalDiagnosis()"
+          class="bg-[#055cb9] p-4 rounded-xl text-white shadow-sm"
+        >
           Salvar e Liberar para o Paciente
         </button>
         <div class="pl-1 flex gap-2">

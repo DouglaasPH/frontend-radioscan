@@ -23,6 +23,7 @@ export class AppointmentActionCellComponent {
   // Inputs usando Signal (Angular 17.1+)
   appointmentId = input.required<string | number>();
   status = input.required<number>(); // 1: Disponível, 2: Agendada, 3: Cancelada, 4: Concluída
+  patientName = input.required<string | null>();
   role = input.required<string>();
 
   // Regra de negócio computada baseada no Status e na Role
@@ -30,6 +31,7 @@ export class AppointmentActionCellComponent {
     const currentStatus = this.status();
     const currentRole = this.role();
     const id = this.appointmentId();
+    const patientName = this.patientName();
 
     // Lógica para TÉCNICO
     if (currentRole === 'TECHNICAL') {
@@ -65,10 +67,18 @@ export class AppointmentActionCellComponent {
       if (currentStatus === 2) {
         return {
           text: 'Revisar laudo',
-          textColor: 'text-green-600',
-          route: `/dashboard/doctor/exam-view/${id}`,
+          textColor: 'text-blue-600',
+          route: `/dashboard/doctor/review-exam/${id}/${patientName}`,
           isLink: true,
           showIcon: true,
+        };
+      } else if (currentStatus === 4) {
+        return {
+          text: 'Revisão concluída.',
+          textColor: 'text-green-600',
+          route: null,
+          isLink: false,
+          showIcon: false,
         };
       } else {
         return {

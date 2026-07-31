@@ -87,4 +87,8 @@ export class AppointmentApi {
       null,
     );
   }
+
+  findByIdAppointment(appointmentId: number) {
+    return this.http.get<Appointment>(`${environment.apiUrl}/appointment/${appointmentId}`);
+  }
 }

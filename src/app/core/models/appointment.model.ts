@@ -1,5 +1,6 @@
 import { Employee } from './employee.model';
 import { Patient } from './patient.model';
+import { XRayReport } from './xRayReport.model';
 
 export enum AppointmentStatus {
   AVAILABLE = 1,
@@ -21,4 +22,5 @@ export interface Appointment {
   appointmentStatus: AppointmentStatus;
   appointmentType: AppointmentType;
   status: string;
+  xRayReport: XRayReport | null;
 }

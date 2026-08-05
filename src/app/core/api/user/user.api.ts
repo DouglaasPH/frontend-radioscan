@@ -16,7 +16,7 @@ export class UserApi {
   private userState = inject(UserState);
 
   me() {
-    return this.http.get<User>(`${environment.apiUrl}/user/me`).pipe(
+    return this.http.get<User>(`${environment.apiUrl}/user`).pipe(
       tap((response) => {
         this.userState.set(response);
       }),

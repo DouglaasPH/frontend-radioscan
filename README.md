@@ -1,36 +1,27 @@
 # Radioscan — Frontend
 
-Frontend Angular da aplicação RadioScan: agendamento de consultas, gestão de
-pacientes/funcionários e o fluxo de upload/acompanhamento de laudo de raio-X
-por IA.
-
-<br>
-
-## Repositórios relacionados
-
-| Repositório                                                                | Descrição                                                                           |
-| -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| [`api-radioscan`](https://github.com/DouglaasPH/api-radioscan)             | API backend (Spring Boot / Java)                                                    |
-| [`terraform-radioscan`](https://github.com/DouglaasPH/terraform-radioscan) | Infraestrutura completa (LocalStack): VPC, ALB, ECS, RDS, S3, SNS/SQS, Lambda de IA |
+Angular frontend for the RadioScan application: appointment scheduling, patient/employee management, and the workflow for uploading and tracking chest X-ray reports processed by a Deep Learning model I developed.
 
 <br>
 
 ## Stack
 
-- **Angular 22** (standalone components, `@angular/build` — novo builder baseado em esbuild/Vite)
+- **Angular 22**
 - **Angular Material** + **Angular CDK**
-- **Tailwind CSS 4** (via `@tailwindcss/postcss`)
+- **Tailwind CSS 4**
 - **RxJS**
-- **Vitest** + **jsdom** para testes (em vez de Karma/Jasmine)
-- **Prettier** para formatação
+- **Vitest** + **jsdom**
+- **Prettier**
 - **TypeScript**
 
-## Estrutura do projeto
+<br>
+
+## Project Structure
 
 ```
 src/app/
 ├── core/
-│   ├── api/            -> clientes HTTP por domínio (espelham os controllers da API)
+│   ├── api/            -> HTTP clients by domain (mirroring API controllers)
 │   │   ├── admin/
 │   │   ├── appointment/
 │   │   ├── auth/
@@ -38,154 +29,91 @@ src/app/
 │   │   ├── patient/
 │   │   ├── refresh-token/
 │   │   └── user/
-│   ├── constants/       -> URLs da API, mensagens, papéis, rotas, chaves de storage
+│   ├── constants/       -> API URLs, messages, roles, routes, storage keys
 │   ├── guards/           -> auth.guard, guest.guard, role.guard
-│   ├── interceptors/     -> auth (anexa JWT), error, loading
-│   ├── models/           -> tipos de domínio (Appointment, Employee, Patient, User)
+│   ├── interceptors/     -> auth (attaches JWT), error, loading
+│   ├── models/           -> domain types (Appointment, Employee, Patient, User)
 │   ├── services/         -> loading, refresh-token, storage
-│   └── states/           -> estado de sessão (access-token, user, loading, etc.)
-├── pages/                -> uma pasta por tela (ver seção de rotas)
+│   └── states/           -> session state (access-token, user, loading, etc.)
+├── pages/                -> one folder per screen (see routes section)
 └── shared/
-    ├── components/       -> loading, navbar, sidebar
-    ├── directives/       -> cpf-mask, phone-mask
-    ├── layouts/          -> main-layout
-    └── utils/            -> formatDateAndHour
+├── components/       -> loading, navbar, sidebar
+├── directives/       -> cpf-mask, phone-mask
+├── layouts/          -> main-layout
+└── utils/            -> formatDateAndHour
 ```
-
-Cada pasta em `core/api/<dominio>/` corresponde 1:1 a um controller da API
-(`admin` ↔ `AdminController`, `appointment` ↔ `AppointmentController`, etc.),
-com os DTOs de request/response em `dto/` ao lado do client.
 
 <br>
 
-## Páginas / rotas
+## Pages / Routes
 
-| Página                                                                        | Provável função                         |
+| Page                                                                          | Likely Function                         |
 | ----------------------------------------------------------------------------- | --------------------------------------- |
-| `login`                                                                       | Login (email/senha e Google OAuth2)     |
-| `create-account-patient` / `create-account-employee`                          | Cadastro de paciente / funcionário      |
-| `dashboard-admin` / `dashboard-employee`                                      | Dashboards por papel                    |
-| `schedule-an-appointment` / `new-consultation-appointment-slot`               | Agendamento de consulta                 |
-| `appointment-management`                                                      | Gestão de consultas (funcionário/admin) |
-| `appointment-history`                                                         | Histórico de consultas do paciente      |
-| `view-consultation-details`                                                   | Detalhe de uma consulta                 |
-| `exam-upload` (+ `exam-upload-main-component`, `exam-successfully-submitted`) | Upload do raio-X via URL pré-assinada   |
-| `employee-management`                                                         | Gestão de funcionários (admin)          |
-| `profile` / `change-password`                                                 | Dados da conta                          |
-| `terms-and-conditions`                                                        | Termos de uso                           |
-| `error`                                                                       | Página de erro genérica                 |
+| `login`                                                                       | Login (email/password and Google OAuth2) |
+| `create-account-patient` / `create-account-employee`                          | Patient / Employee registration         |
+| `dashboard-admin` / `dashboard-employee`                                      | Role-based dashboards                   |
+| `schedule-an-appointment` / `new-consultation-appointment-slot`               | Appointment scheduling                  |
+| `appointment-management`                                                      | Appointment management (employee/admin) |
+| `appointment-history`                                                         | Patient appointment history             |
+| `view-consultation-details`                                                   | Consultation details                    |
+| `exam-upload` (+ `exam-upload-main-component`, `exam-successfully-submitted`) | X-ray upload via pre-signed URL         |
+| `employee-management`                                                         | Employee management (admin)             |
+| `profile` / `change-password`                                                 | Account details                         |
+| `terms-and-conditions`                                                        | Terms of use                            |
+| `error`                                                                       | Generic error page                      |
 
-## Pré-requisitos
+## Prerequisites
 
-- **Node.js** compatível com Angular 22 (recomendado: a versão LTS mais
-  recente disponível na época)
-- **npm 11.16.0** (definido em `packageManager` no `package.json` — se usar
-  Corepack, ele já respeita essa versão automaticamente)
+- **Node.js** compatible with Angular 22 (recommended: the latest LTS
+version available at the time)
+- **npm 11.16.0** (defined in `packageManager` in `package.json` — if using
+Corepack, it automatically respects this version)
 
-Não é necessário instalar o Angular CLI globalmente — os scripts do
-`package.json` usam o `ng` do `devDependencies` via `npx`/`npm run`.
+Installing the Angular CLI globally is not required — the
+`package.json` scripts use the `ng` version from `devDependencies` via `npx`/`npm run`.
 
-## Instalação
+## Installation
 
 ```bash
 npm install
 ```
 
-## Configuração de ambiente
+## Environment configuration
 
-O projeto usa `src/app/enviroments/environment.development.ts`.
+The project uses `src/app/enviroments/environment.development.ts`.
 
-Esse arquivo deve apontar para a API. Exemplo do que ele precisa conter
-(ajuste para o formato real que `core/constants/api.constants.ts` espera):
+This file must point to the API. Example of what it needs to contain
+(adjust to the actual format expected by `core/constants/api.constants.ts`):
 
 ```typescript
 export const environment = {
-  production: false,
-  apiUrl: 'http://<alb_dns_name>', // saída do terraform-radioscan: terraform output alb_dns_name
+production: false,
+apiUrl: 'http://<alb_dns_name>', // output from terraform-radioscan: terraform output alb_dns_name
 };
 ```
 
-Pegue o valor real do `alb_dns_name` no repositório `terraform-radioscan`:
+Get the actual value of `alb_dns_name` from the `terraform-radioscan` repository:
 
 ```powershell
 terraform output alb_dns_name
 ```
 
-## Rodando localmente
+## Running locally
 
 ```bash
 npm start
 ```
 
-Isso roda `ng serve`. Por padrão o Angular sobe em `http://localhost:4200`.
-Para o login/upload funcionarem de verdade, a API (backend) e o LocalStack
-precisam estar rodando — ver os READMEs dos outros dois repositórios.
+This runs `ng serve`. By default, Angular starts at `http://localhost:4200`. For all site functionalities to work properly, the infrastructure must be running—please consult the infrastructure repository at: https://github.com/DouglaasPH/terraform-radioscan/blob/main/README.md
 
-## Build de produção
+## Production build
 
 ```bash
 npm run build
 ```
 
-O Angular 22 usa o builder novo (`@angular/build`), que costuma gerar a saída
-em `dist/<nome-do-projeto>/browser/` (não `dist/<nome-do-projeto>/` direto
-como nas versões antigas do Angular). Confirme o `outputPath` real no
-`angular.json` antes do deploy — se o `terraform-radioscan/frontend_deploy/deploy.ps1`
-apontar para a pasta errada, ele publica um bucket vazio/incompleto sem erro
-nenhum.
+<br>
 
-## Testes
+## Deployment
 
-```bash
-npm test
-```
-
-Roda via **Vitest** (não Karma/Jasmine), usando `jsdom` como ambiente de DOM.
-
-## Lint / formatação
-
-```bash
-npm run format
-```
-
-Roda o Prettier em `src/**/*.{ts,html,css,scss}`.
-
-## Deploy (S3 + CloudFront via LocalStack)
-
-O `terraform-radioscan` já provisiona o bucket S3 do site e a distribuição
-CloudFront na frente. Fluxo resumido (detalhes completos no README daquele
-repositório):
-
-1. Gere o build: `npm run build`
-2. Copie `frontend_deploy/deploy.ps1` (do repo `terraform-radioscan`) para a
-   raiz deste projeto
-3. Rode apontando para a pasta de build real (confirme o caminho — ver aviso
-   acima sobre `dist/<projeto>/browser/`):
-
-   ```powershell
-   .\deploy.ps1 -ProjectName "radioscan" -BuildDir "dist/frontend-clinic/browser"
-   ```
-
-4. Acesse pelo `website_bucket_name` ou `cloudfront_domain_name`
-   (`terraform output` no repo de infraestrutura)
-
-## Fluxo de upload de raio-X
-
-Do lado do frontend (página `exam-upload`), o fluxo esperado é:
-
-1. Pedir à API uma URL pré-assinada de upload (`XRayReportController` /
-   `StorageGateway` no backend).
-2. Fazer o `PUT` do arquivo de imagem **diretamente no S3** usando essa URL
-   (não passa pela API/backend).
-3. Mostrar a tela de confirmação (`exam-successfully-submitted`).
-4. A partir daí, o processamento é assíncrono: o S3 dispara o pipeline
-   (SNS → SQS → Lambda com IA) que atualiza o laudo no banco. O frontend
-   precisa consultar/atualizar o status do laudo depois (`ProcessingStatus`
-   no backend: `AWAITING_AI` → `PROCESSED_BY_IA` → `AWAITING_VALIDATION_BY_DOCTOR`
-   → `VALIDATED_BY_DOCTOR`), provavelmente na tela `view-consultation-details`
-   ou numa tela própria de acompanhamento do laudo.
-
-> O bucket de imagens no LocalStack já vem com CORS liberado
-> (`aws_s3_bucket_cors_configuration` no `terraform-radioscan`, métodos
-> `GET/PUT/POST`, qualquer origem) — então o `PUT` direto do navegador para o
-> S3 não deve esbarrar em CORS durante o desenvolvimento local.
+I created Terraform infrastructure-as-code to deploy this application. Check out the step-by-step guide at: https://github.com/DouglaasPH/terraform-radioscan/blob/main/README.md

@@ -13,7 +13,7 @@ import { AppointmentActionCellComponent } from './components/appointment-action-
 
 @Component({
   selector: 'app-dashboard-employee',
-  imports: [RouterLink, NgClass, AppointmentActionCellComponent],
+  imports: [NgClass, AppointmentActionCellComponent],
   templateUrl: './dashboard-employee.html',
 })
 export class DashboardEmployee {

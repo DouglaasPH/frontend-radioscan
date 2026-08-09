@@ -29,6 +29,7 @@ export class AppointmentHistory {
       next: (response) => {
         this.appointments.set(response);
         console.log(response);
+        console.log(this.appointments());
       },
     });
   }

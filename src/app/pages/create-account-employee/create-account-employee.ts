@@ -70,16 +70,14 @@ export class CreateAccountEmployee {
     }
 
     const dto: RegisterEmployeeRequest = {
-      user: {
-        name: `${formValues.first_name} ${formValues.second_name}`,
-        email: formValues.email,
-        password: formValues.password,
-      },
-      employee: {
-        licenseNumber: formValues.licenseNumber,
-        position: formValues.position,
-      },
+      name: `${formValues.first_name} ${formValues.second_name}`,
+      email: formValues.email,
+      password: formValues.password,
+      licenseNumber: formValues.licenseNumber,
+      position: formValues.position,
     };
+
+    console.log(dto);
 
     this.employeeApi.register(dto).subscribe({
       next: (response) => {

@@ -43,6 +43,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 };
 
 function addTokenHeader(request: HttpRequest<unknown>, token: string) {
+  console.log('Adding token to request header:', token);
   return request.clone({
     setHeaders: {
       Authorization: `Bearer ${token}`,

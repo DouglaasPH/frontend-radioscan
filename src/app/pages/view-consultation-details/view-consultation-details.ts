@@ -43,6 +43,7 @@ export class ViewConsultationDetails {
 
   private loadExam(appointment: Appointment) {
     console.log(appointment);
+    console.log(appointment.xRayReport);
     this.xRayReportApi.getDownloadUrl(appointment.xRayReport!.id).subscribe({
       next: (response) => {
         this.imageUrl.set(response.downloadUrl);

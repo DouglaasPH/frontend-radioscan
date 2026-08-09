@@ -62,12 +62,12 @@
             </div>
           </div>
           <button
-            [class.hidden]="!appointment.isPendingProcessing"
-            [class.bg-green-600]="appointment.isPendingProcessing"
+            [class.hidden]="!appointment.pendingProcessing"
+            [class.bg-green-600]="appointment.pendingProcessing"
             class="text-medium text-[15px] font-medium p-3 rounded-lg text-white font-semibold"
             (click)="bookReportReview(appointment.xRayReportId!)"
           >
-            {{ appointment.isPendingProcessing ? 'Marcar consulta de revisão de exame' : '' }}
+            {{ appointment.pendingProcessing ? 'Marcar consulta de revisão de exame' : '' }}
           </button>
           <span
             [class.hidden]="errorMessageAppointmentId() !== appointment.id"
@@ -93,21 +93,25 @@
             [class.bg-red-700]="appointment.appointmentStatus === 2"
             [class.bg-gray-300]="appointment.appointmentStatus === 3"
             [class.bg-blue-900]="
-              appointment.appointmentStatus === 4 && appointment.isReleasedToPatientXRayReport
+              appointment.appointmentStatus === 4 &&
+              appointment.releasedToPatientXRayReport &&
+              appointment.appointmentType === 2
             "
             [class.text-white]="
-              appointment.isReleasedToPatientXRayReport !== true &&
-              appointment.appointmentStatus !== 4
+              appointment.appointmentStatus === 4 &&
+              appointment.releasedToPatientXRayReport &&
+              appointment.appointmentType === 2
             "
             [class.text-red-600]="
-              appointment.isReleasedToPatientXRayReport !== true &&
-              appointment.appointmentStatus === 4
+              appointment.appointmentStatus === 4 && appointment.appointmentType === 1
             "
             class="text-medium text-[15px] font-medium p-3 rounded-lg"
             (click)="
               appointment.appointmentStatus === 2
                 ? cancelAppointment(appointment.id)
-                : appointment.appointmentStatus === 4 && appointment.isReleasedToPatientXRayReport
+                : appointment.appointmentStatus === 4 &&
+                    appointment.releasedToPatientXRayReport &&
+                    appointment.appointmentType === 2
                   ? downloadExam(appointment.xRayReportId!)
                   : null
             "
@@ -117,7 +121,9 @@
                 ? 'Cancelar'
                 : appointment.appointmentStatus === 3
                   ? 'Indisponível'
-                  : appointment.isReleasedToPatientXRayReport
+                  : appointment.appointmentStatus === 4 &&
+                      appointment.releasedToPatientXRayReport &&
+                      appointment.appointmentType === 2
                     ? 'Baixar Exame'
                     : 'Exame não disponível'
             }}

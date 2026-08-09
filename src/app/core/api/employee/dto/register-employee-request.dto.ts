@@ -1,9 +1,7 @@
-import { CreateUserRequest } from '../../user/dto/create-user-request.dto';
-
 export interface RegisterEmployeeRequest {
-  user: CreateUserRequest;
-  employee: {
-    licenseNumber: string;
-    position: string;
-  };
+  name: string;
+  email: string;
+  password: string;
+  licenseNumber: string;
+  position: string;
 }

@@ -46,15 +46,11 @@ export class CreateAccountPatient {
     const formValues = this.registerForm.getRawValue();
 
     const dto: RegisterPatientRequest = {
-      user: {
-        name: `${formValues.first_name} ${formValues.second_name}`,
-        email: formValues.email,
-        password: formValues.password,
-      },
-      patient: {
-        cpf: formValues.cpf,
-        phone: formValues.phone,
-      },
+      name: `${formValues.first_name} ${formValues.second_name}`,
+      email: formValues.email,
+      password: formValues.password,
+      cpf: formValues.cpf,
+      phone: formValues.phone,
     };
 
     this.registrationState.set(dto);

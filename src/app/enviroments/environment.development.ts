@@ -5,3 +5,6 @@ export const environment = {
 
   googleClientId: '783372180414-u4dum1ib84oc4f63noqa84jb8b3t2ukl.apps.googleusercontent.com',
 };
+
+// 'http://radioscan-alb.elb.localhost.localstack.cloud',
+// 'http://localhost:8080',

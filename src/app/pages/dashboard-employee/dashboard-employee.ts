@@ -6,7 +6,6 @@ import {
   isLessThan24HoursAway,
 } from '../../shared/utils/formatDateAndHour';
 import { AppointmentsManagementResponseDto } from '../../core/api/appointment/dto/appointments-management-response.dto';
-import { RouterLink } from '@angular/router';
 import { UserState } from '../../core/states/user.state';
 import { NgClass } from '@angular/common';
 import { AppointmentActionCellComponent } from './components/appointment-action-cell.component';
